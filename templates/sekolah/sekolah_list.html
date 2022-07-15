@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'assets/css/pages/datatables.css' %}">
+{% endblock %}
+{% block title %}
+    {{ title_page }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-heading">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>{{ title_page }}</h3>
+                    <p class="text-subtitle text-muted">{{ sub_title_page }}</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">DataTable Jquery</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Tables start -->
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    {{ title_page }}
+                </div>
+                <div class="card-body">
+                    <div id="table1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <table class="table dataTable no-footer" id="table1" aria-describedby="table1_info">
+                                    <thead>
+                                    <tr>
+                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="table1" rowspan="1"
+                                            colspan="1" aria-sort="ascending"
+                                            aria-label="Name: activate to sort column descending"
+                                            style="width: 100.891px;">Name
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1"
+                                            aria-label="Email: activate to sort column ascending"
+                                            style="width: 483.586px;">Email
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1"
+                                            aria-label="Phone: activate to sort column ascending"
+                                            style="width: 172.172px;">Phone
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1"
+                                            aria-label="City: activate to sort column ascending"
+                                            style="width: 185.031px;">City
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1"
+                                            aria-label="Status: activate to sort column ascending"
+                                            style="width: 91.3203px;">Status
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="odd">
+                                        <td class="sorting_1">Aladdin</td>
+                                        <td>sem.ut@pellentesqueafacilisis.ca</td>
+                                        <td>0800 1111</td>
+                                        <td>Bothey</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">Berk</td>
+                                        <td>fringilla.porttitor.vulputate@taciti.edu</td>
+                                        <td>(0101) 043 2822</td>
+                                        <td>Sanquhar</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="sorting_1">Bruno</td>
+                                        <td>elit.Etiam.laoreet@luctuslobortisClass.edu</td>
+                                        <td>07624 869434</td>
+                                        <td>Rocca d"Arce</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">Carter</td>
+                                        <td>urna.justo.faucibus@orci.com</td>
+                                        <td>07079 826350</td>
+                                        <td>Biez</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="sorting_1">Channing</td>
+                                        <td>tempor.bibendum.Donec@ornarelectusante.ca</td>
+                                        <td>0845 46 49</td>
+                                        <td>Warrnambool</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">Cruz</td>
+                                        <td>non@quisturpisvitae.ca</td>
+                                        <td>07624 944915</td>
+                                        <td>Shikarpur</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="sorting_1">Dale</td>
+                                        <td>fringilla.euismod.enim@quam.ca</td>
+                                        <td>0500 527693</td>
+                                        <td>New Quay</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">Darius</td>
+                                        <td>velit@nec.com</td>
+                                        <td>0309 690 7871</td>
+                                        <td>Ways</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="sorting_1">Deacon</td>
+                                        <td>Duis.a.mi@sociisnatoquepenatibus.com</td>
+                                        <td>07740 599321</td>
+                                        <td>Karapınar</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">Emmanuel</td>
+                                        <td>eget.lacus.Mauris@feugiatSednec.org</td>
+                                        <td>(016977) 8208</td>
+                                        <td>Saint-Remy-Geest</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">Emmanuel</td>
+                                        <td>eget.lacus.Mauris@feugiatSednec.org</td>
+                                        <td>(016977) 8208</td>
+                                        <td>Saint-Remy-Geest</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">Emmanuel</td>
+                                        <td>eget.lacus.Mauris@feugiatSednec.org</td>
+                                        <td>(016977) 8208</td>
+                                        <td>Saint-Remy-Geest</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+        </section>
+        <!-- Basic Tables end -->
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'assets/js/extensions/datatables.js' %}"></script>
+{% endblock %}
