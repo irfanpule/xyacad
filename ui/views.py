@@ -8,4 +8,4 @@ def home(request):
 
 
 def form_general(request):
-    return render(request, 'ui/container-form.html')
+    return render(request, 'ui/two-column-form.html')
