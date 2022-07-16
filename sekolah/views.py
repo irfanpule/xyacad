@@ -1,3 +1,4 @@
+import sweetify
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.urls import reverse
@@ -20,4 +21,5 @@ class SekolahCreateView(ContextTitleMixin, CreateView):
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data sekolah", timer=5000)
         return reverse('sekolah:list')

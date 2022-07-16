@@ -1,4 +1,4 @@
-{% load static %}
+{% load static sweetify %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{% static 'assets/vendors/bootstrap-icons/bootstrap-icons.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/app.css' %}">
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.svg' %}" type="image/x-icon">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {% block extra_css %} {% endblock %}
 </head>
 <title>{% block title %} Xyacad {% endblock title %}</title>
@@ -43,6 +44,8 @@
     <script src="{% static 'assets/js/mazer.js' %}"></script>
 
     {% block extra_js %} {% endblock %}
+
+    {% sweetify %}
 </body>
 
 </html>
