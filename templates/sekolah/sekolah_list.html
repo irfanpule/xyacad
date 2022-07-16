@@ -62,7 +62,17 @@
                                             <td>{{ sekolah.kabupaten }}</td>
                                             <td>{{ sekolah.provinsi }}</td>
                                             <td>
-                                                <span class="badge bg-success">Active</span>
+                                                <div class="btn-group mb-1">
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fa fa-ellipsis-h"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" style="">
+                                                            <a class="dropdown-item" href="{% url 'sekolah:edit' sekolah.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item text-danger" href="#"><i class="fa fa-trash"></i> Hapus</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                         {% endfor %}
