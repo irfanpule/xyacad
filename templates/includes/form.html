@@ -12,24 +12,33 @@
                         <form class="form" method="post">
                             {% csrf_token %}
                             <div class="row">
+                                <div class="text-danger">
+                                    {{ form.non_field_errors }}
+                                </div>
                                 {% for field in form %}
                                     {% if field.field.widget.input_type == 'checkbox' %}
                                         <div class="checkbox">
                                             {{ field|addclass:'form-check-input'}}
                                             <label for="checkbox1">{{ field.label }}</label>
+                                            <small class="text-muted">{{ field.help_text }}</small>
+                                            <small class="text-danger p-0">{{ field.errors }}</small>
                                         </div>
                                     {% else %}
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">{{ field.label }}</label>
                                                 {{ field|addclass:'form-control' }}
+                                                <small class="text-muted">{{ field.help_text }}</small>
+                                                <small class="text-danger">{{ field.errors }}</small>
                                             </div>
                                         </div>
                                     {% endif %}
                                 {% endfor %}
 
                                 <div class="col-12 d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">
+                                        {% if btn_submit_name %} {{ btn_submit_name }} {% else %} Submit {% endif %}
+                                    </button>
                                 </div>
                             </div>
                         </form>

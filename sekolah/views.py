@@ -17,6 +17,7 @@ class SekolahCreateView(ContextTitleMixin, CreateView):
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data sekolah'
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'
+    btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         return reverse('sekolah:list')
