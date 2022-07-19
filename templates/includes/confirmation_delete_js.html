@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    const buttonModals = document.getElementsByClassName('button-delete');
+
+    for (var i = 0; i < buttonModals.length; i++) {
+        buttonModals[i].addEventListener("click", (e) => {
+            const button = e.currentTarget;
+            console.log("pencet");
+            const objectName = button.getAttribute('data-object_name');
+            const objectDeleteUrl = button.getAttribute('data-object_delete_url');
+            console.log(objectName, objectDeleteUrl)
+            Swal.fire({
+                title: 'Apa kamu yakin?',
+                text: "Menghapus data " + objectName,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.location.href = objectDeleteUrl
+                }
+            })
+        });
+    }
+</script>

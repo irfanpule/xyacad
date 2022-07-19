@@ -69,7 +69,11 @@
                                                         </button>
                                                         <div class="dropdown-menu" style="">
                                                             <a class="dropdown-item" href="{% url 'sekolah:edit' sekolah.id %}"><i class="fa fa-edit"></i> Edit</a>
-                                                            <a class="dropdown-item text-danger" href="#"><i class="fa fa-trash"></i> Hapus</a>
+                                                            <button class="dropdown-item text-danger button-delete"
+                                                                data-object_name="{{ sekolah.nama }}"
+                                                                data-object_delete_url="{% url 'sekolah:delete' sekolah.id %}">
+                                                                <i class="fa fa-trash"></i> Hapus
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -89,4 +93,5 @@
 
 {% block extra_js %}
     <script src="{% static 'assets/js/extensions/datatables.js' %}"></script>
+    {% include 'includes/confirmation_delete_js.html' %}
 {% endblock %}

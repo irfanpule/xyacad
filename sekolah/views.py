@@ -3,6 +3,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse
 from core.mixin import ContextTitleMixin
+from core.views import DeleteView
 from sekolah.models import Sekolah
 from sekolah.forms import SekolahForm
 from core.utils import Logger
@@ -49,4 +50,13 @@ class SekolahUpdateView(ContextTitleMixin, UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data sekolah", timer=5000)
+        return reverse('sekolah:list')
+
+
+class SekolahDeleteView(DeleteView):
+    model = Sekolah
+    pk_url_kwarg = 'id'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menghapus data sekolah", timer=5000)
         return reverse('sekolah:list')
