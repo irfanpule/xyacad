@@ -1,9 +1,36 @@
 from django.views.generic.detail import BaseDetailView
 from django.views.generic.edit import DeletionMixin
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView
+from core.mixin import ContextTitleMixin
 from core.utils import Logger
 
 
+class ListView(ContextTitleMixin, ListView):
+    pass
+
+
+class CreateView(ContextTitleMixin, CreateView):
+
+    def form_valid(self, form):
+        self.object = form.save()
+        log = Logger()
+        log.addition(self.request, self.object)
+        return super().form_valid(form)
+
+
+class UpdateView(ContextTitleMixin, UpdateView):
+    pk_url_kwarg = 'id'
+
+    def form_valid(self, form):
+        self.object = form.save()
+        log = Logger()
+        log.change(self.request, self.object)
+        return super().form_valid(form)
+
+
 class DeleteView(DeletionMixin, BaseDetailView):
+    pk_url_kwarg = 'id'
 
     def delete(self, request, *args, **kwargs):
         log = Logger()

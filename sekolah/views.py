@@ -1,52 +1,35 @@
 import sweetify
-from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse
-from core.mixin import ContextTitleMixin
-from core.views import DeleteView
+from core.views import DeleteView, ListView, CreateView, UpdateView
 from sekolah.models import Sekolah
 from sekolah.forms import SekolahForm
-from core.utils import Logger
 
 
-class SekolahListView(ContextTitleMixin, ListView):
+class SekolahListView(ListView):
     model = Sekolah
     title_page = 'Data Sekolah'
     sub_title = 'Dapat menambahkan lebih dari 1 entitas sekolah'
 
 
-class SekolahCreateView(ContextTitleMixin, CreateView):
+class SekolahCreateView(CreateView):
     form_class = SekolahForm
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data sekolah'
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'
     btn_submit_name = 'Simpan'
 
-    def form_valid(self, form):
-        self.object = form.save()
-        log = Logger()
-        log.addition(self.request, self.object)
-        return super().form_valid(form)
-
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data sekolah", timer=5000)
         return reverse('sekolah:list')
 
 
-class SekolahUpdateView(ContextTitleMixin, UpdateView):
+class SekolahUpdateView(UpdateView):
     model = Sekolah
-    pk_url_kwarg = 'id'
     form_class = SekolahForm
     template_name = 'ui/two-column-form.html'
     title_page = 'Edit data sekolah'
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'
     btn_submit_name = 'Simpan'
-
-    def form_valid(self, form):
-        self.object = form.save()
-        log = Logger()
-        log.change(self.request, self.object)
-        return super().form_valid(form)
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data sekolah", timer=5000)
@@ -55,7 +38,6 @@ class SekolahUpdateView(ContextTitleMixin, UpdateView):
 
 class SekolahDeleteView(DeleteView):
     model = Sekolah
-    pk_url_kwarg = 'id'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data sekolah", timer=5000)
