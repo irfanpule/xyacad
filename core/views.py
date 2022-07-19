@@ -1,4 +1,4 @@
-from django.views.generic.detail import BaseDetailView
+from django.views.generic.detail import BaseDetailView, DetailView
 from django.views.generic.edit import DeletionMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
@@ -41,3 +41,11 @@ class DeleteView(DeletionMixin, BaseDetailView):
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
+
+
+class DetailView(ContextTitleMixin, DetailView):
+    pk_url_kwarg = 'id'
+
+    def get_title_page(self):
+        obj = self.get_object()
+        return f"Detail data {obj.nama}"

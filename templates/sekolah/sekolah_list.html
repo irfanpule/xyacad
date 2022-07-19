@@ -31,6 +31,7 @@
                     {{ title_page }}
                 </div>
                 <div class="card-body">
+                    <div class="table-responsive">
                     <div id="table1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                         <div class="row mb-3">
                             <div class="col-sm-12">
@@ -68,6 +69,7 @@
                                                             <i class="fa fa-ellipsis-h"></i>
                                                         </button>
                                                         <div class="dropdown-menu" style="">
+                                                            <a class="dropdown-item" href="{% url 'sekolah:detail' sekolah.id %}"><i class="fa fa-eye"></i> Lihat</a>
                                                             <a class="dropdown-item" href="{% url 'sekolah:edit' sekolah.id %}"><i class="fa fa-edit"></i> Edit</a>
                                                             <button class="dropdown-item text-danger button-delete"
                                                                 data-object_name="{{ sekolah.nama }}"
@@ -85,7 +87,10 @@
 
                             </div>
                         </div>
-
+                    </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- Basic Tables end -->
     </div>

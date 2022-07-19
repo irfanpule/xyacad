@@ -1,6 +1,6 @@
 import sweetify
 from django.urls import reverse
-from core.views import DeleteView, ListView, CreateView, UpdateView
+from core.views import DeleteView, ListView, CreateView, UpdateView, DetailView
 from sekolah.models import Sekolah
 from sekolah.forms import SekolahForm
 
@@ -34,6 +34,10 @@ class SekolahUpdateView(UpdateView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data sekolah", timer=5000)
         return reverse('sekolah:list')
+
+
+class SekolahDetailView(DetailView):
+    model = Sekolah
 
 
 class SekolahDeleteView(DeleteView):
