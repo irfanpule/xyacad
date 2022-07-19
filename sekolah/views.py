@@ -5,6 +5,7 @@ from django.urls import reverse
 from core.mixin import ContextTitleMixin
 from sekolah.models import Sekolah
 from sekolah.forms import SekolahForm
+from core.utils import Logger
 
 
 class SekolahListView(ContextTitleMixin, ListView):
@@ -20,6 +21,12 @@ class SekolahCreateView(ContextTitleMixin, CreateView):
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'
     btn_submit_name = 'Simpan'
 
+    def form_valid(self, form):
+        self.object = form.save()
+        log = Logger()
+        log.addition(self.request, self.object)
+        return super().form_valid(form)
+
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data sekolah", timer=5000)
         return reverse('sekolah:list')
@@ -33,6 +40,12 @@ class SekolahUpdateView(ContextTitleMixin, UpdateView):
     title_page = 'Edit data sekolah'
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'
     btn_submit_name = 'Simpan'
+
+    def form_valid(self, form):
+        self.object = form.save()
+        log = Logger()
+        log.change(self.request, self.object)
+        return super().form_valid(form)
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data sekolah", timer=5000)
