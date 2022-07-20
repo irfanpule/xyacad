@@ -1,5 +1,5 @@
 from django import forms
-from sekolah.models import Sekolah
+from sekolah.models import Sekolah, Gedung
 
 
 class SekolahForm(forms.ModelForm):
@@ -18,3 +18,9 @@ class SekolahForm(forms.ModelForm):
         if kode_pos.isalpha():
             raise forms.ValidationError('Kode Pos harus angka')
         return kode_pos
+
+
+class GedungForm(forms.ModelForm):
+    class Meta:
+        model = Gedung
+        fields = '__all__'
