@@ -14,5 +14,11 @@ urlpatterns = [
     path('edit/gedung/<uuid:id>/', views.GedungUpdateView.as_view(), name='edit_gedung'),
     path('create/gedung/', views.GedungCreateView.as_view(), name='create_gedung'),
     path('delete/gedung/<uuid:id>/', views.GedungDeleteView.as_view(), name='delete_gedung'),
+
+    path('list/ruangan/', views.RuanganListView.as_view(), name='list_ruangan'),
+    path('detail/ruangan/<uuid:id>/', views.RuanganDetailView.as_view(), name='detail_ruangan'),
+    path('create/ruangan/', views.RuanganCreateView.as_view(), name='create_ruangan'),
+    path('edit/ruangan/<uuid:id>/', views.RuanganUpdateView.as_view(), name='edit_ruangan'),
+    path('delete/ruangan/<uuid:id>/', views.RuanganDeleteView.as_view(), name='delete_ruangan'),
 ]
 
