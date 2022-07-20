@@ -22,5 +22,10 @@ urlpatterns = [
     path('create/struktural/', views.JabatanStrukturalCreateView.as_view(), name='create_struktural'),
     path('edit/struktural/<uuid:id>/', views.JabatanStrukturalUpdateView.as_view(), name='edit_struktural'),
     path('delete/struktural/<uuid:id>/', views.JabatanStrukturalDeleteView.as_view(), name='delete_struktural'),
+
+    path('list/fungsional/', views.JabatanFungsionalListView.as_view(), name='list_fungsional'),
+    path('create/fungsional/', views.JabatanFungsionalCreateView.as_view(), name='create_fungsional'),
+    path('edit/fungsional/<uuid:id>/', views.JabatanFungsionalUpdateView.as_view(), name='edit_fungsional'),
+    path('delete/fungsional/<uuid:id>/', views.JabatanFungsionalDeleteView.as_view(), name='delete_fungsional'),
 ]
 
