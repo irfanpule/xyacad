@@ -17,5 +17,10 @@ urlpatterns = [
     path('create/golongan/', views.GolonganCreateView.as_view(), name='create_golongan'),
     path('edit/golongan/<uuid:id>/', views.GolonganUpdateView.as_view(), name='edit_golongan'),
     path('delete/golongan/<uuid:id>/', views.GolonganDeleteView.as_view(), name='delete_golongan'),
+
+    path('list/struktural/', views.JabatanStrukturalListView.as_view(), name='list_struktural'),
+    path('create/struktural/', views.JabatanStrukturalCreateView.as_view(), name='create_struktural'),
+    path('edit/struktural/<uuid:id>/', views.JabatanStrukturalUpdateView.as_view(), name='edit_struktural'),
+    path('delete/struktural/<uuid:id>/', views.JabatanStrukturalDeleteView.as_view(), name='delete_struktural'),
 ]
 

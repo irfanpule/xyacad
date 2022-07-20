@@ -1,5 +1,5 @@
 from django import forms
-from pegawai.models import StatusPegawai, JenisPTK, Golongan
+from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural
 
 
 class StatusPegawaiForm(forms.ModelForm):
@@ -17,4 +17,10 @@ class JenisPTKForm(forms.ModelForm):
 class GolonganForm(forms.ModelForm):
     class Meta:
         model = Golongan
+        fields = '__all__'
+
+
+class JabatanStrukturalForm(forms.ModelForm):
+    class Meta:
+        model = JabatanStruktural
         fields = '__all__'

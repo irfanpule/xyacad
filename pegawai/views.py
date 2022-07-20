@@ -1,8 +1,8 @@
 import sweetify
 from django.urls import reverse
 from core.views import ListView, CreateView, UpdateView, DeleteView
-from pegawai.models import StatusPegawai, JenisPTK, Golongan
-from pegawai.forms import StatusPegawaiForm, JenisPTKForm, GolonganForm
+from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural
+from pegawai.forms import StatusPegawaiForm, JenisPTKForm, GolonganForm, JabatanStrukturalForm
 
 
 class StatusPegawaiListView(ListView):
@@ -111,3 +111,39 @@ class GolonganDeleteView(DeleteView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data golongan", timer=5000)
         return reverse('pegawai:list_golongan')
+
+
+class JabatanStrukturalListView(ListView):
+    model = JabatanStruktural
+    title_page = 'Data Golongan'
+
+
+class JabatanStrukturalCreateView(CreateView):
+    form_class = JabatanStrukturalForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Tambah data jabatan struktural'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data jabatan struktural", timer=5000)
+        return reverse('pegawai:list_struktural')
+
+
+class JabatanStrukturalUpdateView(UpdateView):
+    model = JabatanStruktural
+    form_class = JabatanStrukturalForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Edit data jabatan struktural'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil mengubah data jabatan struktural", timer=5000)
+        return reverse('pegawai:list_struktural')
+
+
+class JabatanStrukturalDeleteView(DeleteView):
+    model = JabatanStruktural
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menghapus data jabatan struktural", timer=5000)
+        return reverse('pegawai:list_struktural')
