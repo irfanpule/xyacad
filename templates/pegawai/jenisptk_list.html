@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'assets/css/pages/datatables.css' %}">
+{% endblock %}
+{% block title %}
+    {{ title_page }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-heading">
+        <div class="page-title">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 order-md-1 order-first">
+                    <h3>{{ title_page }}</h3>
+                    <p class="text-subtitle text-muted">{{ sub_title_page }}</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-last">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <a href="{% url 'pegawai:create_ptk' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Tables start -->
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    {{ title_page }}
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                    <div id="table1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                        <div class="row mb-3">
+                            <div class="col-sm-12">
+                                <table class="table dataTable no-footer" id="table1" aria-describedby="table1_info">
+                                    <thead>
+                                    <tr>
+                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="table1" rowspan="1">
+                                            Status
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
+                                            Keterangan
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
+                                            Aksi
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for object in object_list %}
+                                        <tr class="odd">
+                                            <td class="sorting_1">{{ object.nama }}</td>
+                                            <td>{{ object.ket|default_if_none:'-' }}</td>
+                                            <td>
+                                                <div class="btn-group mb-1">
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fa fa-ellipsis-h"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" style="">
+                                                            <a class="dropdown-item" href="{% url 'pegawai:edit_ptk' object.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <button class="dropdown-item text-danger button-delete"
+                                                                data-object_name="{{ sekolah.nama }}"
+                                                                data-object_delete_url="{% url 'pegawai:delete_ptk' object.id %}">
+                                                                <i class="fa fa-trash"></i> Hapus
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Tables end -->
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'assets/js/extensions/datatables.js' %}"></script>
+    {% include 'includes/confirmation_delete_js.html' %}
+{% endblock %}
