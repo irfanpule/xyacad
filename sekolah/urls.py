@@ -20,5 +20,11 @@ urlpatterns = [
     path('create/ruangan/', views.RuanganCreateView.as_view(), name='create_ruangan'),
     path('edit/ruangan/<uuid:id>/', views.RuanganUpdateView.as_view(), name='edit_ruangan'),
     path('delete/ruangan/<uuid:id>/', views.RuanganDeleteView.as_view(), name='delete_ruangan'),
+
+    path('list/jurusan/', views.JurusanListView.as_view(), name='list_jurusan'),
+    path('detail/jurusan/<uuid:id>/', views.JurusanDetailView.as_view(), name='detail_jurusan'),
+    path('create/jurusan/', views.JurusanCreateView.as_view(), name='create_jurusan'),
+    path('edit/jurusan/<uuid:id>/', views.JurusanUpdateView.as_view(), name='edit_jurusan'),
+    path('delete/jurusan/<uuid:id>/', views.JurusanDeleteView.as_view(), name='delete_jurusan'),
 ]
 
