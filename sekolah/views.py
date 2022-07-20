@@ -1,8 +1,8 @@
 import sweetify
 from django.urls import reverse
 from core.views import DeleteView, ListView, CreateView, UpdateView, DetailView
-from sekolah.models import Sekolah, Gedung, Ruangan, Jurusan
-from sekolah.forms import SekolahForm, GedungForm, RuanganForm, JurusanForm
+from sekolah.models import Sekolah, Gedung, Ruangan, Jurusan, Kelas
+from sekolah.forms import SekolahForm, GedungForm, RuanganForm, JurusanForm, KelasForm
 
 
 class SekolahListView(ListView):
@@ -168,3 +168,44 @@ class JurusanDeleteView(DeleteView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data jurusan", timer=5000)
         return reverse('sekolah:list_jurusan')
+
+
+class KelasListView(ListView):
+    model = Kelas
+    title_page = 'Data Kelas'
+    sub_title = 'Daftar kelas dari tiap ruangan dan jurusan'
+
+
+class KelasDetailView(DetailView):
+    model = Kelas
+
+
+class KelasCreateView(CreateView):
+    form_class = KelasForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Tambah data kelas'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data kelas", timer=5000)
+        return reverse('sekolah:list_kelas')
+
+
+class KelasUpdateView(UpdateView):
+    model = Kelas
+    form_class = KelasForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Edit data kelas'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil mengubah data kelas", timer=5000)
+        return reverse('sekolah:list_kelas')
+
+
+class KelasDeleteView(DeleteView):
+    model = Kelas
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menghapus data kelas", timer=5000)
+        return reverse('sekolah:list_kelas')
