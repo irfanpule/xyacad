@@ -63,7 +63,7 @@
                                                         <div class="dropdown-menu" style="">
                                                             <a class="dropdown-item" href="{% url 'pegawai:edit_status' object.id %}"><i class="fa fa-edit"></i> Edit</a>
                                                             <button class="dropdown-item text-danger button-delete"
-                                                                data-object_name="{{ sekolah.nama }}"
+                                                                data-object_name="{{ object.nama }}"
                                                                 data-object_delete_url="{% url 'pegawai:delete_status' object.id %}">
                                                                 <i class="fa fa-trash"></i> Hapus
                                                             </button>

@@ -1,8 +1,8 @@
 import sweetify
 from django.urls import reverse
 from core.views import ListView, CreateView, UpdateView, DeleteView
-from akademik.models import TahunAkademik, Kurikulum
-from akademik.forms import TahunAkademikForm, KurikulumForm
+from akademik.models import TahunAkademik, Kurikulum, KelompokMalep
+from akademik.forms import TahunAkademikForm, KurikulumForm, KelompokMapelForm
 
 
 class TahunAkademikListView(ListView):
@@ -75,3 +75,39 @@ class KurikulumDeleteView(DeleteView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data kurikulum", timer=5000)
         return reverse('akademik:list_kurikulum')
+
+
+class KelompokMapelListView(ListView):
+    model = KelompokMalep
+    title_page = 'Data Kelompok Mate Pelajaran'
+
+
+class KelompokMapelCreateView(CreateView):
+    form_class = KelompokMapelForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Tambah data kelompok mata pelajaran'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data kelompok mata pelajaran", timer=5000)
+        return reverse('akademik:list_kelompokmapel')
+
+
+class KelompokMapelUpdateView(UpdateView):
+    model = KelompokMalep
+    form_class = KelompokMapelForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Edit data kurikulum'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil mengubah data kelompok mata pelajaran", timer=5000)
+        return reverse('akademik:list_kelompokmapel')
+
+
+class KelompokMapelDeleteView(DeleteView):
+    model = KelompokMalep
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menghapus data kelompok mata pelajaran", timer=5000)
+        return reverse('akademik:list_kelompokmapel')
