@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('ui.urls')),
     path('sekolah/', include('sekolah.urls')),
     path('pegawai/', include('pegawai.urls')),
+    path('akademik/', include('akademik.urls')),
 ]
