@@ -155,7 +155,7 @@ class JabatanFungsionalListView(ListView):
 
 
 class JabatanFungsionalCreateView(CreateView):
-    form_class = JabatanStrukturalForm
+    form_class = JabatanFungsionalForm
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data jabatan fungsional'
     btn_submit_name = 'Simpan'
@@ -167,7 +167,7 @@ class JabatanFungsionalCreateView(CreateView):
 
 class JabatanFungsionalUpdateView(UpdateView):
     model = JabatanFungsional
-    form_class = JabatanStrukturalForm
+    form_class = JabatanFungsionalForm
     template_name = 'ui/two-column-form.html'
     title_page = 'Edit data jabatan fungsional'
     btn_submit_name = 'Simpan'
