@@ -217,3 +217,6 @@ class PegawaiUpdateView(UpdateView):
 
 class PegawaiDetailView(DetailView):
     model = Pegawai
+
+    def get_title_page(self):
+        return "Detail Pegawai"
