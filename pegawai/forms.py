@@ -1,5 +1,5 @@
 from django import forms
-from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional
+from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai
 
 
 class StatusPegawaiForm(forms.ModelForm):
@@ -30,3 +30,13 @@ class JabatanFungsionalForm(forms.ModelForm):
     class Meta:
         model = JabatanFungsional
         fields = '__all__'
+
+
+class PegawaiForm(forms.ModelForm):
+    class Meta:
+        model = Pegawai
+        fields = '__all__'
+        widgets = {
+            'alamat': forms.Textarea(attrs={'rows': 1}),
+            'domisili': forms.Textarea(attrs={'rows': 1}),
+        }

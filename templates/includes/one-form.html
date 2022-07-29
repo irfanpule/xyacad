@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form" method="post">
+                        <form class="form" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="text-danger">
@@ -24,7 +24,7 @@
                                             <small class="text-danger p-0">{{ field.errors }}</small>
                                         </div>
                                     {% else %}
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">{{ field.label }}</label>
                                                 {{ field|addclass:'form-control' }}
