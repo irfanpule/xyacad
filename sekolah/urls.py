@@ -33,4 +33,3 @@ urlpatterns = [
     path('edit/kelas/<uuid:id>/', views.KelasUpdateView.as_view(), name='edit_kelas'),
     path('delete/kelas/<uuid:id>/', views.KelasDeleteView.as_view(), name='delete_kelas'),
 ]
-
