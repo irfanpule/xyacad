@@ -2,15 +2,15 @@ from django.views.generic.detail import BaseDetailView, DetailView
 from django.views.generic.edit import DeletionMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
-from core.mixin import ContextTitleMixin
+from core.mixin import ContextMixin
 from core.utils import Logger
 
 
-class ListView(ContextTitleMixin, ListView):
+class ListView(ContextMixin, ListView):
     pass
 
 
-class CreateView(ContextTitleMixin, CreateView):
+class CreateView(ContextMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
@@ -19,7 +19,7 @@ class CreateView(ContextTitleMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateView(ContextTitleMixin, UpdateView):
+class UpdateView(ContextMixin, UpdateView):
     pk_url_kwarg = 'id'
 
     def form_valid(self, form):
@@ -43,7 +43,7 @@ class DeleteView(DeletionMixin, BaseDetailView):
         return self.delete(request, *args, **kwargs)
 
 
-class DetailView(ContextTitleMixin, DetailView):
+class DetailView(ContextMixin, DetailView):
     pk_url_kwarg = 'id'
 
     def get_title_page(self):

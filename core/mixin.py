@@ -1,7 +1,7 @@
 from django.views.generic.base import ContextMixin
 
 
-class ContextTitleMixin(ContextMixin):
+class ContextMixin(ContextMixin):
     title_page = ''
     sub_title = ''
     btn_submit_name = ''
