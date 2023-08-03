@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <a href="{% url 'pegawai:create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
+                        <a href="{% url 'pegawai:pegawai_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
                     </nav>
                 </div>
             </div>
@@ -65,8 +65,8 @@
                                                             <i class="fa fa-ellipsis-h"></i>
                                                         </button>
                                                         <div class="dropdown-menu" style="">
-                                                            <a class="dropdown-item" href="{% url 'pegawai:detail' object.id %}"><i class="fa fa-eye"></i> Lihat</a>
-                                                            <a class="dropdown-item" href="{% url 'pegawai:edit' object.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{% url 'pegawai:pegawai_detail' object.id %}"><i class="fa fa-eye"></i> Lihat</a>
+                                                            <a class="dropdown-item" href="{% url 'pegawai:pegawai_update' object.id %}"><i class="fa fa-edit"></i> Edit</a>
 {#                                                            <button class="dropdown-item text-danger button-delete"#}
 {#                                                                data-object_name="{{ object.nama }}"#}
 {#                                                                data-object_delete_url="{% url 'pegawai:delete_golongan' object.id %}">#}

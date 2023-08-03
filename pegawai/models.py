@@ -8,7 +8,7 @@ class Golongan(BaseModel):
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return f"{self.nama}"
 
 
 class JenisPTK(BaseModel):
@@ -16,7 +16,7 @@ class JenisPTK(BaseModel):
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return f"{self.nama}"
 
 
 class JabatanFungsional(BaseModel):
@@ -24,7 +24,7 @@ class JabatanFungsional(BaseModel):
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return f"{self.nama}"
 
 
 class JabatanStruktural(BaseModel):
@@ -32,7 +32,7 @@ class JabatanStruktural(BaseModel):
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return f"{self.nama}"
 
 
 class StatusPegawai(BaseModel):
@@ -40,7 +40,7 @@ class StatusPegawai(BaseModel):
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return f"{self.nama}"
 
 
 class Pegawai(BaseModel):
@@ -83,4 +83,4 @@ class Pegawai(BaseModel):
     sekolah = models.ForeignKey(Sekolah, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return f"{self.nama}"

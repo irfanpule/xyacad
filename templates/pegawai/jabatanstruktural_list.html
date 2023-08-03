@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <a href="{% url 'pegawai:create_struktural' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
+                        <a href="{% url 'pegawai:jabatanstruktural_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
                     </nav>
                 </div>
             </div>
@@ -61,10 +61,11 @@
                                                             <i class="fa fa-ellipsis-h"></i>
                                                         </button>
                                                         <div class="dropdown-menu" style="">
-                                                            <a class="dropdown-item" href="{% url 'pegawai:edit_struktural' object.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{% url 'pegawai:jabatanstruktural_update' object.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{% url 'pegawai:jabatanstruktural_detail' object.id %}"><i class="fa fa-eye"></i> Detail</a>
                                                             <button class="dropdown-item text-danger button-delete"
                                                                 data-object_name="{{ object.nama }}"
-                                                                data-object_delete_url="{% url 'pegawai:delete_struktural' object.id %}">
+                                                                data-object_delete_url="{% url 'pegawai:jabatanstruktural_delete' object.id %}">
                                                                 <i class="fa fa-trash"></i> Hapus
                                                             </button>
                                                         </div>

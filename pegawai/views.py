@@ -5,25 +5,27 @@ from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural,
 from pegawai.forms import (
     StatusPegawaiForm, JenisPTKForm, GolonganForm, JabatanStrukturalForm, JabatanFungsionalForm, PegawaiForm
 )
+from view_breadcrumbs import ListBreadcrumbMixin, CreateBreadcrumbMixin, UpdateBreadcrumbMixin, DetailBreadcrumbMixin
 
 
-class StatusPegawaiListView(ListView):
+class StatusPegawaiListView(ListBreadcrumbMixin, ListView):
     model = StatusPegawai
     title_page = 'Data Status Pegawai'
 
 
-class StatusPegawaiCreateView(CreateView):
+class StatusPegawaiCreateView(CreateBreadcrumbMixin, CreateView):
     form_class = StatusPegawaiForm
+    model = StatusPegawai
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data status pegawai'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data status pegawai", timer=5000)
-        return reverse('pegawai:list_status')
+        return reverse('pegawai:status_list')
 
 
-class StatusPegawaiUpdateView(UpdateView):
+class StatusPegawaiUpdateView(UpdateBreadcrumbMixin, UpdateView):
     model = StatusPegawai
     form_class = StatusPegawaiForm
     template_name = 'ui/two-column-form.html'
@@ -32,7 +34,15 @@ class StatusPegawaiUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data status pegawai", timer=5000)
-        return reverse('pegawai:list_status')
+        return reverse('pegawai:statuspegawai_list')
+
+
+class StatusPegawaiDetailView(DetailBreadcrumbMixin, DetailView):
+    model = StatusPegawai
+    template_name = 'general_detail.html'
+
+    def get_title_page(self):
+        return "Detail Status Pegawai"
 
 
 class StatusPegawaiDeleteView(DeleteView):
@@ -40,26 +50,27 @@ class StatusPegawaiDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data status pegawai", timer=5000)
-        return reverse('pegawai:list_status')
+        return reverse('pegawai:statuspegawai_list')
 
 
-class JenisPTKListView(ListView):
+class JenisPTKListView(ListBreadcrumbMixin, ListView):
     model = JenisPTK
     title_page = 'Data Jenis PTK'
 
 
-class JenisPTKCreateView(CreateView):
+class JenisPTKCreateView(CreateBreadcrumbMixin, CreateView):
     form_class = JenisPTKForm
+    model = JenisPTK
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data jenis PTK'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data Jenis PTK", timer=5000)
-        return reverse('pegawai:list_ptk')
+        return reverse('pegawai:jenisptk_list')
 
 
-class JenisPTKUpdateView(UpdateView):
+class JenisPTKUpdateView(UpdateBreadcrumbMixin, UpdateView):
     model = JenisPTK
     form_class = JenisPTKForm
     template_name = 'ui/two-column-form.html'
@@ -68,7 +79,15 @@ class JenisPTKUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data Jenis PTK", timer=5000)
-        return reverse('pegawai:list_ptk')
+        return reverse('pegawai:jenisptk_list')
+
+
+class JenisPTKDetailView(DetailBreadcrumbMixin, DetailView):
+    model = JenisPTK
+    template_name = 'general_detail.html'
+
+    def get_title_page(self):
+        return "Detail Jenis PTK"
 
 
 class JenisPTKDeleteView(DeleteView):
@@ -76,15 +95,15 @@ class JenisPTKDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data Jenis PTK", timer=5000)
-        return reverse('pegawai:list_ptk')
+        return reverse('pegawai:jenisptk_list')
 
 
-class GolonganListView(ListView):
+class GolonganListView(ListBreadcrumbMixin, ListView):
     model = Golongan
     title_page = 'Data Golongan'
 
 
-class GolonganCreateView(CreateView):
+class GolonganCreateView(CreateBreadcrumbMixin, CreateView):
     form_class = GolonganForm
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data Golongan'
@@ -92,10 +111,10 @@ class GolonganCreateView(CreateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data golongan", timer=5000)
-        return reverse('pegawai:list_golongan')
+        return reverse('pegawai:golongan_list')
 
 
-class GolonganUpdateView(UpdateView):
+class GolonganUpdateView(UpdateBreadcrumbMixin, UpdateView):
     model = Golongan
     form_class = GolonganForm
     template_name = 'ui/two-column-form.html'
@@ -104,7 +123,15 @@ class GolonganUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data golongan", timer=5000)
-        return reverse('pegawai:list_golongan')
+        return reverse('pegawai:golongan_list')
+
+
+class GolonganDetailView(DetailBreadcrumbMixin, DetailView):
+    model = Golongan
+    template_name = 'general_detail.html'
+
+    def get_title_page(self):
+        return "Detail Golongan"
 
 
 class GolonganDeleteView(DeleteView):
@@ -112,26 +139,27 @@ class GolonganDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data golongan", timer=5000)
-        return reverse('pegawai:list_golongan')
+        return reverse('pegawai:golongan_list')
 
 
-class JabatanStrukturalListView(ListView):
+class JabatanStrukturalListView(ListBreadcrumbMixin, ListView):
     model = JabatanStruktural
     title_page = 'Data Jabatan Struktural'
 
 
-class JabatanStrukturalCreateView(CreateView):
+class JabatanStrukturalCreateView(CreateBreadcrumbMixin, CreateView):
     form_class = JabatanStrukturalForm
+    model = JabatanStruktural
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data jabatan struktural'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data jabatan struktural", timer=5000)
-        return reverse('pegawai:list_struktural')
+        return reverse('pegawai:jabatanstruktural_list')
 
 
-class JabatanStrukturalUpdateView(UpdateView):
+class JabatanStrukturalUpdateView(UpdateBreadcrumbMixin, UpdateView):
     model = JabatanStruktural
     form_class = JabatanStrukturalForm
     template_name = 'ui/two-column-form.html'
@@ -140,7 +168,15 @@ class JabatanStrukturalUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data jabatan struktural", timer=5000)
-        return reverse('pegawai:list_struktural')
+        return reverse('pegawai:jabatanstruktural_list')
+
+
+class JabatanStrukturalDetailView(DetailBreadcrumbMixin, DetailView):
+    model = JabatanStruktural
+    template_name = 'general_detail.html'
+
+    def get_title_page(self):
+        return "Detail Jabatan Struktural"
 
 
 class JabatanStrukturalDeleteView(DeleteView):
@@ -148,26 +184,27 @@ class JabatanStrukturalDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data jabatan struktural", timer=5000)
-        return reverse('pegawai:list_struktural')
+        return reverse('pegawai:jabatanstruktural_list')
 
 
-class JabatanFungsionalListView(ListView):
+class JabatanFungsionalListView(ListBreadcrumbMixin, ListView):
     model = JabatanFungsional
     title_page = 'Data Jabatan Fungsional'
 
 
-class JabatanFungsionalCreateView(CreateView):
+class JabatanFungsionalCreateView(CreateBreadcrumbMixin, CreateView):
     form_class = JabatanFungsionalForm
+    model = JabatanFungsional
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data jabatan fungsional'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data jabatan fungsional", timer=5000)
-        return reverse('pegawai:list_fungsional')
+        return reverse('pegawai:jabatanfungsional_list')
 
 
-class JabatanFungsionalUpdateView(UpdateView):
+class JabatanFungsionalUpdateView(UpdateBreadcrumbMixin, UpdateView):
     model = JabatanFungsional
     form_class = JabatanFungsionalForm
     template_name = 'ui/two-column-form.html'
@@ -176,7 +213,15 @@ class JabatanFungsionalUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data jabatan fungsional", timer=5000)
-        return reverse('pegawai:list_fungsional')
+        return reverse('pegawai:jabatanfungsional_list')
+
+
+class JabatanFungsionalDetailView(DetailBreadcrumbMixin, DetailView):
+    model = JabatanFungsional
+    template_name = 'general_detail.html'
+
+    def get_title_page(self):
+        return "Detail Jabatan Fungsional"
 
 
 class JabatanFungsionalDeleteView(DeleteView):
@@ -184,26 +229,27 @@ class JabatanFungsionalDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data jabatan fungsional", timer=5000)
-        return reverse('pegawai:list_fungsional')
+        return reverse('pegawai:jabatanfungsional_list')
 
 
-class PegawaiListView(ListView):
+class PegawaiListView(ListBreadcrumbMixin, ListView):
     model = Pegawai
     title_page = 'Data Pegawai'
 
 
-class PegawaiCreateView(CreateView):
+class PegawaiCreateView(CreateBreadcrumbMixin, CreateView):
     form_class = PegawaiForm
+    model = Pegawai
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data pegawai'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data pegawai", timer=5000)
-        return reverse('pegawai:list')
+        return reverse('pegawai:pegawai_list')
 
 
-class PegawaiUpdateView(UpdateView):
+class PegawaiUpdateView(UpdateBreadcrumbMixin, UpdateView):
     model = Pegawai
     form_class = PegawaiForm
     template_name = 'ui/two-column-form.html'
@@ -212,10 +258,10 @@ class PegawaiUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data pegawai", timer=5000)
-        return reverse('pegawai:list')
+        return reverse('pegawai:pegawai_list')
 
 
-class PegawaiDetailView(DetailView):
+class PegawaiDetailView(DetailBreadcrumbMixin, DetailView):
     model = Pegawai
 
     def get_title_page(self):

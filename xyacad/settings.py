@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'pegawai',
     'ui',
 
-    'sweetify'
+    'sweetify',
+    'view_breadcrumbs'
 ]
 
 MIDDLEWARE = [
@@ -112,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'id'
 
 TIME_ZONE = 'UTC'
 

@@ -2,8 +2,10 @@ from django.views.generic.detail import BaseDetailView, DetailView
 from django.views.generic.edit import DeletionMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
+from django.forms.models import model_to_dict
 from core.mixin import ContextMixin
 from core.utils import Logger
+from view_breadcrumbs import ListBreadcrumbMixin
 
 
 class ListView(ContextMixin, ListView):
@@ -49,3 +51,9 @@ class DetailView(ContextMixin, DetailView):
     def get_title_page(self):
         obj = self.get_object()
         return f"Detail data {obj.nama}"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        obj = self.get_object()
+        context["object_dict"] = model_to_dict(obj)
+        return context
