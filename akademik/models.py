@@ -10,7 +10,7 @@ class TahunAkademik(BaseModel):
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Tahun Akademik"
@@ -23,7 +23,7 @@ class Tingkat(BaseModel):
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Tingkat"
@@ -35,7 +35,7 @@ class Kurikulum(BaseModel):
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Kurikulum"
@@ -48,7 +48,7 @@ class KelompokMapel(BaseModel):
     sekolah = models.ForeignKey(Sekolah, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Kelompok Mata Pelajaran"
@@ -68,7 +68,7 @@ class MataPelajaran(BaseModel):
     khusu = models.CharField('Kompetensi Khusus', max_length=200)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Mata Pelajaran"

@@ -13,6 +13,7 @@ class SekolahListView(ListView):
 
 class SekolahCreateView(CreateView):
     form_class = SekolahForm
+    model = Sekolah
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data sekolah'
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'

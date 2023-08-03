@@ -5,14 +5,14 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.forms.models import model_to_dict
 from core.mixin import ContextMixin
 from core.utils import Logger
-from view_breadcrumbs import ListBreadcrumbMixin
+from view_breadcrumbs import ListBreadcrumbMixin, CreateBreadcrumbMixin, UpdateBreadcrumbMixin, DetailBreadcrumbMixin
 
 
-class ListView(ContextMixin, ListView):
+class ListView(ListBreadcrumbMixin, ContextMixin, ListView):
     pass
 
 
-class CreateView(ContextMixin, CreateView):
+class CreateView(CreateBreadcrumbMixin, ContextMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
@@ -21,7 +21,7 @@ class CreateView(ContextMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateView(ContextMixin, UpdateView):
+class UpdateView(UpdateBreadcrumbMixin, ContextMixin, UpdateView):
     pk_url_kwarg = 'id'
 
     def form_valid(self, form):
@@ -45,8 +45,9 @@ class DeleteView(DeletionMixin, BaseDetailView):
         return self.delete(request, *args, **kwargs)
 
 
-class DetailView(ContextMixin, DetailView):
+class DetailView(DetailBreadcrumbMixin, ContextMixin, DetailView):
     pk_url_kwarg = 'id'
+    template_name = 'general_detail.html'
 
     def get_title_page(self):
         obj = self.get_object()

@@ -66,6 +66,7 @@
                                                         </button>
                                                         <div class="dropdown-menu" style="">
                                                             <a class="dropdown-item" href="{% url 'akademik:kelompokmapel_update' object.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{% url 'akademik:kelompokmapel_detail' object.id %}"><i class="fa fa-eye"></i> Detail</a>
                                                             <button class="dropdown-item text-danger button-delete"
                                                                 data-object_name="{{ object.nama }}"
                                                                 data-object_delete_url="{% url 'akademik:kelompokmapel_delete' object.id %}">

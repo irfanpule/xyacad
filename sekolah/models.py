@@ -16,7 +16,7 @@ class Sekolah(BaseModel):
     aktif = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Sekolah"
@@ -34,7 +34,7 @@ class Gedung(BaseModel):
     sekolah = models.ForeignKey(Sekolah, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Gedung"
@@ -49,7 +49,7 @@ class Ruangan(BaseModel):
     gedung = models.ForeignKey(Gedung, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Ruangan"
@@ -65,7 +65,7 @@ class Jurusan(BaseModel):
     sekolah = models.ForeignKey(Sekolah, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Jurusan"
@@ -79,7 +79,7 @@ class Kelas(BaseModel):
     jurusan = models.ForeignKey(Jurusan, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nama} - {self.id}"
+        return self.nama
 
     class Meta:
         verbose_name = "Kelas"
