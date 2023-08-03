@@ -13,8 +13,8 @@ urlpatterns = [
     path('kurikulum/edit/<uuid:id>/', views.KurikulumUpdateView.as_view(), name='kurikulum_update'),
     path('kurikulum/delete/<uuid:id>/', views.KurikulumDeleteView.as_view(), name='kurikulum_delete'),
 
-    path('kolompokmapel/list/', views.KelompokMapelListView.as_view(), name='list_kelompokmapel'),
-    path('kolompokmapel/create/', views.KelompokMapelCreateView.as_view(), name='create_kelompokmapel'),
-    path('kolompokmapel/edit/<uuid:id>/', views.KelompokMapelUpdateView.as_view(), name='edit_kelompokmapel'),
-    path('kolompokmapel/delete/<uuid:id>/', views.KelompokMapelDeleteView.as_view(), name='delete_kelompokmapel'),
+    path('kolompokmapel/list/', views.KelompokMapelListView.as_view(), name='kelompokmapel_list'),
+    path('kolompokmapel/create/', views.KelompokMapelCreateView.as_view(), name='kelompokmapel_create'),
+    path('kolompokmapel/edit/<uuid:id>/', views.KelompokMapelUpdateView.as_view(), name='kelompokmapel_update'),
+    path('kolompokmapel/delete/<uuid:id>/', views.KelompokMapelDeleteView.as_view(), name='kelompokmapel_delete'),
 ]

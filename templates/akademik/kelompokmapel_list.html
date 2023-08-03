@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <a href="{% url 'akademik:create_kelompokmapel' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
+                        <a href="{% url 'akademik:kelompokmapel_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
                     </nav>
                 </div>
             </div>
@@ -65,10 +65,10 @@
                                                             <i class="fa fa-ellipsis-h"></i>
                                                         </button>
                                                         <div class="dropdown-menu" style="">
-                                                            <a class="dropdown-item" href="{% url 'akademik:edit_kelompokmapel' object.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{% url 'akademik:kelompokmapel_update' object.id %}"><i class="fa fa-edit"></i> Edit</a>
                                                             <button class="dropdown-item text-danger button-delete"
                                                                 data-object_name="{{ object.nama }}"
-                                                                data-object_delete_url="{% url 'akademik:delete_kelompokmapel' object.id %}">
+                                                                data-object_delete_url="{% url 'akademik:kelompokmapel_delete' object.id %}">
                                                                 <i class="fa fa-trash"></i> Hapus
                                                             </button>
                                                         </div>
