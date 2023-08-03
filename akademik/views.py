@@ -1,8 +1,8 @@
 import sweetify
 from django.urls import reverse
 from core.views import ListView, CreateView, UpdateView, DeleteView, DetailView
-from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat
-from akademik.forms import TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm
+from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran
+from akademik.forms import TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm
 
 
 class TahunAkademikListView(ListView):
@@ -179,3 +179,47 @@ class TingkatDeleteView(DeleteView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data tingkat", timer=5000)
         return reverse('akademik:tingkat_list')
+
+
+class MataPelajaranListView(ListView):
+    model = MataPelajaran
+    title_page = 'Data Mata Pelajaran'
+
+
+class MataPelajaranCreateView(CreateView):
+    form_class = MataPelajaranForm
+    model = MataPelajaran
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Tambah data mata pelajaran'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data mata pelajaran", timer=5000)
+        return reverse('akademik:matapelajaran_list')
+
+
+class MataPelajaranUpdateView(UpdateView):
+    model = MataPelajaran
+    form_class = MataPelajaranForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Edit data mata pelajaran'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil mengubah data mata pelajaran", timer=5000)
+        return reverse('akademik:matapelajaran_list')
+
+
+class MataPelajaranDetailView(DetailView):
+    model = MataPelajaran
+
+    def get_title_page(self):
+        return "Detail Mata Pelajaran"
+
+
+class MataPelajaranDeleteView(DeleteView):
+    model = MataPelajaran
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menghapus data mata pelajaran", timer=5000)
+        return reverse('akademik:matapelajaran_list')

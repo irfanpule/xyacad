@@ -21,7 +21,7 @@ class StatusPegawaiCreateView(CreateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data status pegawai", timer=5000)
-        return reverse('pegawai:status_list')
+        return reverse('pegawai:statuspegawai_list')
 
 
 class StatusPegawaiUpdateView(UpdateView):
@@ -102,6 +102,7 @@ class GolonganListView(ListView):
 
 class GolonganCreateView(CreateView):
     form_class = GolonganForm
+    model = Golongan
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data Golongan'
     btn_submit_name = 'Simpan'

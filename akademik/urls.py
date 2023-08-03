@@ -26,4 +26,10 @@ urlpatterns = [
     path('tingkat/edit/<uuid:id>/', views.TingkatUpdateView.as_view(), name='tingkat_update'),
     path('tingkat/detail/<uuid:id>/', views.TingkatDetailView.as_view(), name='tingkat_detail'),
     path('tingkat/delete/<uuid:id>/', views.TingkatDeleteView.as_view(), name='tingkat_delete'),
+
+    path('matapelajaran/list/', views.MataPelajaranListView.as_view(), name='matapelajaran_list'),
+    path('matapelajaran/create/', views.MataPelajaranCreateView.as_view(), name='matapelajaran_create'),
+    path('matapelajaran/edit/<uuid:id>/', views.MataPelajaranUpdateView.as_view(), name='matapelajaran_update'),
+    path('matapelajaran/detail/<uuid:id>/', views.MataPelajaranDetailView.as_view(), name='matapelajaran_detail'),
+    path('matapelajaran/delete/<uuid:id>/', views.MataPelajaranDeleteView.as_view(), name='matapelajaran_delete'),
 ]

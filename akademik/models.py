@@ -60,7 +60,8 @@ class MataPelajaran(BaseModel):
     kode = models.CharField('Kode Mata Pelajaran', max_length=150)
     jml_jam = models.PositiveSmallIntegerField('Jumlah Jam')
     tingkat = models.ForeignKey(Tingkat, on_delete=models.CASCADE)
-    kel_mapel = models.ForeignKey(KelompokMapel, on_delete=models.SET_NULL, blank=True, null=True)
+    kel_mapel = models.ForeignKey(KelompokMapel, on_delete=models.SET_NULL, blank=True, null=True,
+                                  help_text="Kelompok Mata Pelajaran")
     jurusan = models.ForeignKey(Jurusan, on_delete=models.SET_NULL, blank=True, null=True)
     guru = models.ForeignKey(Pegawai, on_delete=models.SET_NULL, blank=True, null=True)
     kurikulum = models.ForeignKey(Kurikulum, on_delete=models.SET_NULL, blank=True, null=True)
