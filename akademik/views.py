@@ -1,8 +1,8 @@
 import sweetify
 from django.urls import reverse
 from core.views import ListView, CreateView, UpdateView, DeleteView, DetailView
-from akademik.models import TahunAkademik, Kurikulum, KelompokMapel
-from akademik.forms import TahunAkademikForm, KurikulumForm, KelompokMapelForm
+from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat
+from akademik.forms import TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm
 
 
 class TahunAkademikListView(ListView):
@@ -135,3 +135,47 @@ class KelompokMapelDeleteView(DeleteView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data kelompok mata pelajaran", timer=5000)
         return reverse('akademik:kelompokmapel_list')
+
+
+class TingkatListView(ListView):
+    model = Tingkat
+    title_page = 'Data Tingkat'
+
+
+class TingkatCreateView(CreateView):
+    form_class = TingkatForm
+    model = Tingkat
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Tambah data tingkat'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data tingkat", timer=5000)
+        return reverse('akademik:tingkat_list')
+
+
+class TingkatUpdateView(UpdateView):
+    model = Tingkat
+    form_class = TingkatForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Edit data tingkat'
+    btn_submit_name = 'Simpan'
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil mengubah data tingkat", timer=5000)
+        return reverse('akademik:tingkat_list')
+
+
+class TingkatDetailView(DetailView):
+    model = Tingkat
+
+    def get_title_page(self):
+        return "Detail Tingkat"
+
+
+class TingkatDeleteView(DeleteView):
+    model = Tingkat
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menghapus data tingkat", timer=5000)
+        return reverse('akademik:tingkat_list')

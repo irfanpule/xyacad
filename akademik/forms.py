@@ -1,5 +1,5 @@
 from django import forms
-from akademik.models import TahunAkademik, Kurikulum, KelompokMapel
+from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat
 
 
 class TahunAkademikForm(forms.ModelForm):
@@ -17,4 +17,10 @@ class KurikulumForm(forms.ModelForm):
 class KelompokMapelForm(forms.ModelForm):
     class Meta:
         model = KelompokMapel
+        fields = '__all__'
+
+
+class TingkatForm(forms.ModelForm):
+    class Meta:
+        model = Tingkat
         fields = '__all__'

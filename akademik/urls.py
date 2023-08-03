@@ -20,4 +20,10 @@ urlpatterns = [
     path('kolompokmapel/edit/<uuid:id>/', views.KelompokMapelUpdateView.as_view(), name='kelompokmapel_update'),
     path('kolompokmapel/detail/<uuid:id>/', views.KelompokMapelDetailView.as_view(), name='kelompokmapel_detail'),
     path('kolompokmapel/delete/<uuid:id>/', views.KelompokMapelDeleteView.as_view(), name='kelompokmapel_delete'),
+
+    path('tingkat/list/', views.TingkatListView.as_view(), name='tingkat_list'),
+    path('tingkat/create/', views.TingkatCreateView.as_view(), name='tingkat_create'),
+    path('tingkat/edit/<uuid:id>/', views.TingkatUpdateView.as_view(), name='tingkat_update'),
+    path('tingkat/detail/<uuid:id>/', views.TingkatDetailView.as_view(), name='tingkat_detail'),
+    path('tingkat/delete/<uuid:id>/', views.TingkatDeleteView.as_view(), name='tingkat_delete'),
 ]
