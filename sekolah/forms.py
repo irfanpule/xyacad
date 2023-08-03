@@ -23,7 +23,7 @@ class SekolahForm(forms.ModelForm):
 class GedungForm(forms.ModelForm):
     class Meta:
         model = Gedung
-        fields = '__all__'
+        exclude = ('aktif',)
 
 
 class RuanganForm(forms.ModelForm):

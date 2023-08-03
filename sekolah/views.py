@@ -15,7 +15,7 @@ class SekolahCreateView(CreateView):
     form_class = SekolahForm
     model = Sekolah
     template_name = 'ui/two-column-form.html'
-    title_page = 'Tambah data sekolah'
+    title_page = 'Tambah Data Sekolah'
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'
     btn_submit_name = 'Simpan'
 
@@ -62,8 +62,8 @@ class GedungDetailView(DetailView):
 class GedungUpdateView(UpdateView):
     model = Gedung
     form_class = GedungForm
-    template_name = 'ui/two-column-form.html'
-    title_page = 'Edit data gedung'
+    template_name = 'ui/one-column-form.html'
+    title_page = 'Edit Data Gedung'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
@@ -74,8 +74,8 @@ class GedungUpdateView(UpdateView):
 class GedungCreateView(CreateView):
     form_class = GedungForm
     model = Gedung
-    template_name = 'ui/two-column-form.html'
-    title_page = 'Tambah data gedung'
+    template_name = 'ui/one-column-form.html'
+    title_page = 'Tambah Data Gedung'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
