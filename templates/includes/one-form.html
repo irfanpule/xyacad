@@ -19,14 +19,20 @@
                                     {% if field.field.widget.input_type == 'checkbox' %}
                                         <div class="checkbox">
                                             {{ field|addclass:'form-check-input'}}
-                                            <label for="checkbox1">{{ field.label }}</label>
+                                            <label for="checkbox1">
+                                                {{ field.label }}
+                                                {% if field.field.required %}*{% endif %}
+                                            </label>
                                             <small class="text-muted">{{ field.help_text }}</small>
                                             <small class="text-danger p-0">{{ field.errors }}</small>
                                         </div>
                                     {% else %}
                                         <div class="col-md-12 col-12">
                                             <div class="form-group">
-                                                <label for="first-name-column">{{ field.label }}</label>
+                                                <label for="first-name-column">
+                                                    {{ field.label }}
+                                                    {% if field.field.required %}*{% endif %}
+                                                </label>
                                                 {{ field|addclass:'form-control' }}
                                                 <small class="text-muted">{{ field.help_text }}</small>
                                                 <small class="text-danger">{{ field.errors }}</small>
