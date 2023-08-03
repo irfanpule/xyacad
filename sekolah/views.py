@@ -20,7 +20,7 @@ class SekolahCreateView(CreateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data sekolah", timer=5000)
-        return reverse('sekolah:list')
+        return reverse('sekolah:sekolah_list')
 
 
 class SekolahUpdateView(UpdateView):
@@ -33,7 +33,7 @@ class SekolahUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data sekolah", timer=5000)
-        return reverse('sekolah:list')
+        return reverse('sekolah:sekolah_list')
 
 
 class SekolahDetailView(DetailView):
@@ -45,7 +45,7 @@ class SekolahDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data sekolah", timer=5000)
-        return reverse('sekolah:list')
+        return reverse('sekolah:sekolah_list')
 
 
 class GedungListView(ListView):
@@ -67,18 +67,19 @@ class GedungUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data gedung", timer=5000)
-        return reverse('sekolah:list_gedung')
+        return reverse('sekolah:gedung_list')
 
 
 class GedungCreateView(CreateView):
     form_class = GedungForm
+    model = Gedung
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data gedung'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data gedung", timer=5000)
-        return reverse('sekolah:list_gedung')
+        return reverse('sekolah:gedung_list')
 
 
 class GedungDeleteView(DeleteView):
@@ -86,7 +87,7 @@ class GedungDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data gedung", timer=5000)
-        return reverse('sekolah:list_gedung')
+        return reverse('sekolah:gedung_list')
 
 
 class RuanganListView(ListView):
@@ -101,13 +102,14 @@ class RuanganDetailView(DetailView):
 
 class RuanganCreateView(CreateView):
     form_class = RuanganForm
+    model = Ruangan
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data ruangan'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data ruangan", timer=5000)
-        return reverse('sekolah:list_ruangan')
+        return reverse('sekolah:ruangan_list')
 
 
 class RuanganUpdateView(UpdateView):
@@ -119,7 +121,7 @@ class RuanganUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data ruangan", timer=5000)
-        return reverse('sekolah:list_ruangan')
+        return reverse('sekolah:ruangan_list')
 
 
 class RuanganDeleteView(DeleteView):
@@ -127,7 +129,7 @@ class RuanganDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data ruangan", timer=5000)
-        return reverse('sekolah:list_ruangan')
+        return reverse('sekolah:ruangan_list')
 
 
 class JurusanListView(ListView):
@@ -141,13 +143,14 @@ class JurusanDetailView(DetailView):
 
 class JurusanCreateView(CreateView):
     form_class = JurusanForm
+    model = Jurusan
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data jurusan'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data jurusan", timer=5000)
-        return reverse('sekolah:list_jurusan')
+        return reverse('sekolah:jurusan_list')
 
 
 class JurusanUpdateView(UpdateView):
@@ -159,7 +162,7 @@ class JurusanUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data jurusan", timer=5000)
-        return reverse('sekolah:list_jurusan')
+        return reverse('sekolah:jurusan_list')
 
 
 class JurusanDeleteView(DeleteView):
@@ -167,7 +170,7 @@ class JurusanDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data jurusan", timer=5000)
-        return reverse('sekolah:list_jurusan')
+        return reverse('sekolah:jurusan_list')
 
 
 class KelasListView(ListView):
@@ -182,13 +185,14 @@ class KelasDetailView(DetailView):
 
 class KelasCreateView(CreateView):
     form_class = KelasForm
+    model = Kelas
     template_name = 'ui/two-column-form.html'
     title_page = 'Tambah data kelas'
     btn_submit_name = 'Simpan'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data kelas", timer=5000)
-        return reverse('sekolah:list_kelas')
+        return reverse('sekolah:kelas_list')
 
 
 class KelasUpdateView(UpdateView):
@@ -200,7 +204,7 @@ class KelasUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data kelas", timer=5000)
-        return reverse('sekolah:list_kelas')
+        return reverse('sekolah:kelas_list')
 
 
 class KelasDeleteView(DeleteView):
@@ -208,4 +212,4 @@ class KelasDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data kelas", timer=5000)
-        return reverse('sekolah:list_kelas')
+        return reverse('sekolah:kelas_list')

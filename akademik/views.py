@@ -18,7 +18,7 @@ class TahunAkademikCreateView(CreateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data tahun ajaran", timer=5000)
-        return reverse('akademik:list_tahun')
+        return reverse('akademik:tahunakademik_list')
 
 
 class TahunAkademikUpdateView(UpdateView):
@@ -30,7 +30,7 @@ class TahunAkademikUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data tahun ajaran", timer=5000)
-        return reverse('akademik:list_tahun')
+        return reverse('akademik:tahunakademik_list')
 
 
 class TahunAkademikDeleteView(DeleteView):
@@ -38,7 +38,7 @@ class TahunAkademikDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data tahun ajaran", timer=5000)
-        return reverse('akademik:list_tahun')
+        return reverse('akademik:tahunakademik_list')
 
 
 class KurikulumListView(ListView):
@@ -54,7 +54,7 @@ class KurikulumCreateView(CreateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data kurikulum", timer=5000)
-        return reverse('akademik:list_kurikulum')
+        return reverse('akademik:kurikulum_list')
 
 
 class KurikulumUpdateView(UpdateView):
@@ -66,7 +66,7 @@ class KurikulumUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data kurikulum", timer=5000)
-        return reverse('akademik:list_kurikulum')
+        return reverse('akademik:kurikulum_list')
 
 
 class KurikulumDeleteView(DeleteView):
@@ -74,7 +74,7 @@ class KurikulumDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data kurikulum", timer=5000)
-        return reverse('akademik:list_kurikulum')
+        return reverse('akademik:kurikulum_list')
 
 
 class KelompokMapelListView(ListView):
@@ -90,7 +90,7 @@ class KelompokMapelCreateView(CreateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data kelompok mata pelajaran", timer=5000)
-        return reverse('akademik:list_kelompokmapel')
+        return reverse('akademik:kelompokmapel_list')
 
 
 class KelompokMapelUpdateView(UpdateView):
@@ -102,7 +102,7 @@ class KelompokMapelUpdateView(UpdateView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data kelompok mata pelajaran", timer=5000)
-        return reverse('akademik:list_kelompokmapel')
+        return reverse('akademik:kelompokmapel_list')
 
 
 class KelompokMapelDeleteView(DeleteView):
@@ -110,4 +110,4 @@ class KelompokMapelDeleteView(DeleteView):
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data kelompok mata pelajaran", timer=5000)
-        return reverse('akademik:list_kelompokmapel')
+        return reverse('akademik:kelompokmapel_list')
