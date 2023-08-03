@@ -18,6 +18,10 @@ class Sekolah(BaseModel):
     def __str__(self):
         return f"{self.nama} - {self.id}"
 
+    class Meta:
+        verbose_name = "Sekolah"
+        verbose_name_plural = "Sekolah"
+
 
 class Gedung(BaseModel):
     nama = models.CharField('Nama Gedung', max_length=150)
@@ -32,6 +36,10 @@ class Gedung(BaseModel):
     def __str__(self):
         return f"{self.nama} - {self.id}"
 
+    class Meta:
+        verbose_name = "Gedung"
+        verbose_name_plural = "Gedung"
+
 
 class Ruangan(BaseModel):
     nama = models.CharField('Nama Ruangan', max_length=150)
@@ -42,6 +50,10 @@ class Ruangan(BaseModel):
 
     def __str__(self):
         return f"{self.nama} - {self.id}"
+
+    class Meta:
+        verbose_name = "Ruangan"
+        verbose_name_plural = "Ruangan"
 
 
 class Jurusan(BaseModel):
@@ -55,6 +67,10 @@ class Jurusan(BaseModel):
     def __str__(self):
         return f"{self.nama} - {self.id}"
 
+    class Meta:
+        verbose_name = "Jurusan"
+        verbose_name_plural = "Jurusan"
+
 
 class Kelas(BaseModel):
     nama = models.CharField('Nama Kelas', max_length=150)
@@ -64,3 +80,7 @@ class Kelas(BaseModel):
 
     def __str__(self):
         return f"{self.nama} - {self.id}"
+
+    class Meta:
+        verbose_name = "Kelas"
+        verbose_name_plural = "Kelas"

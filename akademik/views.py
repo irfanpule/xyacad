@@ -1,7 +1,7 @@
 import sweetify
 from django.urls import reverse
 from core.views import ListView, CreateView, UpdateView, DeleteView
-from akademik.models import TahunAkademik, Kurikulum, KelompokMalep
+from akademik.models import TahunAkademik, Kurikulum, KelompokMapel
 from akademik.forms import TahunAkademikForm, KurikulumForm, KelompokMapelForm
 
 
@@ -78,7 +78,7 @@ class KurikulumDeleteView(DeleteView):
 
 
 class KelompokMapelListView(ListView):
-    model = KelompokMalep
+    model = KelompokMapel
     title_page = 'Data Kelompok Mate Pelajaran'
 
 
@@ -94,7 +94,7 @@ class KelompokMapelCreateView(CreateView):
 
 
 class KelompokMapelUpdateView(UpdateView):
-    model = KelompokMalep
+    model = KelompokMapel
     form_class = KelompokMapelForm
     template_name = 'ui/two-column-form.html'
     title_page = 'Edit data kurikulum'
@@ -106,7 +106,7 @@ class KelompokMapelUpdateView(UpdateView):
 
 
 class KelompokMapelDeleteView(DeleteView):
-    model = KelompokMalep
+    model = KelompokMapel
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data kelompok mata pelajaran", timer=5000)

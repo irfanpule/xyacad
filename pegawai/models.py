@@ -10,6 +10,10 @@ class Golongan(BaseModel):
     def __str__(self):
         return f"{self.nama}"
 
+    class Meta:
+        verbose_name = "Golongan"
+        verbose_name_plural = "Golongan"
+
 
 class JenisPTK(BaseModel):
     nama = models.CharField('Nama PTK', max_length=150)
@@ -17,6 +21,10 @@ class JenisPTK(BaseModel):
 
     def __str__(self):
         return f"{self.nama}"
+
+    class Meta:
+        verbose_name = "Jenis PTK"
+        verbose_name_plural = "Jenis PTK"
 
 
 class JabatanFungsional(BaseModel):
@@ -26,6 +34,10 @@ class JabatanFungsional(BaseModel):
     def __str__(self):
         return f"{self.nama}"
 
+    class Meta:
+        verbose_name = "Jabatan Fungsional"
+        verbose_name_plural = "Jabatan Fungsional"
+
 
 class JabatanStruktural(BaseModel):
     nama = models.CharField('Nama Jabatan', max_length=150)
@@ -34,6 +46,10 @@ class JabatanStruktural(BaseModel):
     def __str__(self):
         return f"{self.nama}"
 
+    class Meta:
+        verbose_name = "Jabatan Struktural"
+        verbose_name_plural = "Jabatan Struktural"
+
 
 class StatusPegawai(BaseModel):
     nama = models.CharField('Status', max_length=150)
@@ -41,6 +57,10 @@ class StatusPegawai(BaseModel):
 
     def __str__(self):
         return f"{self.nama}"
+
+    class Meta:
+        verbose_name = "Status Pegawai"
+        verbose_name_plural = "Status Pegawai"
 
 
 class Pegawai(BaseModel):
@@ -84,3 +104,7 @@ class Pegawai(BaseModel):
 
     def __str__(self):
         return f"{self.nama}"
+
+    class Meta:
+        verbose_name = "Pegawai"
+        verbose_name_plural = "Pegawai"
