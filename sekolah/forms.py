@@ -1,5 +1,6 @@
 from django import forms
 from sekolah.models import Sekolah, Gedung, Ruangan, Jurusan, Kelas
+from django_select2.forms import Select2Widget
 
 
 class SekolahForm(forms.ModelForm):
@@ -24,21 +25,34 @@ class GedungForm(forms.ModelForm):
     class Meta:
         model = Gedung
         exclude = ('aktif',)
+        widgets = {
+            'sekolah': Select2Widget
+        }
 
 
 class RuanganForm(forms.ModelForm):
     class Meta:
         model = Ruangan
         fields = '__all__'
+        widgets = {
+            'gedung': Select2Widget
+        }
 
 
 class JurusanForm(forms.ModelForm):
     class Meta:
         model = Jurusan
         fields = '__all__'
+        widgets = {
+            'sekolah': Select2Widget
+        }
 
 
 class KelasForm(forms.ModelForm):
     class Meta:
         model = Kelas
         fields = '__all__'
+        widgets = {
+            'ruangan': Select2Widget,
+            'jurusan': Select2Widget
+        }

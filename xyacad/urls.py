@@ -26,4 +26,5 @@ urlpatterns = [
     path('sekolah/', include('sekolah.urls')),
     path('pegawai/', include('pegawai.urls')),
     path('akademik/', include('akademik.urls')),
+    path('select2/', include('django_select2.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
