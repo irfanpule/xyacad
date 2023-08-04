@@ -1,6 +1,7 @@
 from django import forms
 from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai
 from django_flatpickr.widgets import DatePickerInput
+from django_flatpickr.schemas import FlatpickrOptions
 
 
 class StatusPegawaiForm(forms.ModelForm):
@@ -40,6 +41,6 @@ class PegawaiForm(forms.ModelForm):
         widgets = {
             'alamat': forms.Textarea(attrs={'rows': 1}),
             'domisili': forms.Textarea(attrs={'rows': 1}),
-            "tgl_lahir": DatePickerInput(),
-            "tgl_masuk": DatePickerInput(),
+            "tgl_lahir": DatePickerInput(options=FlatpickrOptions(maxDate="today")),
+            "tgl_masuk": DatePickerInput(options=FlatpickrOptions(maxDate="today")),
         }
