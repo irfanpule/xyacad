@@ -145,4 +145,8 @@ SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SELECT2_CSS = [
+    'admin/css/vendor/select2/select2.min.css',
+    'assets/css/widgets/select2-bootstrap-5-theme.min.css',
+]
 SELECT2_THEME = 'bootstrap-5'
