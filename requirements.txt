@@ -1,3 +1,5 @@
 Django==4.0.6
 Pillow==9.2.0
 sweetify==2.3.1
+django-flatpickr==2.0.1
+django-view-breadcrumbs==2.4.1

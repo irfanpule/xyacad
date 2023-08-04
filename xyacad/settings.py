@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'ui',
 
     'sweetify',
-    'view_breadcrumbs'
+    'view_breadcrumbs',
+    'django_flatpickr'
 ]
 
 MIDDLEWARE = [
