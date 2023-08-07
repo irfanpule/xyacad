@@ -81,7 +81,7 @@ class Pegawai(BaseModel):
 
     nama = models.CharField('Nama Lengkap', max_length=150)
     nip = models.CharField('NIP / NIY', max_length=100)
-    kode = models.CharField('Kode Pegawai', max_length=100)
+    kode = models.CharField('Kode Pegawai', max_length=100, unique=True)
     tempat_lahir = models.CharField('Templat Lahir', max_length=100)
     tgl_lahir = models.DateField('Tanggal Lahir')
     jns_kelamin = models.CharField('Jenis Kelamin', max_length=20, choices=JNS_KELAMIN.choices)
