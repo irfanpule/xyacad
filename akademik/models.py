@@ -6,7 +6,7 @@ from pegawai.models import Pegawai
 
 class TahunAkademik(BaseModel):
     nama = models.CharField('Nama Tahun Akademik', max_length=150)
-    kode = models.CharField('Kode Tahun Akademik', max_length=150)
+    kode = models.CharField('Kode Tahun Akademik', max_length=150, unique=True)
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
@@ -19,11 +19,12 @@ class TahunAkademik(BaseModel):
 
 class Tingkat(BaseModel):
     nama = models.CharField('Nama Tingkat', max_length=150)
-    kode = models.CharField('Kode Tingkat', max_length=150)
+    kode = models.CharField('Kode Tingkat', max_length=150, unique=True)
+    sekolah = models.ForeignKey(Sekolah, on_delete=models.SET_NULL, blank=True, null=True)
     ket = models.CharField('Keterangan', max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.nama
+        return f"{self.nama} - {self.sekolah}"
 
     class Meta:
         verbose_name = "Tingkat"
@@ -45,7 +46,7 @@ class Kurikulum(BaseModel):
 class KelompokMapel(BaseModel):
     nama = models.CharField('Nama Kelompok', max_length=150)
     jenis = models.CharField('Jenis', max_length=150)
-    sekolah = models.ForeignKey(Sekolah, on_delete=models.CASCADE)
+    sekolah = models.ForeignKey(Sekolah, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.nama
@@ -57,16 +58,14 @@ class KelompokMapel(BaseModel):
 
 class MataPelajaran(BaseModel):
     nama = models.CharField('Nama Mata Pelajaran', max_length=150)
-    kode = models.CharField('Kode Mata Pelajaran', max_length=150)
-    jml_jam = models.PositiveSmallIntegerField('Jumlah Jam')
+    kode = models.CharField('Kode Mata Pelajaran', max_length=150, unique=True)
     tingkat = models.ForeignKey(Tingkat, on_delete=models.CASCADE)
     kel_mapel = models.ForeignKey(KelompokMapel, on_delete=models.SET_NULL, blank=True, null=True,
                                   help_text="Kelompok Mata Pelajaran")
     jurusan = models.ForeignKey(Jurusan, on_delete=models.SET_NULL, blank=True, null=True)
-    guru = models.ForeignKey(Pegawai, on_delete=models.SET_NULL, blank=True, null=True)
     kurikulum = models.ForeignKey(Kurikulum, on_delete=models.SET_NULL, blank=True, null=True)
     umum = models.CharField('Kompetensi Umum', max_length=200)
-    khusu = models.CharField('Kompetensi Khusus', max_length=200)
+    khusus = models.CharField('Kompetensi Khusus', max_length=200)
 
     def __str__(self):
         return self.nama

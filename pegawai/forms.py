@@ -9,12 +9,18 @@ class StatusPegawaiForm(forms.ModelForm):
     class Meta:
         model = StatusPegawai
         fields = '__all__'
+        help_texts = {
+            'nama': 'Contoh: PPPK atau Honorer atau Kontrak atau PNS atau Tetap',
+        }
 
 
 class JenisPTKForm(forms.ModelForm):
     class Meta:
         model = JenisPTK
         fields = '__all__'
+        help_texts = {
+            'nama': 'Contoh: PTK diagnostik, PTK empiris'
+        }
 
 
 class GolonganForm(forms.ModelForm):

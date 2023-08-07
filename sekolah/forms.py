@@ -11,7 +11,9 @@ class SekolahForm(forms.ModelForm):
             'alamat': forms.Textarea(attrs={'rows': 1}),
         }
         help_texts = {
+            'nama': 'Contoh: SD IT Al-Furqon atau SMP N 1 Gedong Tataan',
             'telp_wa': 'Awali dengan +62',
+            'nss': 'Nomor Statistik Sekolah'
         }
 
     def clean_kode_pos(self):
@@ -28,6 +30,11 @@ class GedungForm(forms.ModelForm):
         widgets = {
             'sekolah': Select2Widget
         }
+        help_texts = {
+            'nama': 'Contoh: Gedung A atau Gedung 1 atau Blok A',
+            'kode': 'Contoh: GDA atau GD1 atau G01BA (sesuai ketentuan sekolah)',
+            'sekolah': 'Gedung ini berada pada sekolah mana'
+        }
 
 
 class RuanganForm(forms.ModelForm):
@@ -36,6 +43,10 @@ class RuanganForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'gedung': Select2Widget
+        }
+        help_texts = {
+            'nama': 'Contoh: Melati atau Anggrek atau Ruang 01',
+            'kode': 'Contoh: Angger atau ANGR atau RK01 (sesuai ketentuan sekolah)',
         }
 
 
@@ -46,6 +57,10 @@ class JurusanForm(forms.ModelForm):
         widgets = {
             'sekolah': Select2Widget
         }
+        help_texts = {
+            'nama': 'Contoh: Ilmu Pengetahuan Alam atau Desain Komunikasi Visual',
+            'kode': 'Contoh: IPA atau DKV'
+        }
 
 
 class KelasForm(forms.ModelForm):
@@ -55,4 +70,8 @@ class KelasForm(forms.ModelForm):
         widgets = {
             'ruangan': Select2Widget,
             'jurusan': Select2Widget
+        }
+        help_texts = {
+            'nama': 'Contoh: Kelas 3 atau Kelas III',
+            'kode': 'Contoh: KLS3 atau KLSIII'
         }
