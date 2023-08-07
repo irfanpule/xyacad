@@ -1,6 +1,5 @@
 from django.db import models
 from core.models import BaseModel
-from sekolah.models import Sekolah
 
 
 class Golongan(BaseModel):
@@ -88,11 +87,11 @@ class Pegawai(BaseModel):
     pendidikan = models.CharField('Pendidikan Terakhir', max_length=20, choices=PENDIDIKAN.choices)
     alamat = models.TextField('Alamat (KTP)', blank=True, null=True)
     domisili = models.TextField('Alamat (Domisili)', blank=True, null=True)
-    status = models.ForeignKey(StatusPegawai, on_delete=models.CASCADE)
-    golongan = models.ForeignKey(Golongan, on_delete=models.CASCADE)
-    jenis_ptk = models.ForeignKey(JenisPTK, on_delete=models.CASCADE)
-    jabatan_fungsional = models.ForeignKey(JabatanFungsional, on_delete=models.CASCADE)
-    jabatan_struktural = models.ForeignKey(JabatanStruktural, on_delete=models.CASCADE)
+    status = models.ForeignKey("pegawai.StatusPegawai", on_delete=models.CASCADE)
+    golongan = models.ForeignKey("pegawai.Golongan", on_delete=models.CASCADE)
+    jenis_ptk = models.ForeignKey("pegawai.JenisPTK", on_delete=models.CASCADE)
+    jabatan_fungsional = models.ForeignKey("pegawai.JabatanFungsional", on_delete=models.CASCADE)
+    jabatan_struktural = models.ForeignKey("pegawai.JabatanStruktural", on_delete=models.CASCADE)
     no_sk = models.CharField('Nomor SK', max_length=150, blank=True, null=True)
     tmt_awal = models.CharField('TMT Awal', max_length=150, blank=True, null=True)
     tgl_masuk = models.DateField('Tanggal Masuk', blank=True, null=True)
@@ -100,7 +99,7 @@ class Pegawai(BaseModel):
     email = models.EmailField('Email', blank=True, null=True)
     telp_wa = models.CharField('Telp / WA', max_length=25, blank=True, null=True)
     foto = models.ImageField('Foto', blank=True, null=True)
-    sekolah = models.ForeignKey(Sekolah, on_delete=models.CASCADE)
+    sekolah = models.ForeignKey("sekolah.Sekolah", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.nama}"
