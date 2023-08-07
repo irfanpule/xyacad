@@ -1,16 +1,16 @@
 import sweetify
 from django.urls import reverse
-from core.views import ListView, CreateView, UpdateView, DeleteView, DetailView
+from core.views import ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, DetailBreadcrumbView
 from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran
 from akademik.forms import TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm
 
 
-class TahunAkademikListView(ListView):
+class TahunAkademikListView(ListBreadcrumbView):
     model = TahunAkademik
     title_page = 'Data Tahun Ajaran'
 
 
-class TahunAkademikCreateView(CreateView):
+class TahunAkademikCreateView(CreateBreadcrumbView):
     form_class = TahunAkademikForm
     model = TahunAkademik
     template_name = 'ui/two-column-form.html'
@@ -22,7 +22,7 @@ class TahunAkademikCreateView(CreateView):
         return reverse('akademik:tahunakademik_list')
 
 
-class TahunAkademikUpdateView(UpdateView):
+class TahunAkademikUpdateView(UpdateBreadcrumbView):
     model = TahunAkademik
     form_class = TahunAkademikForm
     template_name = 'ui/two-column-form.html'
@@ -34,14 +34,14 @@ class TahunAkademikUpdateView(UpdateView):
         return reverse('akademik:tahunakademik_list')
 
 
-class TahunAkademikDetailView(DetailView):
+class TahunAkademikDetailView(DetailBreadcrumbView):
     model = TahunAkademik
 
     def get_title_page(self):
         return "Detail Tahun Akademik"
 
 
-class TahunAkademikDeleteView(DeleteView):
+class TahunAkademikDeleteView(BaseDeleteView):
     model = TahunAkademik
 
     def get_success_url(self):
@@ -49,12 +49,12 @@ class TahunAkademikDeleteView(DeleteView):
         return reverse('akademik:tahunakademik_list')
 
 
-class KurikulumListView(ListView):
+class KurikulumListView(ListBreadcrumbView):
     model = Kurikulum
     title_page = 'Data Kurikulum'
 
 
-class KurikulumCreateView(CreateView):
+class KurikulumCreateView(CreateBreadcrumbView):
     form_class = KurikulumForm
     model = Kurikulum
     template_name = 'ui/two-column-form.html'
@@ -66,7 +66,7 @@ class KurikulumCreateView(CreateView):
         return reverse('akademik:kurikulum_list')
 
 
-class KurikulumUpdateView(UpdateView):
+class KurikulumUpdateView(UpdateBreadcrumbView):
     model = Kurikulum
     form_class = KurikulumForm
     template_name = 'ui/two-column-form.html'
@@ -78,14 +78,14 @@ class KurikulumUpdateView(UpdateView):
         return reverse('akademik:kurikulum_list')
 
 
-class KurikulumDetailView(DetailView):
+class KurikulumDetailView(DetailBreadcrumbView):
     model = Kurikulum
 
     def get_title_page(self):
         return "Detail Kurikulum"
 
 
-class KurikulumDeleteView(DeleteView):
+class KurikulumDeleteView(BaseDeleteView):
     model = Kurikulum
 
     def get_success_url(self):
@@ -93,12 +93,12 @@ class KurikulumDeleteView(DeleteView):
         return reverse('akademik:kurikulum_list')
 
 
-class KelompokMapelListView(ListView):
+class KelompokMapelListView(ListBreadcrumbView):
     model = KelompokMapel
     title_page = 'Data Kelompok Mate Pelajaran'
 
 
-class KelompokMapelCreateView(CreateView):
+class KelompokMapelCreateView(CreateBreadcrumbView):
     form_class = KelompokMapelForm
     model = KelompokMapel
     template_name = 'ui/two-column-form.html'
@@ -110,7 +110,7 @@ class KelompokMapelCreateView(CreateView):
         return reverse('akademik:kelompokmapel_list')
 
 
-class KelompokMapelUpdateView(UpdateView):
+class KelompokMapelUpdateView(UpdateBreadcrumbView):
     model = KelompokMapel
     form_class = KelompokMapelForm
     template_name = 'ui/two-column-form.html'
@@ -122,14 +122,14 @@ class KelompokMapelUpdateView(UpdateView):
         return reverse('akademik:kelompokmapel_list')
 
 
-class KelompokMapelDetailView(DetailView):
+class KelompokMapelDetailView(DetailBreadcrumbView):
     model = KelompokMapel
 
     def get_title_page(self):
         return "Detail Kelompok Mata Pelajaran"
 
 
-class KelompokMapelDeleteView(DeleteView):
+class KelompokMapelDeleteView(BaseDeleteView):
     model = KelompokMapel
 
     def get_success_url(self):
@@ -137,12 +137,12 @@ class KelompokMapelDeleteView(DeleteView):
         return reverse('akademik:kelompokmapel_list')
 
 
-class TingkatListView(ListView):
+class TingkatListView(ListBreadcrumbView):
     model = Tingkat
     title_page = 'Data Tingkat'
 
 
-class TingkatCreateView(CreateView):
+class TingkatCreateView(CreateBreadcrumbView):
     form_class = TingkatForm
     model = Tingkat
     template_name = 'ui/two-column-form.html'
@@ -154,7 +154,7 @@ class TingkatCreateView(CreateView):
         return reverse('akademik:tingkat_list')
 
 
-class TingkatUpdateView(UpdateView):
+class TingkatUpdateView(UpdateBreadcrumbView):
     model = Tingkat
     form_class = TingkatForm
     template_name = 'ui/two-column-form.html'
@@ -166,14 +166,14 @@ class TingkatUpdateView(UpdateView):
         return reverse('akademik:tingkat_list')
 
 
-class TingkatDetailView(DetailView):
+class TingkatDetailView(DetailBreadcrumbView):
     model = Tingkat
 
     def get_title_page(self):
         return "Detail Tingkat"
 
 
-class TingkatDeleteView(DeleteView):
+class TingkatDeleteView(BaseDeleteView):
     model = Tingkat
 
     def get_success_url(self):
@@ -181,12 +181,12 @@ class TingkatDeleteView(DeleteView):
         return reverse('akademik:tingkat_list')
 
 
-class MataPelajaranListView(ListView):
+class MataPelajaranListView(ListBreadcrumbView):
     model = MataPelajaran
     title_page = 'Data Mata Pelajaran'
 
 
-class MataPelajaranCreateView(CreateView):
+class MataPelajaranCreateView(CreateBreadcrumbView):
     form_class = MataPelajaranForm
     model = MataPelajaran
     template_name = 'ui/two-column-form.html'
@@ -198,7 +198,7 @@ class MataPelajaranCreateView(CreateView):
         return reverse('akademik:matapelajaran_list')
 
 
-class MataPelajaranUpdateView(UpdateView):
+class MataPelajaranUpdateView(UpdateBreadcrumbView):
     model = MataPelajaran
     form_class = MataPelajaranForm
     template_name = 'ui/two-column-form.html'
@@ -210,14 +210,14 @@ class MataPelajaranUpdateView(UpdateView):
         return reverse('akademik:matapelajaran_list')
 
 
-class MataPelajaranDetailView(DetailView):
+class MataPelajaranDetailView(DetailBreadcrumbView):
     model = MataPelajaran
 
     def get_title_page(self):
         return "Detail Mata Pelajaran"
 
 
-class MataPelajaranDeleteView(DeleteView):
+class MataPelajaranDeleteView(BaseDeleteView):
     model = MataPelajaran
 
     def get_success_url(self):

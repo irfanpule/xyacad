@@ -1,4 +1,4 @@
-from django.views.generic.detail import BaseDetailView, DetailView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeletionMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
@@ -8,11 +8,11 @@ from core.utils import Logger
 from view_breadcrumbs import ListBreadcrumbMixin, CreateBreadcrumbMixin, UpdateBreadcrumbMixin, DetailBreadcrumbMixin
 
 
-class ListView(ListBreadcrumbMixin, ContextMixin, ListView):
+class BaseListView(ContextMixin, ListView):
     pass
 
 
-class CreateView(CreateBreadcrumbMixin, ContextMixin, CreateView):
+class BaseCreateView(ContextMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
@@ -21,7 +21,7 @@ class CreateView(CreateBreadcrumbMixin, ContextMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateView(UpdateBreadcrumbMixin, ContextMixin, UpdateView):
+class BaseUpdateView(ContextMixin, UpdateView):
     pk_url_kwarg = 'id'
 
     def form_valid(self, form):
@@ -31,7 +31,7 @@ class UpdateView(UpdateBreadcrumbMixin, ContextMixin, UpdateView):
         return super().form_valid(form)
 
 
-class DeleteView(DeletionMixin, BaseDetailView):
+class BaseDeleteView(DeletionMixin, DetailView):
     pk_url_kwarg = 'id'
 
     def delete(self, request, *args, **kwargs):
@@ -45,7 +45,45 @@ class DeleteView(DeletionMixin, BaseDetailView):
         return self.delete(request, *args, **kwargs)
 
 
-class DetailView(DetailBreadcrumbMixin, ContextMixin, DetailView):
+class BaseDetailView(ContextMixin, DetailView):
+    pk_url_kwarg = 'id'
+    template_name = 'general_detail.html'
+
+    def get_title_page(self):
+        obj = self.get_object()
+        return f"Detail data {obj.nama}"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        obj = self.get_object()
+        context["object_dict"] = model_to_dict(obj)
+        return context
+
+
+class ListBreadcrumbView(ListBreadcrumbMixin, BaseListView):
+    pass
+
+
+class CreateBreadcrumbView(CreateBreadcrumbMixin, BaseCreateView):
+
+    def form_valid(self, form):
+        self.object = form.save()
+        log = Logger()
+        log.addition(self.request, self.object)
+        return super().form_valid(form)
+
+
+class UpdateBreadcrumbView(UpdateBreadcrumbMixin, BaseUpdateView):
+    pk_url_kwarg = 'id'
+
+    def form_valid(self, form):
+        self.object = form.save()
+        log = Logger()
+        log.change(self.request, self.object)
+        return super().form_valid(form)
+
+
+class DetailBreadcrumbView(DetailBreadcrumbMixin, BaseDetailView):
     pk_url_kwarg = 'id'
     template_name = 'general_detail.html'
 

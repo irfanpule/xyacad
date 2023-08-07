@@ -1,18 +1,18 @@
 import sweetify
 from django.urls import reverse
-from core.views import ListView, CreateView, UpdateView, DeleteView, DetailView
+from core.views import ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, DetailBreadcrumbView
 from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai
 from pegawai.forms import (
     StatusPegawaiForm, JenisPTKForm, GolonganForm, JabatanStrukturalForm, JabatanFungsionalForm, PegawaiForm
 )
 
 
-class StatusPegawaiListView(ListView):
+class StatusPegawaiListView(ListBreadcrumbView):
     model = StatusPegawai
     title_page = 'Data Status Pegawai'
 
 
-class StatusPegawaiCreateView(CreateView):
+class StatusPegawaiCreateView(CreateBreadcrumbView):
     form_class = StatusPegawaiForm
     model = StatusPegawai
     template_name = 'ui/two-column-form.html'
@@ -24,7 +24,7 @@ class StatusPegawaiCreateView(CreateView):
         return reverse('pegawai:statuspegawai_list')
 
 
-class StatusPegawaiUpdateView(UpdateView):
+class StatusPegawaiUpdateView(UpdateBreadcrumbView):
     model = StatusPegawai
     form_class = StatusPegawaiForm
     template_name = 'ui/two-column-form.html'
@@ -36,14 +36,14 @@ class StatusPegawaiUpdateView(UpdateView):
         return reverse('pegawai:statuspegawai_list')
 
 
-class StatusPegawaiDetailView(DetailView):
+class StatusPegawaiDetailView(DetailBreadcrumbView):
     model = StatusPegawai
 
     def get_title_page(self):
         return "Detail Status Pegawai"
 
 
-class StatusPegawaiDeleteView(DeleteView):
+class StatusPegawaiDeleteView(BaseDeleteView):
     model = StatusPegawai
 
     def get_success_url(self):
@@ -51,12 +51,12 @@ class StatusPegawaiDeleteView(DeleteView):
         return reverse('pegawai:statuspegawai_list')
 
 
-class JenisPTKListView(ListView):
+class JenisPTKListView(ListBreadcrumbView):
     model = JenisPTK
     title_page = 'Data Jenis PTK'
 
 
-class JenisPTKCreateView(CreateView):
+class JenisPTKCreateView(CreateBreadcrumbView):
     form_class = JenisPTKForm
     model = JenisPTK
     template_name = 'ui/two-column-form.html'
@@ -68,7 +68,7 @@ class JenisPTKCreateView(CreateView):
         return reverse('pegawai:jenisptk_list')
 
 
-class JenisPTKUpdateView(UpdateView):
+class JenisPTKUpdateView(UpdateBreadcrumbView):
     model = JenisPTK
     form_class = JenisPTKForm
     template_name = 'ui/two-column-form.html'
@@ -80,14 +80,14 @@ class JenisPTKUpdateView(UpdateView):
         return reverse('pegawai:jenisptk_list')
 
 
-class JenisPTKDetailView(DetailView):
+class JenisPTKDetailView(DetailBreadcrumbView):
     model = JenisPTK
 
     def get_title_page(self):
         return "Detail Jenis PTK"
 
 
-class JenisPTKDeleteView(DeleteView):
+class JenisPTKDeleteView(BaseDeleteView):
     model = JenisPTK
 
     def get_success_url(self):
@@ -95,12 +95,12 @@ class JenisPTKDeleteView(DeleteView):
         return reverse('pegawai:jenisptk_list')
 
 
-class GolonganListView(ListView):
+class GolonganListView(ListBreadcrumbView):
     model = Golongan
     title_page = 'Data Golongan'
 
 
-class GolonganCreateView(CreateView):
+class GolonganCreateView(CreateBreadcrumbView):
     form_class = GolonganForm
     model = Golongan
     template_name = 'ui/two-column-form.html'
@@ -112,7 +112,7 @@ class GolonganCreateView(CreateView):
         return reverse('pegawai:golongan_list')
 
 
-class GolonganUpdateView(UpdateView):
+class GolonganUpdateView(UpdateBreadcrumbView):
     model = Golongan
     form_class = GolonganForm
     template_name = 'ui/two-column-form.html'
@@ -124,14 +124,14 @@ class GolonganUpdateView(UpdateView):
         return reverse('pegawai:golongan_list')
 
 
-class GolonganDetailView(DetailView):
+class GolonganDetailView(DetailBreadcrumbView):
     model = Golongan
 
     def get_title_page(self):
         return "Detail Golongan"
 
 
-class GolonganDeleteView(DeleteView):
+class GolonganDeleteView(BaseDeleteView):
     model = Golongan
 
     def get_success_url(self):
@@ -139,12 +139,12 @@ class GolonganDeleteView(DeleteView):
         return reverse('pegawai:golongan_list')
 
 
-class JabatanStrukturalListView(ListView):
+class JabatanStrukturalListView(ListBreadcrumbView):
     model = JabatanStruktural
     title_page = 'Data Jabatan Struktural'
 
 
-class JabatanStrukturalCreateView(CreateView):
+class JabatanStrukturalCreateView(CreateBreadcrumbView):
     form_class = JabatanStrukturalForm
     model = JabatanStruktural
     template_name = 'ui/two-column-form.html'
@@ -156,7 +156,7 @@ class JabatanStrukturalCreateView(CreateView):
         return reverse('pegawai:jabatanstruktural_list')
 
 
-class JabatanStrukturalUpdateView(UpdateView):
+class JabatanStrukturalUpdateView(UpdateBreadcrumbView):
     model = JabatanStruktural
     form_class = JabatanStrukturalForm
     template_name = 'ui/two-column-form.html'
@@ -168,14 +168,14 @@ class JabatanStrukturalUpdateView(UpdateView):
         return reverse('pegawai:jabatanstruktural_list')
 
 
-class JabatanStrukturalDetailView(DetailView):
+class JabatanStrukturalDetailView(DetailBreadcrumbView):
     model = JabatanStruktural
 
     def get_title_page(self):
         return "Detail Jabatan Struktural"
 
 
-class JabatanStrukturalDeleteView(DeleteView):
+class JabatanStrukturalDeleteView(BaseDeleteView):
     model = JabatanStruktural
 
     def get_success_url(self):
@@ -183,12 +183,12 @@ class JabatanStrukturalDeleteView(DeleteView):
         return reverse('pegawai:jabatanstruktural_list')
 
 
-class JabatanFungsionalListView(ListView):
+class JabatanFungsionalListView(ListBreadcrumbView):
     model = JabatanFungsional
     title_page = 'Data Jabatan Fungsional'
 
 
-class JabatanFungsionalCreateView(CreateView):
+class JabatanFungsionalCreateView(CreateBreadcrumbView):
     form_class = JabatanFungsionalForm
     model = JabatanFungsional
     template_name = 'ui/two-column-form.html'
@@ -200,7 +200,7 @@ class JabatanFungsionalCreateView(CreateView):
         return reverse('pegawai:jabatanfungsional_list')
 
 
-class JabatanFungsionalUpdateView(UpdateView):
+class JabatanFungsionalUpdateView(UpdateBreadcrumbView):
     model = JabatanFungsional
     form_class = JabatanFungsionalForm
     template_name = 'ui/two-column-form.html'
@@ -212,14 +212,14 @@ class JabatanFungsionalUpdateView(UpdateView):
         return reverse('pegawai:jabatanfungsional_list')
 
 
-class JabatanFungsionalDetailView(DetailView):
+class JabatanFungsionalDetailView(DetailBreadcrumbView):
     model = JabatanFungsional
 
     def get_title_page(self):
         return "Detail Jabatan Fungsional"
 
 
-class JabatanFungsionalDeleteView(DeleteView):
+class JabatanFungsionalDeleteView(BaseDeleteView):
     model = JabatanFungsional
 
     def get_success_url(self):
@@ -227,12 +227,12 @@ class JabatanFungsionalDeleteView(DeleteView):
         return reverse('pegawai:jabatanfungsional_list')
 
 
-class PegawaiListView(ListView):
+class PegawaiListView(ListBreadcrumbView):
     model = Pegawai
     title_page = 'Data Pegawai'
 
 
-class PegawaiCreateView(CreateView):
+class PegawaiCreateView(CreateBreadcrumbView):
     form_class = PegawaiForm
     model = Pegawai
     template_name = 'ui/two-column-form.html'
@@ -244,7 +244,7 @@ class PegawaiCreateView(CreateView):
         return reverse('pegawai:pegawai_list')
 
 
-class PegawaiUpdateView(UpdateView):
+class PegawaiUpdateView(UpdateBreadcrumbView):
     model = Pegawai
     form_class = PegawaiForm
     template_name = 'ui/two-column-form.html'
@@ -256,8 +256,9 @@ class PegawaiUpdateView(UpdateView):
         return reverse('pegawai:pegawai_list')
 
 
-class PegawaiDetailView(DetailView):
+class PegawaiDetailView(DetailBreadcrumbView):
     model = Pegawai
+    template_name = "pegawai/pegawai_detail.html"
 
     def get_title_page(self):
         return "Detail Pegawai"

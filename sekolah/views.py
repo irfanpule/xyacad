@@ -1,17 +1,17 @@
 import sweetify
 from django.urls import reverse
-from core.views import DeleteView, ListView, CreateView, UpdateView, DetailView
+from core.views import BaseDeleteView, ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, DetailBreadcrumbView
 from sekolah.models import Sekolah, Gedung, Ruangan, Jurusan, Kelas
 from sekolah.forms import SekolahForm, GedungForm, RuanganForm, JurusanForm, KelasForm
 
 
-class SekolahListView(ListView):
+class SekolahListView(ListBreadcrumbView):
     model = Sekolah
     title_page = 'Data Sekolah'
     sub_title = 'Dapat menambahkan lebih dari 1 entitas sekolah'
 
 
-class SekolahCreateView(CreateView):
+class SekolahCreateView(CreateBreadcrumbView):
     form_class = SekolahForm
     model = Sekolah
     template_name = 'ui/two-column-form.html'
@@ -24,7 +24,7 @@ class SekolahCreateView(CreateView):
         return reverse('sekolah:sekolah_list')
 
 
-class SekolahUpdateView(UpdateView):
+class SekolahUpdateView(UpdateBreadcrumbView):
     model = Sekolah
     form_class = SekolahForm
     template_name = 'ui/two-column-form.html'
@@ -37,11 +37,11 @@ class SekolahUpdateView(UpdateView):
         return reverse('sekolah:sekolah_list')
 
 
-class SekolahDetailView(DetailView):
+class SekolahDetailView(DetailBreadcrumbView):
     model = Sekolah
 
 
-class SekolahDeleteView(DeleteView):
+class SekolahDeleteView(BaseDeleteView):
     model = Sekolah
 
     def get_success_url(self):
@@ -49,17 +49,17 @@ class SekolahDeleteView(DeleteView):
         return reverse('sekolah:sekolah_list')
 
 
-class GedungListView(ListView):
+class GedungListView(ListBreadcrumbView):
     model = Gedung
     title_page = 'Data Gedung'
     sub_title = 'Digunakan untuk mendata gedung yang dimiliki oleh sekolah'
 
 
-class GedungDetailView(DetailView):
+class GedungDetailView(DetailBreadcrumbView):
     model = Gedung
 
 
-class GedungUpdateView(UpdateView):
+class GedungUpdateView(UpdateBreadcrumbView):
     model = Gedung
     form_class = GedungForm
     template_name = 'ui/one-column-form.html'
@@ -71,7 +71,7 @@ class GedungUpdateView(UpdateView):
         return reverse('sekolah:gedung_list')
 
 
-class GedungCreateView(CreateView):
+class GedungCreateView(CreateBreadcrumbView):
     form_class = GedungForm
     model = Gedung
     template_name = 'ui/one-column-form.html'
@@ -83,7 +83,7 @@ class GedungCreateView(CreateView):
         return reverse('sekolah:gedung_list')
 
 
-class GedungDeleteView(DeleteView):
+class GedungDeleteView(BaseDeleteView):
     model = Gedung
 
     def get_success_url(self):
@@ -91,17 +91,17 @@ class GedungDeleteView(DeleteView):
         return reverse('sekolah:gedung_list')
 
 
-class RuanganListView(ListView):
+class RuanganListView(ListBreadcrumbView):
     model = Ruangan
     title_page = 'Data Ruangan'
     sub_title = 'Data dari ruangan dari gedung sekolah'
 
 
-class RuanganDetailView(DetailView):
+class RuanganDetailView(DetailBreadcrumbView):
     model = Ruangan
 
 
-class RuanganCreateView(CreateView):
+class RuanganCreateView(CreateBreadcrumbView):
     form_class = RuanganForm
     model = Ruangan
     template_name = 'ui/two-column-form.html'
@@ -113,7 +113,7 @@ class RuanganCreateView(CreateView):
         return reverse('sekolah:ruangan_list')
 
 
-class RuanganUpdateView(UpdateView):
+class RuanganUpdateView(UpdateBreadcrumbView):
     model = Ruangan
     form_class = RuanganForm
     template_name = 'ui/two-column-form.html'
@@ -125,7 +125,7 @@ class RuanganUpdateView(UpdateView):
         return reverse('sekolah:ruangan_list')
 
 
-class RuanganDeleteView(DeleteView):
+class RuanganDeleteView(BaseDeleteView):
     model = Ruangan
 
     def get_success_url(self):
@@ -133,16 +133,16 @@ class RuanganDeleteView(DeleteView):
         return reverse('sekolah:ruangan_list')
 
 
-class JurusanListView(ListView):
+class JurusanListView(ListBreadcrumbView):
     model = Jurusan
     title_page = 'Data Jurusan'
 
 
-class JurusanDetailView(DetailView):
+class JurusanDetailView(DetailBreadcrumbView):
     model = Jurusan
 
 
-class JurusanCreateView(CreateView):
+class JurusanCreateView(CreateBreadcrumbView):
     form_class = JurusanForm
     model = Jurusan
     template_name = 'ui/two-column-form.html'
@@ -154,7 +154,7 @@ class JurusanCreateView(CreateView):
         return reverse('sekolah:jurusan_list')
 
 
-class JurusanUpdateView(UpdateView):
+class JurusanUpdateView(UpdateBreadcrumbView):
     model = Jurusan
     form_class = JurusanForm
     template_name = 'ui/two-column-form.html'
@@ -166,7 +166,7 @@ class JurusanUpdateView(UpdateView):
         return reverse('sekolah:jurusan_list')
 
 
-class JurusanDeleteView(DeleteView):
+class JurusanDeleteView(BaseDeleteView):
     model = Jurusan
 
     def get_success_url(self):
@@ -174,17 +174,17 @@ class JurusanDeleteView(DeleteView):
         return reverse('sekolah:jurusan_list')
 
 
-class KelasListView(ListView):
+class KelasListView(ListBreadcrumbView):
     model = Kelas
     title_page = 'Data Kelas'
     sub_title = 'Daftar kelas dari tiap ruangan dan jurusan'
 
 
-class KelasDetailView(DetailView):
+class KelasDetailView(DetailBreadcrumbView):
     model = Kelas
 
 
-class KelasCreateView(CreateView):
+class KelasCreateView(CreateBreadcrumbView):
     form_class = KelasForm
     model = Kelas
     template_name = 'ui/two-column-form.html'
@@ -196,7 +196,7 @@ class KelasCreateView(CreateView):
         return reverse('sekolah:kelas_list')
 
 
-class KelasUpdateView(UpdateView):
+class KelasUpdateView(UpdateBreadcrumbView):
     model = Kelas
     form_class = KelasForm
     template_name = 'ui/two-column-form.html'
@@ -208,7 +208,7 @@ class KelasUpdateView(UpdateView):
         return reverse('sekolah:kelas_list')
 
 
-class KelasDeleteView(DeleteView):
+class KelasDeleteView(BaseDeleteView):
     model = Kelas
 
     def get_success_url(self):
