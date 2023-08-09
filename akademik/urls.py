@@ -32,4 +32,10 @@ urlpatterns = [
     path('matapelajaran/edit/<uuid:id>/', views.MataPelajaranUpdateView.as_view(), name='matapelajaran_update'),
     path('matapelajaran/detail/<uuid:id>/', views.MataPelajaranDetailView.as_view(), name='matapelajaran_detail'),
     path('matapelajaran/delete/<uuid:id>/', views.MataPelajaranDeleteView.as_view(), name='matapelajaran_delete'),
+
+    path('jadwal/list/', views.JadwalListView.as_view(), name='jadwal_list'),
+    path('jadwal/create/', views.JadwalCreateView.as_view(), name='jadwal_create'),
+    path('jadwal/edit/<uuid:id>/', views.JadwalUpdateView.as_view(), name='jadwal_update'),
+    path('jadwal/detail/<uuid:id>/', views.JadwalDetailView.as_view(), name='jadwal_detail'),
+    path('jadwal/delete/<uuid:id>/', views.JadwalDeleteView.as_view(), name='jadwal_delete'),
 ]

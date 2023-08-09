@@ -73,5 +73,10 @@ class KelasForm(forms.ModelForm):
         }
         help_texts = {
             'nama': 'Contoh: Kelas 3 atau Kelas III',
-            'kode': 'Contoh: KLS3 atau KLSIII'
+            'kode': 'Contoh: KLS3 atau KLSIII',
+            'jurusan': 'Pilih jika kelas tsb memiliki jurusan'
         }
+
+
+class SekolahChoiceForm(forms.Form):
+    sekolah = forms.ModelChoiceField(queryset=Sekolah.objects.filter(aktif=True))

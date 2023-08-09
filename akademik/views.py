@@ -1,8 +1,14 @@
 import sweetify
 from django.urls import reverse
-from core.views import ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, DetailBreadcrumbView
-from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran
-from akademik.forms import TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm
+from core.views import (
+    ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, DetailBreadcrumbView
+)
+from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran, Jadwal
+from sekolah.models import Sekolah
+from sekolah.forms import SekolahChoiceForm
+from akademik.forms import (
+    TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm, JadwalForm
+)
 
 
 class TahunAkademikListView(ListBreadcrumbView):
@@ -223,3 +229,85 @@ class MataPelajaranDeleteView(BaseDeleteView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus data mata pelajaran", timer=5000)
         return reverse('akademik:matapelajaran_list')
+
+
+class JadwalListView(ListBreadcrumbView):
+    model = Jadwal
+    title_page = 'Data Jadwal'
+
+
+class JadwalCreateView(CreateBreadcrumbView):
+    form_class = JadwalForm
+    model = Jadwal
+    template_name = 'akademik/form_jadwal.html'
+    title_page = 'Tambah Jadwal'
+    btn_submit_name = 'Simpan'
+    sekolah: Sekolah = None
+
+    def dispatch(self, request, *args, **kwargs):
+        sekolah = request.GET.get('sekolah', None)
+        if sekolah:
+            self.sekolah = Sekolah.objects.get(id=sekolah)
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
+
+        if self.sekolah:
+            return form_class(sekolah=self.sekolah, **self.get_form_kwargs())
+        else:
+            return None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form_sekolah_choices"] = SekolahChoiceForm()
+        context["additional_title"] = self.sekolah.nama if self.sekolah else ''
+        context['sekolah'] = self.sekolah
+        return context
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan jadwal", timer=5000)
+        return reverse('akademik:jadwal_list')
+
+
+class JadwalUpdateView(UpdateBreadcrumbView):
+    model = Jadwal
+    form_class = JadwalForm
+    template_name = 'ui/two-column-form.html'
+    title_page = 'Edit jadwal'
+    btn_submit_name = 'Simpan'
+    sekolah: Sekolah = None
+
+    def dispatch(self, request, *args, **kwargs):
+        jadwal = self.get_object()
+        self.sekolah = jadwal.kelas.ruangan.gedung.sekolah
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
+
+        if self.sekolah:
+            return form_class(sekolah=self.sekolah, **self.get_form_kwargs())
+        else:
+            return None
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil mengubah jadwal", timer=5000)
+        return reverse('akademik:jadwal_list')
+
+
+class JadwalDetailView(DetailBreadcrumbView):
+    model = Jadwal
+
+    def get_title_page(self):
+        return "Detail Jadwal"
+
+
+class JadwalDeleteView(BaseDeleteView):
+    model = Jadwal
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menghapus jadwal", timer=5000)
+        return reverse('akademik:jadwal_list')

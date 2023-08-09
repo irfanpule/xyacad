@@ -29,7 +29,7 @@
                         </a>
                         <ul class="submenu" style="display: none;">
                             <li class="submenu-item">
-                                <a href="{% url 'sekolah:sekolah_list' %}">Identitas Sekolah</a>
+                                <a href="{% url 'sekolah:sekolah_list' %}">Sekolah</a>
                             </li>
                             <li class="submenu-item">
                                 <a href="{% url 'sekolah:gedung_list' %}">Gedung</a>
@@ -112,7 +112,7 @@
                                 <a href="{% url 'akademik:matapelajaran_list' %}">Mata Pelajaran</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#">Jadwal</a>
+                                <a href="{% url 'akademik:jadwal_list' %}">Jadwal</a>
                             </li>
                         </ul>
                     </li>

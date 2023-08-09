@@ -1,6 +1,10 @@
 from django import forms
-from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran
+from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran, Jadwal
+from sekolah.models import Jurusan, Kelas
+from pegawai.models import Pegawai
 from django_select2.forms import Select2Widget
+from django_flatpickr.widgets import TimePickerInput
+from django_flatpickr.schemas import FlatpickrOptions
 
 
 class TahunAkademikForm(forms.ModelForm):
@@ -60,3 +64,28 @@ class MataPelajaranForm(forms.ModelForm):
             'nama': 'Contoh: Matematika, Seni Budaya, Biologi',
             'kode': 'Contoh: MTK, SB, BIO (sesuai ketentuan sekolah)'
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['kel_mapel'].required = True
+        self.fields['kurikulum'].required = True
+
+
+class JadwalForm(forms.ModelForm):
+    class Meta:
+        model = Jadwal
+        fields = '__all__'
+        widgets = {
+            'jam_akhir': TimePickerInput(options=FlatpickrOptions(time_24hr=True)),
+            'jam_mulai': TimePickerInput(options=FlatpickrOptions(time_24hr=True))
+        }
+
+    def __init__(self, sekolah=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['kelas'].required = True
+
+        if sekolah:
+            self.fields['jurusan'].queryset = Jurusan.objects.filter(sekolah=sekolah)
+            self.fields['kelas'].queryset = Kelas.objects.filter(ruangan__gedung__sekolah=sekolah)
+            self.fields['guru'].queryset = Pegawai.objects.filter(sekolah=sekolah)
+            self.fields['mata_pelajaran'].queryset = MataPelajaran.objects.filter(kel_mapel__sekolah=sekolah)

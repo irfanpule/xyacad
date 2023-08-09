@@ -5,12 +5,10 @@
     <div class="row match-height">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Form {{ title_page }} {{ additional_title }}</h4>
-                </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form" method="post" enctype="multipart/form-data">
+                        <h4 class="card-title">{{ title_form }}</h4>
+                        <form class="form" method="GET">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="text-danger">
@@ -29,7 +27,7 @@
                                             <small class="text-danger p-0">{{ field.errors }}</small>
                                         </div>
                                     {% else %}
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-12 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">
                                                     {{ field.label }}
@@ -45,7 +43,7 @@
 
                                 <div class="col-12 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary me-1 mb-1">
-                                        {% if btn_submit_name %} {{ btn_submit_name }} {% else %} Submit {% endif %}
+                                        Filter
                                     </button>
                                 </div>
                             </div>
@@ -56,7 +54,6 @@
         </div>
     </div>
 </section>
-
 
 <script src="{% static 'assets/vendors/jquery/jquery.min.js' %}"></script>
 {{ form.media.js }}

@@ -47,7 +47,7 @@ class KelompokMapel(BaseModel):
     sekolah = models.ForeignKey("sekolah.Sekolah", on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
-        return self.nama
+        return f"{self.nama} - {self.sekolah}"
 
     class Meta:
         verbose_name = "Kelompok Mata Pelajaran"
@@ -61,8 +61,8 @@ class MataPelajaran(BaseModel):
     kel_mapel = models.ForeignKey("akademik.KelompokMapel", on_delete=models.SET_NULL, blank=True, null=True,
                                   help_text="Kelompok Mata Pelajaran")
     kurikulum = models.ForeignKey("akademik.Kurikulum", on_delete=models.SET_NULL, blank=True, null=True)
-    umum = models.CharField('Kompetensi Umum', max_length=200)
-    khusus = models.CharField('Kompetensi Khusus', max_length=200)
+    umum = models.CharField('Kompetensi Umum', max_length=200, blank=True, null=True)
+    khusus = models.CharField('Kompetensi Khusus', max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.nama
@@ -89,3 +89,10 @@ class Jadwal(BaseModel):
     jam_mulai = models.TimeField()
     jam_akhir = models.TimeField()
     guru = models.ForeignKey("pegawai.Pegawai", on_delete=models.SET_NULL, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.kelas.nama} - {self.get_hari_display()}"
+
+    class Meta:
+        verbose_name = "Jadwal"
+        verbose_name_plural = "Jadwal"

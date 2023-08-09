@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <a href="{% url 'sekolah:kelas_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
+                        <a href="{% url 'akademik:jadwal_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
                     </nav>
                 </div>
             </div>
@@ -39,16 +39,19 @@
                                     <thead>
                                     <tr>
                                         <th class="sorting sorting_asc" tabindex="0" aria-controls="table1" rowspan="1">
-                                            Nama
+                                            Hari
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
-                                            Kode
+                                            Jam
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
-                                            Ruangan
+                                            Mata Pelajaran
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
-                                            Sekolah
+                                            Kelas
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
+                                            Guru
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
                                             Aksi
@@ -58,10 +61,11 @@
                                     <tbody>
                                         {% for object in object_list %}
                                         <tr class="odd">
-                                            <td class="sorting_1">{{ object.nama }}</td>
-                                            <td>{{ object.kode }}</td>
-                                            <td>{{ object.ruangan.nama }}</td>
-                                            <td>{{ object.ruangan.gedung.sekolah.nama }}</td>
+                                            <td class="sorting_1">{{ object.hari }}</td>
+                                            <td>{{ object.jam_mulai }} - {{ object.jam_akhir }}</td>
+                                            <td>{{ object.mata_pelajaran }}</td>
+                                            <td>{{ object.kelas }}</td>
+                                            <td>{{ object.guru }}</td>
                                             <td>
                                                 <div class="btn-group mb-1">
                                                     <div class="dropdown">
@@ -69,11 +73,11 @@
                                                             <i class="fa fa-ellipsis-h"></i>
                                                         </button>
                                                         <div class="dropdown-menu" style="">
-                                                            <a class="dropdown-item" href="{% url 'sekolah:kelas_update' object.id %}"><i class="fa fa-edit"></i> Edit</a>
-                                                            <a class="dropdown-item" href="{% url 'sekolah:kelas_detail' object.id %}"><i class="fa fa-eye"></i> Lihat</a>
+                                                            <a class="dropdown-item" href="{% url 'akademik:jadwal_update' object.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{% url 'akademik:jadwal_detail' object.id %}"><i class="fa fa-eye"></i> Detail</a>
                                                             <button class="dropdown-item text-danger button-delete"
                                                                 data-object_name="{{ object.nama }}"
-                                                                data-object_delete_url="{% url 'sekolah:kelas_delete' object.id %}">
+                                                                data-object_delete_url="{% url 'akademik:jadwal_delete' object.id %}">
                                                                 <i class="fa fa-trash"></i> Hapus
                                                             </button>
                                                         </div>
