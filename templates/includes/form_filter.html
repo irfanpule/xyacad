@@ -27,7 +27,7 @@
                                             <small class="text-danger p-0">{{ field.errors }}</small>
                                         </div>
                                     {% else %}
-                                        <div class="col-md-12 col-12">
+                                        <div class=" {{form.fields|length|get_column_bootstrap}} col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">
                                                     {{ field.label }}
@@ -41,7 +41,7 @@
                                     {% endif %}
                                 {% endfor %}
 
-                                <div class="col-12 d-flex justify-content-end">
+                                <div class="col-12 d-flex">
                                     <button type="submit" class="btn btn-primary me-1 mb-1">
                                         Filter
                                     </button>

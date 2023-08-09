@@ -5,9 +5,8 @@ from core.views import (
 )
 from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran, Jadwal
 from sekolah.models import Sekolah
-from sekolah.forms import SekolahChoiceForm
 from akademik.forms import (
-    TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm, JadwalForm
+    TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm, JadwalForm, JadwalFilterForm
 )
 
 
@@ -243,11 +242,16 @@ class JadwalCreateView(CreateBreadcrumbView):
     title_page = 'Tambah Jadwal'
     btn_submit_name = 'Simpan'
     sekolah: Sekolah = None
+    tahun_ajaran = None
 
     def dispatch(self, request, *args, **kwargs):
         sekolah = request.GET.get('sekolah', None)
+        tahun_ajaran = request.GET.get('tahun_ajaran', None)
         if sekolah:
             self.sekolah = Sekolah.objects.get(id=sekolah)
+        if tahun_ajaran:
+            self.tahun_ajaran = TahunAkademik.objects.get(id=tahun_ajaran)
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_form(self, form_class=None):
@@ -255,14 +259,17 @@ class JadwalCreateView(CreateBreadcrumbView):
             form_class = self.get_form_class()
 
         if self.sekolah:
-            return form_class(sekolah=self.sekolah, **self.get_form_kwargs())
+            kwargs = self.get_form_kwargs()
+            kwargs['initial']['tahun_ajaran'] = self.tahun_ajaran
+            return form_class(sekolah=self.sekolah, **kwargs)
         else:
             return None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form_sekolah_choices"] = SekolahChoiceForm()
-        context["additional_title"] = self.sekolah.nama if self.sekolah else ''
+        context["form_filter"] = JadwalFilterForm()
+        if self.sekolah and self.tahun_ajaran:
+            context["additional_title"] = f"{self.sekolah.nama} {self.tahun_ajaran.nama}"
         context['sekolah'] = self.sekolah
         return context
 

@@ -89,6 +89,7 @@ class Jadwal(BaseModel):
     jam_mulai = models.TimeField()
     jam_akhir = models.TimeField()
     guru = models.ForeignKey("pegawai.Pegawai", on_delete=models.SET_NULL, blank=True, null=True)
+    tahun_ajaran = models.ForeignKey('akademik.TahunAkademik', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return f"{self.kelas.nama} - {self.get_hari_display()}"
