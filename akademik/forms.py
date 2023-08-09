@@ -84,6 +84,7 @@ class JadwalForm(forms.ModelForm):
     def __init__(self, sekolah=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['kelas'].required = True
+        self.fields['guru'].required = True
 
         if sekolah:
             self.fields['jurusan'].queryset = Jurusan.objects.filter(sekolah=sekolah)
