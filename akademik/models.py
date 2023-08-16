@@ -84,12 +84,14 @@ class Jadwal(BaseModel):
 
     kelas = models.ForeignKey("sekolah.Kelas", on_delete=models.SET_NULL, blank=True, null=True)
     jurusan = models.ForeignKey("sekolah.Jurusan", on_delete=models.SET_NULL, blank=True, null=True)
+    ruangan = models.ForeignKey('sekolah.Ruangan', on_delete=models.SET_NULL, blank=True, null=True)
     mata_pelajaran = models.ForeignKey(MataPelajaran, on_delete=models.CASCADE)
     hari = models.CharField(max_length=15, choices=HARI.choices)
     jam_mulai = models.TimeField()
     jam_akhir = models.TimeField()
     guru = models.ForeignKey("pegawai.Pegawai", on_delete=models.SET_NULL, blank=True, null=True)
     tahun_ajaran = models.ForeignKey('akademik.TahunAkademik', on_delete=models.SET_NULL, blank=True, null=True)
+    sekolah = models.ForeignKey('sekolah.Sekolah', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return f"{self.kelas.nama} - {self.get_hari_display()}"

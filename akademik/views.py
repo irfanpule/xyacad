@@ -246,26 +246,25 @@ class JadwalCreateView(FormFilterMixin, CreateBreadcrumbView):
     template_name = 'akademik/form_jadwal.html'
     title_page = 'Tambah Jadwal'
     btn_submit_name = 'Simpan'
-    sekolah = None
-    tahun_ajaran = None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if context.get('sekolah') and context.get('tahun_ajaran'):
-            self.sekolah = context['sekolah']
-            self.tahun_ajaran = context['tahun_ajaran']
             context["additional_title"] = f"{context['sekolah']} {context['tahun_ajaran']}"
-            context['form'] = self.get_form()
         return context
 
     def get_form(self, form_class=None):
         if form_class is None:
             form_class = self.get_form_class()
 
-        if self.sekolah:
+        filter_fields = self.get_form_filter_fields()
+
+        if filter_fields.get('sekolah'):
             kwargs = self.get_form_kwargs()
-            kwargs['initial']['tahun_ajaran'] = self.tahun_ajaran
-            return form_class(sekolah=self.sekolah, **kwargs)
+            filter_fields = self.get_form_filter_fields()
+            kwargs['initial']['tahun_ajaran'] = filter_fields['tahun_ajaran']
+            kwargs['initial']['sekolah'] = filter_fields['sekolah']
+            return form_class(sekolah=filter_fields['sekolah'], **kwargs)
         else:
             return None
 
@@ -284,7 +283,7 @@ class JadwalUpdateView(UpdateBreadcrumbView):
 
     def dispatch(self, request, *args, **kwargs):
         jadwal = self.get_object()
-        self.sekolah = jadwal.kelas.ruangan.gedung.sekolah
+        self.sekolah = jadwal.kelas.sekolah
         return super().dispatch(request, *args, **kwargs)
 
     def get_form(self, form_class=None):
@@ -324,8 +323,8 @@ class JadwalShowWeekly(BaseFormFilterView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if context.get('sekolah') and context.get('tahun_ajaran'):
-            sekolah = context['sekolah']
-            kelas = Kelas.objects.filter(ruangan__gedung__sekolah=sekolah)
+            sekolah = self.form_filter_fields['sekolah']
+            kelas = Kelas.objects.filter(sekolah=sekolah)
             context['kelas'] = kelas
             # TODO: list of kelas to show jadwal weekly per kelas
         return context

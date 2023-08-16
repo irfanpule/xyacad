@@ -25,13 +25,22 @@ class ContextMixin(ContextMixin):
 
 class FormFilterMixin(ContextMixin):
     form_filter = None
+    form_filter_fields = {}
+
+    def dispatch(self, request, *args, **kwargs):
+        form_filter = self.form_filter(self.request.GET or None)
+        if request.GET and form_filter.is_valid():
+            self.form_filter_fields = form_filter.cleaned_data
+            print("filter fields", self.form_filter_fields)
+        else:
+            print("filter field", self.form_filter_fields)
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        form_filter = self.form_filter(self.request.GET or None)
-        context["form_filter"] = form_filter
-
-        if self.request.GET and form_filter.is_valid():
-            context.update(form_filter.cleaned_data)
-
+        context["form_filter"] = self.form_filter()
+        context.update(self.get_form_filter_fields())
         return context
+
+    def get_form_filter_fields(self):
+        return self.form_filter_fields

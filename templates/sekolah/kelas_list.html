@@ -45,7 +45,7 @@
                                             Kode
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
-                                            Ruangan
+                                            Jurusan
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
                                             Sekolah
@@ -60,8 +60,8 @@
                                         <tr class="odd">
                                             <td class="sorting_1">{{ object.nama }}</td>
                                             <td>{{ object.kode }}</td>
-                                            <td>{{ object.ruangan.nama }}</td>
-                                            <td>{{ object.ruangan.gedung.sekolah.nama }}</td>
+                                            <td>{{ object.jurusan|default_if_none:'-'}}</td>
+                                            <td>{{ object.sekolah }}</td>
                                             <td>
                                                 <div class="btn-group mb-1">
                                                     <div class="dropdown">

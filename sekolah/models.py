@@ -75,7 +75,7 @@ class Jurusan(BaseModel):
 class Kelas(BaseModel):
     nama = models.CharField('Nama Kelas', max_length=150)
     kode = models.CharField('Kode Kelas', max_length=100, unique=True)
-    ruangan = models.ForeignKey(Ruangan, on_delete=models.CASCADE)
+    sekolah = models.ForeignKey(Sekolah, on_delete=models.SET_NULL, blank=True, null=True)
     jurusan = models.ForeignKey(Jurusan, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
