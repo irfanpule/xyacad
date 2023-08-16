@@ -21,3 +21,17 @@ class ContextMixin(ContextMixin):
         kwargs['sub_title_page'] = self.get_sub_title_page()
         kwargs['btn_submit_name'] = self.get_btn_submit_name()
         return super().get_context_data(**kwargs)
+
+
+class FormFilterMixin(ContextMixin):
+    form_filter = None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form_filter = self.form_filter(self.request.GET or None)
+        context["form_filter"] = form_filter
+
+        if self.request.GET and form_filter.is_valid():
+            context.update(form_filter.cleaned_data)
+
+        return context

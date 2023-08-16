@@ -1,12 +1,16 @@
 import sweetify
 from django.urls import reverse
+
+from core.mixin import FormFilterMixin
 from core.views import (
-    ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, DetailBreadcrumbView
+    ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, DetailBreadcrumbView,
+    BaseFormFilterView
 )
 from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran, Jadwal
-from sekolah.models import Sekolah
+from sekolah.models import Sekolah, Kelas
 from akademik.forms import (
-    TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm, JadwalForm, JadwalFilterForm
+    TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm, JadwalForm,
+    JadwalCreateFilterForm, JadwalShowWeeklyFilterForm
 )
 
 
@@ -235,24 +239,24 @@ class JadwalListView(ListBreadcrumbView):
     title_page = 'Data Jadwal'
 
 
-class JadwalCreateView(CreateBreadcrumbView):
+class JadwalCreateView(FormFilterMixin, CreateBreadcrumbView):
     form_class = JadwalForm
+    form_filter = JadwalCreateFilterForm
     model = Jadwal
     template_name = 'akademik/form_jadwal.html'
     title_page = 'Tambah Jadwal'
     btn_submit_name = 'Simpan'
-    sekolah: Sekolah = None
+    sekolah = None
     tahun_ajaran = None
 
-    def dispatch(self, request, *args, **kwargs):
-        sekolah = request.GET.get('sekolah', None)
-        tahun_ajaran = request.GET.get('tahun_ajaran', None)
-        if sekolah:
-            self.sekolah = Sekolah.objects.get(id=sekolah)
-        if tahun_ajaran:
-            self.tahun_ajaran = TahunAkademik.objects.get(id=tahun_ajaran)
-
-        return super().dispatch(request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if context.get('sekolah') and context.get('tahun_ajaran'):
+            self.sekolah = context['sekolah']
+            self.tahun_ajaran = context['tahun_ajaran']
+            context["additional_title"] = f"{context['sekolah']} {context['tahun_ajaran']}"
+            context['form'] = self.get_form()
+        return context
 
     def get_form(self, form_class=None):
         if form_class is None:
@@ -264,14 +268,6 @@ class JadwalCreateView(CreateBreadcrumbView):
             return form_class(sekolah=self.sekolah, **kwargs)
         else:
             return None
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_filter"] = JadwalFilterForm()
-        if self.sekolah and self.tahun_ajaran:
-            context["additional_title"] = f"{self.sekolah.nama} {self.tahun_ajaran.nama}"
-        context['sekolah'] = self.sekolah
-        return context
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan jadwal", timer=5000)
@@ -318,3 +314,18 @@ class JadwalDeleteView(BaseDeleteView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus jadwal", timer=5000)
         return reverse('akademik:jadwal_list')
+
+
+class JadwalShowWeekly(BaseFormFilterView):
+    template_name = 'akademik/jadwal_show_weekly.html'
+    form_filter = JadwalShowWeeklyFilterForm
+    title_page = 'Lihat Jadwal Mingguan'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if context.get('sekolah') and context.get('tahun_ajaran'):
+            sekolah = context['sekolah']
+            kelas = Kelas.objects.filter(ruangan__gedung__sekolah=sekolah)
+            context['kelas'] = kelas
+            # TODO: list of kelas to show jadwal weekly per kelas
+        return context

@@ -1,8 +1,8 @@
 from django import forms
 from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran, Jadwal
-from sekolah.models import Jurusan, Kelas, Sekolah
+from sekolah.models import Jurusan, Kelas, Sekolah, Gedung
 from pegawai.models import Pegawai
-from django_select2.forms import Select2Widget
+from django_select2.forms import Select2Widget, ModelSelect2Widget
 from django_flatpickr.widgets import TimePickerInput
 from django_flatpickr.schemas import FlatpickrOptions
 
@@ -93,6 +93,10 @@ class JadwalForm(forms.ModelForm):
             self.fields['mata_pelajaran'].queryset = MataPelajaran.objects.filter(kel_mapel__sekolah=sekolah)
 
 
-class JadwalFilterForm(forms.Form):
+class JadwalCreateFilterForm(forms.Form):
     sekolah = forms.ModelChoiceField(queryset=Sekolah.objects.filter(aktif=True))
     tahun_ajaran = forms.ModelChoiceField(queryset=TahunAkademik.objects.all())
+
+
+class JadwalShowWeeklyFilterForm(JadwalCreateFilterForm):
+    pass

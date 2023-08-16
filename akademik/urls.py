@@ -38,4 +38,5 @@ urlpatterns = [
     path('jadwal/edit/<uuid:id>/', views.JadwalUpdateView.as_view(), name='jadwal_update'),
     path('jadwal/detail/<uuid:id>/', views.JadwalDetailView.as_view(), name='jadwal_detail'),
     path('jadwal/delete/<uuid:id>/', views.JadwalDeleteView.as_view(), name='jadwal_delete'),
+    path('jadwal/show-weekly/', views.JadwalShowWeekly.as_view(), name='jadwal_show_weekly'),
 ]

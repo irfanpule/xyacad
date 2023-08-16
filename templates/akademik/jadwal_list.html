@@ -18,6 +18,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <a href="{% url 'akademik:jadwal_show_weekly' %}" class="btn btn-primary rounded-pill"><i class="fa fa-list"></i> Lihat Jadwal</a>
                         <a href="{% url 'akademik:jadwal_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
                     </nav>
                 </div>
@@ -54,6 +55,9 @@
                                             Guru
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
+                                            Jurusan
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
                                             Tahun Ajaran
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
@@ -68,7 +72,8 @@
                                             <td>{{ object.jam_mulai }} - {{ object.jam_akhir }}</td>
                                             <td>{{ object.mata_pelajaran }}</td>
                                             <td>{{ object.kelas }}</td>
-                                            <td>{{ object.guru }}</td>
+                                            <td>{{ object.guru|default_if_none:'-' }}</td>
+                                            <td>{{ object.jurusan|default_if_none:'-' }}</td>
                                             <td>{{ object.tahun_ajaran }}</td>
                                             <td>
                                                 <div class="btn-group mb-1">

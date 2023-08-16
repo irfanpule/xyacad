@@ -2,10 +2,19 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeletionMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import TemplateView
 from django.forms.models import model_to_dict
-from core.mixin import ContextMixin
+from core.mixin import ContextMixin, FormFilterMixin
 from core.utils import Logger
 from view_breadcrumbs import ListBreadcrumbMixin, CreateBreadcrumbMixin, UpdateBreadcrumbMixin, DetailBreadcrumbMixin
+
+
+class BaseTemplateView(ContextMixin, TemplateView):
+    pass
+
+
+class BaseFormFilterView(FormFilterMixin, BaseTemplateView):
+    pass
 
 
 class BaseListView(ContextMixin, ListView):
