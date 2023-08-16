@@ -58,6 +58,9 @@
                                             Jurusan
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
+                                            Ruangan
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
                                             Tahun Ajaran
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
@@ -68,12 +71,13 @@
                                     <tbody>
                                         {% for object in object_list %}
                                         <tr class="odd">
-                                            <td class="sorting_1">{{ object.hari }}</td>
+                                            <td>{{ object.get_hari_display }}</td>
                                             <td>{{ object.jam_mulai }} - {{ object.jam_akhir }}</td>
                                             <td>{{ object.mata_pelajaran }}</td>
                                             <td>{{ object.kelas }}</td>
                                             <td>{{ object.guru|default_if_none:'-' }}</td>
                                             <td>{{ object.jurusan|default_if_none:'-' }}</td>
+                                            <td>{{ object.ruangan|default_if_none:'-' }}</td>
                                             <td>{{ object.tahun_ajaran }}</td>
                                             <td>
                                                 <div class="btn-group mb-1">

@@ -102,5 +102,20 @@ class JadwalCreateFilterForm(forms.Form):
     tahun_ajaran = forms.ModelChoiceField(queryset=TahunAkademik.objects.all())
 
 
-class JadwalShowWeeklyFilterForm(JadwalCreateFilterForm):
-    pass
+class JadwalShowWeeklyFilterForm(forms.Form):
+    sekolah = forms.ModelChoiceField(
+        queryset=Sekolah.objects.filter(aktif=True),
+        widget=ModelSelect2Widget(
+            model=Sekolah,
+            search_fields=['nama__icontains']
+        )
+    )
+    kelas = forms.ModelChoiceField(
+        queryset=Kelas.objects.all(),
+        widget=ModelSelect2Widget(
+            model=Kelas,
+            search_fields=['nama__icontains'],
+            dependent_fields={'sekolah': 'sekolah'}
+        )
+    )
+    tahun_ajaran = forms.ModelChoiceField(queryset=TahunAkademik.objects.all())

@@ -322,9 +322,19 @@ class JadwalShowWeekly(BaseFormFilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if context.get('sekolah') and context.get('tahun_ajaran'):
-            sekolah = self.form_filter_fields['sekolah']
-            kelas = Kelas.objects.filter(sekolah=sekolah)
-            context['kelas'] = kelas
-            # TODO: list of kelas to show jadwal weekly per kelas
+        if context.get('sekolah') and context.get('tahun_ajaran') and context.get('kelas'):
+            jadwal = Jadwal.objects.filter(
+                sekolah=context['sekolah'],
+                kelas=context['kelas'],
+                tahun_ajaran=context['tahun_ajaran']
+            ).order_by('jam_mulai')
+
+            jadwal_mapping = {}
+            for k, v in Jadwal.HARI.choices:
+                jadwal_mapping[k] = []
+                for j in jadwal:
+                    if j.hari == k:
+                        jadwal_mapping[k].append(j)
+
+            context['jadwal'] = jadwal_mapping
         return context
