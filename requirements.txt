@@ -5,3 +5,4 @@ sweetify==2.3.1
 django-flatpickr==2.0.1
 django-view-breadcrumbs==2.4.1
 django-appconf==1.0.5
+django-select2==8.1.2
