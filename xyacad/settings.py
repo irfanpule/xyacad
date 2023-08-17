@@ -150,3 +150,9 @@ SELECT2_CSS = [
     'assets/css/widgets/select2-bootstrap-5-theme.min.css',
 ]
 SELECT2_THEME = 'bootstrap-5'
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
