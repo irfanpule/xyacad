@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'akademik',
     'sekolah',
     'pegawai',
+    'siswa',
     'ui',
 
     'sweetify',

@@ -26,5 +26,6 @@ urlpatterns = [
     path('sekolah/', include('sekolah.urls')),
     path('pegawai/', include('pegawai.urls')),
     path('akademik/', include('akademik.urls')),
+    path('siswa/', include('siswa.urls')),
     path('select2/', include('django_select2.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

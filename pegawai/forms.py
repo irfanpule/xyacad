@@ -56,5 +56,4 @@ class PegawaiForm(forms.ModelForm):
             "jenis_ptk": Select2Widget,
             "sekolah": Select2Widget,
             "status": Select2Widget,
-
         }
