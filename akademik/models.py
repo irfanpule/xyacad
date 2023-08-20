@@ -99,3 +99,4 @@ class Jadwal(BaseModel):
     class Meta:
         verbose_name = "Jadwal"
         verbose_name_plural = "Jadwal"
+        ordering = ('-updated',)

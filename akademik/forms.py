@@ -1,6 +1,7 @@
 from django import forms
+from django.db.models import Q
 from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran, Jadwal
-from sekolah.models import Jurusan, Kelas, Sekolah, Gedung, Ruangan
+from sekolah.models import Jurusan, Kelas, Sekolah, Ruangan
 from pegawai.models import Pegawai
 from django_select2.forms import Select2Widget, ModelSelect2Widget
 from django_flatpickr.widgets import TimePickerInput
@@ -95,6 +96,35 @@ class JadwalForm(forms.ModelForm):
             self.fields['guru'].queryset = Pegawai.objects.filter(sekolah=sekolah)
             self.fields['mata_pelajaran'].queryset = MataPelajaran.objects.filter(kel_mapel__sekolah=sekolah)
             self.fields['ruangan'].queryset = Ruangan.objects.filter(gedung__sekolah=sekolah)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        # cek jam mulai tidak boleh >=
+        if cleaned_data['jam_mulai'] >= cleaned_data['jam_akhir']:
+            raise forms.ValidationError("Jam mulai tidak boleh lebih besar atau sama dengan jam akhir")
+
+        # filter berdasarkan (sekolah, tahun_ajaran, kelas, hari, jam_mulai, jam_akhir)
+        jadwals = Jadwal.objects.filter(
+            Q(jam_mulai__range=(cleaned_data['jam_mulai'], cleaned_data['jam_akhir'])) |
+            Q(jam_akhir__range=(cleaned_data['jam_mulai'], cleaned_data['jam_akhir'])),
+            sekolah=cleaned_data['sekolah'], tahun_ajaran=cleaned_data['tahun_ajaran'],
+            hari=cleaned_data['hari'],
+        )
+
+        # cek apakah sudah ada kelas pada jadwal tersebut kelas=cleaned_data['kelas'],
+        if jadwals.filter(kelas=cleaned_data['kelas']).exists():
+            raise forms.ValidationError(f"Kelas tersebut ({cleaned_data['kelas']}) sudah "
+                                        f"memiliki jadwal di hari dan jam yang beririsan")
+
+        # cek apakah ruangan sudah terdaftar pada jadwal tersebut
+        if jadwals.filter(ruangan=cleaned_data['ruangan']).exists():
+            raise forms.ValidationError("Ruangan sudah memiliki jadwal di hari dan jam yang beririsan")
+
+        # cek apakah guru sudah terdaftar pada jadwal tersebut
+        if jadwals.filter(guru=cleaned_data['guru']).exists():
+            raise forms.ValidationError("Guru sudah memiliki jadwal di hari dan jam yang beririsan")
+
+        return cleaned_data
 
 
 class JadwalCreateFilterForm(forms.Form):
