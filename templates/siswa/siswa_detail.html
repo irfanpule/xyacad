@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ title_page }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-heading">
+        <div class="page-title">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 order-md-1 order-first">
+                    <h3>{{ title_page }}</h3>
+                    <p class="text-subtitle text-muted">{{ sub_title_page }}</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-last">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <a href="{% url 'siswa:siswa_update' object.id %}" class="btn btn-primary rounded-pill"><i class="fa fa-edit"></i> Edit</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Tables start -->
+        <section class="row">
+
+            <div class="col-12 col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="{% if object.foto %}{{ object.foto.url }}{% endif %}" alt="avatar"
+                          class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3">{{ object.nama }}</h5>
+                        <p class="text-muted mb-1">{{ object.nis }}</p>
+                        <p class="text-muted mb-1">{{ object.nisn }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-9">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h6>Pribadi</h6>
+                        <hr class="mt-0 mb-4">
+                        <div class="row pt-1">
+                            <div class="col-12 col-md-4 mb-3">
+                                <h6>Tempat Tanggal Lahir</h6>
+                                <p class="text-muted">{{ object.tempat_lahir }}, {{ object.tgl_lahir }}</p>
+                            </div>
+                            <div class="col-12 col-md-4 mb-3">
+                                <h6>Jeni Kelamin</h6>
+                                <p class="text-muted">{{ object.get_jns_kelamin_display }}</p>
+                            </div>
+                            <div class="col-12 col-md-4 mb-3">
+                                <h6>Alamat</h6>
+                                <p class="text-muted">{{ object.alamat }}</p>
+                            </div>
+                            <div class="col-12 col-md-4 mb-3">
+                                <h6>No. Hp/WA</h6>
+                                <p class="text-muted">{{ object.telp_wa|default_if_none:'-' }}</p>
+                            </div>
+                            <div class="col-12 col-md-4 mb-3">
+                                <h6>Email</h6>
+                                <p class="text-muted">{{ object.email|default_if_none:'-' }}</p>
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-4">
+
+                    </div>
+                </div>
+        </section>
+        <!-- Basic Tables end -->
+    </div>
+{% endblock %}
