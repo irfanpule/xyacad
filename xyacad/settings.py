@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'sekolah',
     'pegawai',
     'siswa',
-    'ui',
+    'dashboard',
 
     'sweetify',
     'view_breadcrumbs',

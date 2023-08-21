@@ -15,7 +15,7 @@ class SiswaListView(ListBreadcrumbView):
 class SiswaCreateView(CreateBreadcrumbView):
     form_class = SiswaForm
     model = Siswa
-    template_name = 'ui/two-column-form.html'
+    template_name = 'forms/two-column-form.html'
     title_page = 'Tambah data siswa'
     btn_submit_name = 'Simpan'
 
@@ -27,7 +27,7 @@ class SiswaCreateView(CreateBreadcrumbView):
 class SiswaUpdateView(UpdateBreadcrumbView):
     model = Siswa
     form_class = SiswaForm
-    template_name = 'ui/two-column-form.html'
+    template_name = 'forms/two-column-form.html'
     title_page = 'Tambah data pegawai'
     btn_submit_name = 'Simpan'
 
