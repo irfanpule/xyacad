@@ -18,7 +18,21 @@
         </div>
     </div>
 
-    {% include 'includes/one-form.html' %}
-
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Form {{ title_page }}</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            {% include 'includes/one-form.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 {% endblock %}

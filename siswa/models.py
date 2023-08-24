@@ -23,7 +23,7 @@ class Siswa(BaseModel):
     sekolah = models.ForeignKey("sekolah.Sekolah", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nama}"
+        return f"{self.nama} - {self.nis}"
 
     class Meta:
         verbose_name = "Siswa"

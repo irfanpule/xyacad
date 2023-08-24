@@ -32,8 +32,8 @@
                         <img src="{% if object.foto %}{{ object.foto.url }}{% endif %}" alt="avatar"
                           class="rounded-circle img-fluid" style="width: 150px;">
                         <h5 class="my-3">{{ object.nama }}</h5>
-                        <p class="text-muted mb-1">{{ object.nis }}</p>
-                        <p class="text-muted mb-1">{{ object.nisn }}</p>
+                        <p class="text-muted mb-1">NIS: {{ object.nis }}</p>
+                        <p class="text-muted mb-1">NISN: {{ object.nisn }}</p>
                     </div>
                 </div>
             </div>

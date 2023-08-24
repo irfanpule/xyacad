@@ -1,65 +1,49 @@
 {% load core_tags static %}
 
-
-<section id="multiple-column-form">
-    <div class="row match-height">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Form {{ title_page }}</h4>
-                </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <form class="form" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="text-danger">
-                                    {{ form.non_field_errors }}
-                                    {{ form.media }}
-                                </div>
-                                {% for field in form %}
-                                    {% if field.is_hidden %}
-                                        {{ field }}
-                                    {% else %}
-                                        {% if field.field.widget.input_type == 'checkbox' %}
-                                            <div class="checkbox">
-                                                {{ field|addclass:'form-check-input'}}
-                                                <label for="checkbox1">
-                                                    {{ field.label }}
-                                                    {% if field.field.required %}*{% endif %}
-                                                </label>
-                                                <small class="text-muted">{{ field.help_text }}</small>
-                                                <small class="text-danger p-0">{{ field.errors }}</small>
-                                            </div>
-                                        {% else %}
-                                            <div class="col-md-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">
-                                                        {{ field.label }}
-                                                        {% if field.field.required %}*{% endif %}
-                                                    </label>
-                                                    {{ field|addclass:'form-control' }}
-                                                    <small class="text-muted">{{ field.help_text }}</small>
-                                                    <small class="text-danger">{{ field.errors }}</small>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                    {% endif %}
-                                {% endfor %}
-
-                                <div class="col-12 d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary me-1 mb-1">
-                                        {% if btn_submit_name %} {{ btn_submit_name }} {% else %} Submit {% endif %}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+<form class="form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="text-danger">
+            {{ form.non_field_errors }}
+            {{ form.media }}
+        </div>
+        {% for field in form %}
+            {% if field.is_hidden %}
+                {{ field }}
+            {% else %}
+                {% if field.field.widget.input_type == 'checkbox' %}
+                    <div class="checkbox">
+                        {{ field|addclass:'form-check-input' }}
+                        <label for="checkbox1">
+                            {{ field.label }}
+                            {% if field.field.required %}*{% endif %}
+                        </label>
+                        <small class="text-muted">{{ field.help_text }}</small>
+                        <small class="text-danger p-0">{{ field.errors }}</small>
                     </div>
-                </div>
-            </div>
+                {% else %}
+                    <div class="col-md-12 col-12">
+                        <div class="form-group">
+                            <label for="first-name-column">
+                                {{ field.label }}
+                                {% if field.field.required %}*{% endif %}
+                            </label>
+                            {{ field|addclass:'form-control' }}
+                            <small class="text-muted">{{ field.help_text }}</small>
+                            <small class="text-danger">{{ field.errors }}</small>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        <div class="col-12 d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary me-1 mb-1">
+                {% if btn_submit_name %} {{ btn_submit_name }} {% else %} Submit {% endif %}
+            </button>
         </div>
     </div>
-</section>
+</form>
 
 <script src="{% static 'assets/vendors/jquery/jquery.min.js' %}"></script>
 {{ form.media.js }}
