@@ -41,3 +41,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+
+# addons xyacad
+addons/*
+!addons/__init__.py
+!addons/urls.py

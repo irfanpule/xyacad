@@ -7,7 +7,7 @@ from core.views import (
     BaseFormFilterView
 )
 from akademik.models import TahunAkademik, Kurikulum, KelompokMapel, Tingkat, MataPelajaran, Jadwal
-from sekolah.models import Sekolah, Kelas
+from sekolah.models import Sekolah
 from akademik.forms import (
     TahunAkademikForm, KurikulumForm, KelompokMapelForm, TingkatForm, MataPelajaranForm, JadwalForm,
     JadwalCreateFilterForm, JadwalShowWeeklyFilterForm
