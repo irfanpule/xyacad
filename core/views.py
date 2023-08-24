@@ -1,5 +1,6 @@
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeletionMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import TemplateView
@@ -69,11 +70,11 @@ class BaseDetailView(ContextMixin, DetailView):
         return context
 
 
-class ListBreadcrumbView(ListBreadcrumbMixin, BaseListView):
+class ListBreadcrumbView(LoginRequiredMixin, ListBreadcrumbMixin, BaseListView):
     pass
 
 
-class CreateBreadcrumbView(CreateBreadcrumbMixin, BaseCreateView):
+class CreateBreadcrumbView(LoginRequiredMixin, CreateBreadcrumbMixin, BaseCreateView):
 
     def form_valid(self, form):
         self.object = form.save()
@@ -82,7 +83,7 @@ class CreateBreadcrumbView(CreateBreadcrumbMixin, BaseCreateView):
         return super().form_valid(form)
 
 
-class UpdateBreadcrumbView(UpdateBreadcrumbMixin, BaseUpdateView):
+class UpdateBreadcrumbView(LoginRequiredMixin, UpdateBreadcrumbMixin, BaseUpdateView):
     pk_url_kwarg = 'id'
 
     def form_valid(self, form):
@@ -92,7 +93,7 @@ class UpdateBreadcrumbView(UpdateBreadcrumbMixin, BaseUpdateView):
         return super().form_valid(form)
 
 
-class DetailBreadcrumbView(DetailBreadcrumbMixin, BaseDetailView):
+class DetailBreadcrumbView(LoginRequiredMixin, DetailBreadcrumbMixin, BaseDetailView):
     pk_url_kwarg = 'id'
     template_name = 'general_detail.html'
 
