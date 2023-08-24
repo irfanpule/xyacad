@@ -28,10 +28,14 @@
 <body>
 
     <div id="app">
-        {% include 'includes/sidebar.html' %}
+        {% block sidebar_menu %}
+            {% include 'includes/sidebar.html' %}
+        {% endblock %}
 
         <div id="main" class="layout-navbar">
-            {% include 'includes/header-menu.html' %}
+            {% block header_menu %}
+                {% include 'includes/header-menu.html' %}
+            {% endblock %}
             <div id="main-content">
                 {% block breadcrumbs %}
                     {% render_breadcrumbs %}

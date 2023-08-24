@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from addons.urls import urlpatterns as addon_urlpatterns
 
 
 urlpatterns = [
@@ -29,3 +30,5 @@ urlpatterns = [
     path('siswa/', include('siswa.urls')),
     path('select2/', include('django_select2.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += addon_urlpatterns

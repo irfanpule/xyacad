@@ -28,7 +28,7 @@
                             <span>Master Sekolah</span>
                         </a>
                         <ul class="submenu" style="display: none;">
-                            <li class="submenu-item">
+                            <li class="submenu-item {% if request.resolver_match.url_name == 'sekolah_list' %} active {% endif %}">
                                 <a href="{% url 'sekolah:sekolah_list' %}">Sekolah</a>
                             </li>
                             <li class="submenu-item">

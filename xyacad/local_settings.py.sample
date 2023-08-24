@@ -1,0 +1,8 @@
+from django.conf import settings
+
+
+INSTALLED_ADDONS = [
+    # on bellow example declaration addons
+    # 'addons.tabungan'
+]
+settings.INSTALLED_APPS += INSTALLED_ADDONS
