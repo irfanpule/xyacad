@@ -15,9 +15,16 @@
             </div>
             <div class="sidebar-menu">
                 <ul class="menu">
+                    <li class="sidebar-item  {% if request.resolver_match.url_name == 'addons_app_list' %} active {% endif %}">
+                        <a href="{% url 'dashboard:addons_app_list' %}" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Addons Apps</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item  {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
                         <a href="{% url 'dashboard:home' %}" class='sidebar-link'>
-                            <i class="bi bi-grid-fill"></i>
+                            <i class="fa fa-home"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
