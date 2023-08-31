@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'pegawai',
     'siswa',
     'dashboard',
+    'api',
 
     'sweetify',
     'view_breadcrumbs',
