@@ -8,4 +8,10 @@ urlpatterns = [
     path('edit/<uuid:id>/', views.SiswaUpdateView.as_view(), name='siswa_update'),
     path('detail/<uuid:id>/', views.SiswaDetailView.as_view(), name='siswa_detail'),
     path('delete/<uuid:id>/', views.SiswaDeleteView.as_view(), name='siswa_delete'),
+
+    path('kelas/list/', views.SiswaKelasListView.as_view(), name='siswakelas_list'),
+    path('kelas/create/', views.SiswaKelasCreateView.as_view(), name='siswakelas_create'),
+    path('kelas/edit/<uuid:id>/', views.SiswaKelasUpdateView.as_view(), name='siswakelas_update'),
+    path('kelas/detail/<uuid:id>/', views.SiswaKelasDetailView.as_view(), name='siswakelas_detail'),
+    path('kelas/delete/<uuid:id>/', views.SiswaKelasDeleteView.as_view(), name='siswakelas_delete'),
 ]
