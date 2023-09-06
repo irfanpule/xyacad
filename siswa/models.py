@@ -3,7 +3,9 @@ from core.models import BaseModel
 
 
 class Siswa(BaseModel):
-
+    """
+    Model ini digunakan untuk menyimpan data Siswa
+    """
     # Pegawai.JNS_KELAMIN.LAKI_LAKI.value to access laki_laki
     # Pegawai.JNS_KELAMIN.LAKI_LAKI.label to access Laki - laki
     class JNS_KELAMIN(models.TextChoices):
@@ -28,3 +30,28 @@ class Siswa(BaseModel):
     class Meta:
         verbose_name = "Siswa"
         verbose_name_plural = "Siswa"
+
+
+class SiswaKelas(BaseModel):
+    """
+    model ini digunakan untuk mencatat siswa tersebut berada kelas mana
+    """
+    siswa = models.OneToOneField(Siswa, on_delete=models.CASCADE)
+    kelas = models.ForeignKey("sekolah.Kelas", on_delete=models.CASCADE)
+    tahun_ajaran = models.ForeignKey("akademik.TahunAkademik", on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.siswa} - {self.kelas}"
+
+
+class ArsipSiswaKelas(BaseModel):
+    """
+    Model ini digunakan untuk mencatat riwayat / arsip dari jenjang kenaikan kelas siswa
+    """
+    siswa = models.ForeignKey(Siswa, on_delete=models.CASCADE)
+    kelas = models.ForeignKey("sekolah.Kelas", on_delete=models.CASCADE)
+    tahun_ajaran = models.ForeignKey("akademik.TahunAkademik", on_delete=models.CASCADE, blank=True, null=True)
+    ket = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.siswa} - {self.kelas}"
