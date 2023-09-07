@@ -1,5 +1,8 @@
+import random
+
 from django.db import models
 from core.models import BaseModel
+from django.templatetags.static import static
 
 
 class Siswa(BaseModel):
@@ -30,6 +33,15 @@ class Siswa(BaseModel):
     class Meta:
         verbose_name = "Siswa"
         verbose_name_plural = "Siswa"
+
+    def get_foto(self):
+
+        if self.foto:
+            return self.foto.url
+        else:
+            filename = f"{self.jns_kelamin}-{random.randint(1, 4)}.png"
+            path = f"assets/images/avatars/{filename}"
+            return static(path)
 
 
 class SiswaKelas(BaseModel):
