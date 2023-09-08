@@ -262,3 +262,11 @@ class PegawaiDetailView(DetailBreadcrumbView):
 
     def get_title_page(self):
         return "Detail Pegawai"
+
+
+class PegawaiIDCardView(DetailBreadcrumbView):
+    model = Pegawai
+    template_name = "pegawai/id_card.html"
+
+    def get_title_page(self):
+        return "Kartu Pagawai"

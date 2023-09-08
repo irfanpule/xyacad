@@ -118,3 +118,11 @@ class SiswaKelasDeleteView(BaseDeleteView):
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menghapus siswa kelas", timer=5000)
         return reverse('siswa:siswakelas_list')
+
+
+class SiswaIDCardView(DetailBreadcrumbView):
+    model = Siswa
+    template_name = "siswa/id_card.html"
+
+    def get_title_page(self):
+        return "Kartu Pelajar"

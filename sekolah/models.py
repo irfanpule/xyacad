@@ -18,6 +18,9 @@ class Sekolah(BaseModel):
     def __str__(self):
         return self.nama
 
+    def get_alamat(self):
+        return f"{self.alamat} {self.kecamatan} {self.kabupaten} {self.provinsi} {self.kode_pos}"
+
     class Meta:
         verbose_name = "Sekolah"
         verbose_name_plural = "Sekolah"
