@@ -118,3 +118,10 @@ class Pegawai(BaseModel):
             filename = f"{self.jns_kelamin}-{random.randint(1, 4)}.png"
             path = f"assets/images/avatars/{filename}"
             return static(path)
+
+    def get_alamat(self):
+        if self.alamat:
+            return self.alamat
+        if self.domisili:
+            return self.domisili
+        return "-"

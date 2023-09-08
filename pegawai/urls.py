@@ -7,6 +7,7 @@ urlpatterns = [
     path('create/', views.PegawaiCreateView.as_view(), name='pegawai_create'),
     path('edit/<uuid:id>/', views.PegawaiUpdateView.as_view(), name='pegawai_update'),
     path('detail/<uuid:id>/', views.PegawaiDetailView.as_view(), name='pegawai_detail'),
+    path('id-card/<uuid:id>/', views.PegawaiIDCardView.as_view(), name='pegawai_id_card'),
 
     path('status/list/', views.StatusPegawaiListView.as_view(), name='statuspegawai_list'),
     path('status/create/', views.StatusPegawaiCreateView.as_view(), name='statuspegawai_create'),

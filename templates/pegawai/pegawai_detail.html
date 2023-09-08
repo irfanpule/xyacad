@@ -17,6 +17,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <a href="{% url 'pegawai:pegawai_id_card' object.id %}" class="btn btn-primary rounded-pill"><i class="fa fa-id-card"></i> Lihat ID Card</a>
                         <a href="{% url 'pegawai:pegawai_update' object.id %}" class="btn btn-primary rounded-pill"><i class="fa fa-edit"></i> Edit</a>
                     </nav>
                 </div>
