@@ -1,0 +1,67 @@
+{% load static %}
+{% block content %}
+    <div id="sidebar" class="active">
+        <div class="sidebar-wrapper active">
+            <div class="sidebar-header">
+                <div class="d-flex justify-content-between">
+                    <div class="logo">
+                        Xyacad
+                    </div>
+                    <div class="toggler">
+                        <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul class="menu">
+                    <li class="sidebar-title">Manajemen Pegawai</li>
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-stack"></i>
+                            <span>Master Pegawai</span>
+                        </a>
+                        <ul class="submenu" style="display: none;">
+                            <li class="submenu-item">
+                                <a href="{% url 'pegawai:statuspegawai_list' %}">Status Pegawai</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="{% url 'pegawai:jenisptk_list' %}">Jenis PTK</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="{% url 'pegawai:golongan_list' %}">Golongan</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="{% url 'pegawai:jabatanstruktural_list' %}">Jabatan Struktural</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="{% url 'pegawai:jabatanfungsional_list' %}">Jabatan Fungsional</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class="sidebar-link">
+                            <i class="fa fa-user-tie"></i>
+                            <span>Pegawai</span>
+                        </a>
+                        <ul class="submenu" style="display: none;">
+                            <li class="submenu-item">
+                                <a href="{% url 'pegawai:pegawai_list' %}">Data Pegawai</a>
+                            </li>
+                            <li class="submenu-item">
+                                <a href="#">Presensi</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <hr>
+                    <li class="sidebar-item  {% if request.resolver_match.url_name == 'addons_app_list' %} active {% endif %}">
+                        <a href="{% url 'dashboard:addons_app_list' %}" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Apps</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+        </div>
+    </div>
+{% endblock content %}
