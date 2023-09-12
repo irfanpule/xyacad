@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title_page }}
+{% endblock %}
+
+{% block sidebar_menu %}
+    {% include 'siswa/sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>{{ title_page }}</h3>
+                <p class="text-subtitle text-muted">{{ sub_title_page }}</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'includes/form_filter.html' with form=form_filter title_form='Form Filter'%}
+        </div>
+    </div>
+
+    {% if sekolah %}
+        <section id="multiple-column-form">
+            <div class="row match-height">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Form {{ title_page }}</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <p>{{ additional_title }}</p>
+                                {% include 'includes/two-form.html' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Pilih sekolah dan tahun ajaran untuk melanjutkan</h4>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

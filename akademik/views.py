@@ -45,6 +45,7 @@ class TahunAkademikUpdateView(UpdateBreadcrumbView):
 
 class TahunAkademikDetailView(DetailBreadcrumbView):
     model = TahunAkademik
+    specific_sidebar_menu = 'akademik/sidebar.html'
 
     def get_title_page(self):
         return "Detail Tahun Akademik"
@@ -89,6 +90,7 @@ class KurikulumUpdateView(UpdateBreadcrumbView):
 
 class KurikulumDetailView(DetailBreadcrumbView):
     model = Kurikulum
+    specific_sidebar_menu = 'akademik/sidebar.html'
 
     def get_title_page(self):
         return "Detail Kurikulum"
@@ -133,6 +135,7 @@ class KelompokMapelUpdateView(UpdateBreadcrumbView):
 
 class KelompokMapelDetailView(DetailBreadcrumbView):
     model = KelompokMapel
+    specific_sidebar_menu = 'akademik/sidebar.html'
 
     def get_title_page(self):
         return "Detail Kelompok Mata Pelajaran"
@@ -177,6 +180,7 @@ class TingkatUpdateView(UpdateBreadcrumbView):
 
 class TingkatDetailView(DetailBreadcrumbView):
     model = Tingkat
+    specific_sidebar_menu = 'akademik/sidebar.html'
 
     def get_title_page(self):
         return "Detail Tingkat"
@@ -221,6 +225,7 @@ class MataPelajaranUpdateView(UpdateBreadcrumbView):
 
 class MataPelajaranDetailView(DetailBreadcrumbView):
     model = MataPelajaran
+    specific_sidebar_menu = 'akademik/sidebar.html'
 
     def get_title_page(self):
         return "Detail Mata Pelajaran"
@@ -302,6 +307,7 @@ class JadwalUpdateView(UpdateBreadcrumbView):
 
 class JadwalDetailView(DetailBreadcrumbView):
     model = Jadwal
+    specific_sidebar_menu = 'akademik/sidebar.html'
 
     def get_title_page(self):
         return "Detail Jadwal"

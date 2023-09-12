@@ -2,6 +2,15 @@
 {% load static %}
 
 
+{% block sidebar_menu %}
+    {% if specific_sidebar_menu %}
+        {% include specific_sidebar_menu %}
+    {% else %}
+        {% include 'includes/sidebar.html' %}
+    {% endif %}
+{% endblock %}
+
+
 {% block title %}
     {{ title_page }}
 {% endblock %}

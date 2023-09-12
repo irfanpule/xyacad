@@ -40,10 +40,6 @@ INSTALLED_APPS = [
 
     'addons',
     'core',
-    'akademik',
-    'sekolah',
-    'pegawai',
-    'siswa',
     'dashboard',
     'api',
 
@@ -52,6 +48,15 @@ INSTALLED_APPS = [
     'django_flatpickr',
     'django_select2'
 ]
+
+INSTALLED_ADDONS_INTERNAL = [
+    'akademik',
+    'sekolah',
+    'pegawai',
+    'siswa',
+]
+
+INSTALLED_APPS += INSTALLED_ADDONS_INTERNAL
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

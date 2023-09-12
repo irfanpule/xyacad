@@ -38,6 +38,7 @@ class StatusPegawaiUpdateView(UpdateBreadcrumbView):
 
 class StatusPegawaiDetailView(DetailBreadcrumbView):
     model = StatusPegawai
+    specific_sidebar_menu = 'pegawai/sidebar.html'
 
     def get_title_page(self):
         return "Detail Status Pegawai"
@@ -82,6 +83,7 @@ class JenisPTKUpdateView(UpdateBreadcrumbView):
 
 class JenisPTKDetailView(DetailBreadcrumbView):
     model = JenisPTK
+    specific_sidebar_menu = 'pegawai/sidebar.html'
 
     def get_title_page(self):
         return "Detail Jenis PTK"
@@ -126,6 +128,7 @@ class GolonganUpdateView(UpdateBreadcrumbView):
 
 class GolonganDetailView(DetailBreadcrumbView):
     model = Golongan
+    specific_sidebar_menu = 'pegawai/sidebar.html'
 
     def get_title_page(self):
         return "Detail Golongan"
@@ -170,6 +173,7 @@ class JabatanStrukturalUpdateView(UpdateBreadcrumbView):
 
 class JabatanStrukturalDetailView(DetailBreadcrumbView):
     model = JabatanStruktural
+    specific_sidebar_menu = 'pegawai/sidebar.html'
 
     def get_title_page(self):
         return "Detail Jabatan Struktural"
@@ -214,6 +218,7 @@ class JabatanFungsionalUpdateView(UpdateBreadcrumbView):
 
 class JabatanFungsionalDetailView(DetailBreadcrumbView):
     model = JabatanFungsional
+    specific_sidebar_menu = 'pegawai/sidebar.html'
 
     def get_title_page(self):
         return "Detail Jabatan Fungsional"

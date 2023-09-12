@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block sidebar_menu %}
+    {% include 'sekolah/sidebar.html' %}
+{% endblock %}
+
+{% block title %}
+    {{ title_page }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-heading">
+        <div class="page-title">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 order-md-1 order-first">
+                    <h3>{{ title_page }}</h3>
+                    <p class="text-subtitle text-muted">{{ sub_title_page }}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Basic Tables start -->
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    {{ title_page }}
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-lg">
+                            <tbody>
+                                <tr>
+                                    <td class="text-bold-500">Nama</td>
+                                    <td>{{ object.nama }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">Kode</td>
+                                    <td>{{ object.kode }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">Jumlah Lantai</td>
+                                    <td>{{ object.keahlian|default_if_none:'-' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">Panjang</td>
+                                    <td>{{ object.umum|default_if_none:'-' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">Sekolah</td>
+                                    <td>{{ object.sekolah.nama }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Tables end -->
+    </div>
+{% endblock %}
