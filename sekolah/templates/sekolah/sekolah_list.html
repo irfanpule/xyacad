@@ -4,8 +4,13 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'assets/css/pages/datatables.css' %}">
 {% endblock %}
+
 {% block title %}
     {{ title_page }}
+{% endblock %}
+
+{% block sidebar_menu %}
+    {% include 'sekolah/sidebar.html' %}
 {% endblock %}
 
 {% block content %}
@@ -18,7 +23,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <a href="{% url 'siswa:siswakelas_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
+                        <a href="{% url 'sekolah:sekolah_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Tambah</a>
                     </nav>
                 </div>
             </div>
@@ -42,13 +47,13 @@
                                             Nama
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
-                                            Kelas
+                                            Kecamatan
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
-                                            Sekolah
+                                            Kabupaten
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
-                                            Tahun Ajaran
+                                            Provinsi
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="table1" rowspan="1" colspan="1">
                                             Aksi
@@ -56,12 +61,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        {% for object in object_list %}
+                                        {% for sekolah in object_list %}
                                         <tr class="odd">
-                                            <td>{{ object.siswa.nama }}</td>
-                                            <td>{{ object.kelas.nama }}</td>
-                                            <td>{{ object.siswa.sekolah }}</td>
-                                            <td>{{ object.tahun_ajaran }}</td>
+                                            <td class="sorting_1">{{ sekolah.nama }}</td>
+                                            <td>{{ sekolah.kecamatan }}</td>
+                                            <td>{{ sekolah.kabupaten }}</td>
+                                            <td>{{ sekolah.provinsi }}</td>
                                             <td>
                                                 <div class="btn-group mb-1">
                                                     <div class="dropdown">
@@ -69,11 +74,11 @@
                                                             <i class="fa fa-ellipsis-h"></i>
                                                         </button>
                                                         <div class="dropdown-menu" style="">
-                                                            <a class="dropdown-item" href="{% url 'siswa:siswakelas_detail' object.id %}"><i class="fa fa-eye"></i> Lihat</a>
-                                                            <a class="dropdown-item" href="{% url 'siswa:siswakelas_update' object.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{% url 'sekolah:sekolah_update' sekolah.id %}"><i class="fa fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="{% url 'sekolah:sekolah_detail' sekolah.id %}"><i class="fa fa-eye"></i> Lihat</a>
                                                             <button class="dropdown-item text-danger button-delete"
-                                                                data-object_name="{{ object.nama }}"
-                                                                data-object_delete_url="{% url 'siswa:siswakelas_delete' object.id %}">
+                                                                data-object_name="{{ sekolah.nama }}"
+                                                                data-object_delete_url="{% url 'sekolah:sekolah_delete' sekolah.id %}">
                                                                 <i class="fa fa-trash"></i> Hapus
                                                             </button>
                                                         </div>

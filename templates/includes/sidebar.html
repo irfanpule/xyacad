@@ -18,7 +18,7 @@
                     <li class="sidebar-item  {% if request.resolver_match.url_name == 'addons_app_list' %} active {% endif %}">
                         <a href="{% url 'dashboard:addons_app_list' %}" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
-                            <span>Addons Apps</span>
+                            <span>Apps</span>
                         </a>
                     </li>
 
@@ -29,29 +29,6 @@
                         </a>
                     </li>
                     <li class="sidebar-title">Master Data</li>
-                    <li class="sidebar-item has-sub">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-stack"></i>
-                            <span>Master Sekolah</span>
-                        </a>
-                        <ul class="submenu" style="display: none;">
-                            <li class="submenu-item {% if request.resolver_match.url_name == 'sekolah_list' %} active {% endif %}">
-                                <a href="{% url 'sekolah:sekolah_list' %}">Sekolah</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'sekolah:gedung_list' %}">Gedung</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'sekolah:ruangan_list' %}">Ruangan</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'sekolah:jurusan_list' %}">Jurusan</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'sekolah:kelas_list' %}">Kelas</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="sidebar-item has-sub">
                         <a href="#" class="sidebar-link">
                             <i class="bi bi-stack"></i>
@@ -107,20 +84,6 @@
                             </li>
                             <li class="submenu-item">
                                 <a href="#">Presensi</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item has-sub">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa fa-id-card"></i>
-                            <span>Siswa</span>
-                        </a>
-                        <ul class="submenu" style="display: none;">
-                            <li class="submenu-item">
-                                <a href="{% url 'siswa:siswa_list' %}">Data Siswa</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'siswa:siswakelas_list' %}">Siswa Kelas</a>
                             </li>
                         </ul>
                     </li>

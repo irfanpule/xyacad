@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block sidebar_menu %}
+    {% include 'sekolah/sidebar.html' %}
+{% endblock %}
 
 {% block title %}
     {{ title_page }}
@@ -33,24 +36,40 @@
                                     <td>{{ object.nama }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-bold-500">Kode</td>
-                                    <td>{{ object.kode }}</td>
+                                    <td class="text-bold-500">NPNS</td>
+                                    <td>{{ object.npns|default_if_none:"-" }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-bold-500">Jumlah Lantai</td>
-                                    <td>{{ object.jml_lantai }}</td>
+                                    <td class="text-bold-500">NSS</td>
+                                    <td>{{ object.nss|default_if_none:"-" }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-bold-500">Panjang</td>
-                                    <td>{{ object.panjang|default_if_none:'-' }}</td>
+                                    <td class="text-bold-500">Alamat</td>
+                                    <td>{{ object.alamat }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-bold-500">Lebar</td>
-                                    <td>{{ object.lebar|default_if_none:'-' }}</td>
+                                    <td class="text-bold-500">Kecamatan</td>
+                                    <td>{{ object.kecamatan }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-bold-500">Tinggi</td>
-                                    <td>{{ object.tinggi|default_if_none:'-' }}</td>
+                                    <td class="text-bold-500">Kabupaten</td>
+                                    <td>{{ object.kabupaten }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">Provinsi</td>
+                                    <td>{{ object.provinsi }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">Kode Pos</td>
+                                    <td>{{ object.kode_pos }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">Email</td>
+                                    <td>{{ object.email|default_if_none:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-bold-500">Telp/WA</td>
+                                    <td>{{ object.telp_wa|default_if_none:"-" }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-bold-500">Aktif</td>
