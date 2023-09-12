@@ -39,6 +39,7 @@ class SekolahUpdateView(UpdateBreadcrumbView):
 
 class SekolahDetailView(DetailBreadcrumbView):
     model = Sekolah
+    specific_sidebar_menu = 'sekolah/sidebar.html'
 
 
 class SekolahDeleteView(BaseDeleteView):
@@ -57,6 +58,7 @@ class GedungListView(ListBreadcrumbView):
 
 class GedungDetailView(DetailBreadcrumbView):
     model = Gedung
+    specific_sidebar_menu = 'sekolah/sidebar.html'
 
 
 class GedungUpdateView(UpdateBreadcrumbView):
@@ -99,6 +101,7 @@ class RuanganListView(ListBreadcrumbView):
 
 class RuanganDetailView(DetailBreadcrumbView):
     model = Ruangan
+    specific_sidebar_menu = 'sekolah/sidebar.html'
 
 
 class RuanganCreateView(CreateBreadcrumbView):
@@ -140,6 +143,7 @@ class JurusanListView(ListBreadcrumbView):
 
 class JurusanDetailView(DetailBreadcrumbView):
     model = Jurusan
+    specific_sidebar_menu = 'sekolah/sidebar.html'
 
 
 class JurusanCreateView(CreateBreadcrumbView):
@@ -182,6 +186,7 @@ class KelasListView(ListBreadcrumbView):
 
 class KelasDetailView(DetailBreadcrumbView):
     model = Kelas
+    specific_sidebar_menu = 'sekolah/sidebar.html'
 
 
 class KelasCreateView(CreateBreadcrumbView):
