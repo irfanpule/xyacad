@@ -58,6 +58,7 @@ class BaseDeleteView(DeletionMixin, DetailView):
 class BaseDetailView(ContextMixin, DetailView):
     pk_url_kwarg = 'id'
     template_name = 'general_detail.html'
+    specific_sidebar_menu = None
 
     def get_title_page(self):
         obj = self.get_object()
@@ -67,6 +68,7 @@ class BaseDetailView(ContextMixin, DetailView):
         context = super().get_context_data(**kwargs)
         obj = self.get_object()
         context["object_dict"] = model_to_dict(obj)
+        context["specific_sidebar_menu"] = self.specific_sidebar_menu
         return context
 
 
