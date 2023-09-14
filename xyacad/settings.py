@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'sweetify',
     'view_breadcrumbs',
     'django_flatpickr',
-    'django_select2'
+    'django_select2',
+    'qr_code',
 ]
 
 INSTALLED_ADDONS_INTERNAL = [
@@ -159,6 +160,18 @@ SELECT2_CSS = [
 ]
 SELECT2_THEME = 'bootstrap-5'
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'qr-code': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'qr-code-cache',
+        'TIMEOUT': 3600
+    }
+}
+
+QR_CODE_CACHE_ALIAS = 'qr-code'
 
 try:
     from .local_settings import *
