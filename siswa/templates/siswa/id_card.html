@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static qr_code %}
 
 {% block extra_css %}
     <style>
@@ -42,14 +42,14 @@
                         <div class="id-card">
                             <div style="background-image: url('{% static 'assets/images/samples/origami.jpg' %}'); background-size: cover;">
                                 <img src="{{ object.get_foto }}" alt="avatar"
-                                class="rounded-circle img-fluid m-3" style="width: 120px;">
+                                class="rounded-circle img-fluid m-3" style="width: 100px;">
+
                                 <span class="badge bg-primary">Siswa</span>
                             </div>
                             <h4 class="mt-3">{{ object.nama }}</h4>
                             <p class="text-secondary text-sm mb-0">NIS: {{ object.nis }}</p>
                             <p class="text-secondary text-sm">Alamat: {{ object.alamat }}</p>
-                            <img src="{% static  'assets/images/samples/qr-sample.png' %}" alt="qr"
-                                class="img-fluid" style="width: 120px;">
+                            {% qr_from_text object.nis size=13 %}
                             <hr>
                             <h5>
                                 {{ object.sekolah }}
