@@ -68,7 +68,6 @@
     <script src="{% static 'assets/js/extensions/html2canvas.min.js' %}"></script>
     <script>
         function downloadIDCard() {
-            console.log("click");
             html2canvas(document.getElementById("IDCard")).then(function (canvas) {
                 const anchorTag = document.createElement("a");
                 document.body.appendChild(anchorTag);
