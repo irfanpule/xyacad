@@ -39,7 +39,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body text-center">
-                        <div class="id-card">
+                        <div class="id-card" id="IDCard">
                             <div style="background-image: url('{% static 'assets/images/samples/architecture1.jpg' %}'); background-size: cover;">
                                 <img src="{{ object.get_foto }}" alt="avatar"
                                 class="rounded-circle img-fluid m-3" style="width: 100px;">
@@ -55,10 +55,28 @@
                             </h5>
                             <p class="mt-0 text-sm">{{ object.sekolah.get_alamat }}</p>
                         </div>
+                        <button class="btn btn-primary mt-4" id="download-id-card" onclick="downloadIDCard()"> Download </button>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'assets/js/extensions/html2canvas.min.js' %}"></script>
+    <script>
+        function downloadIDCard() {
+            console.log("click");
+            html2canvas(document.getElementById("IDCard")).then(function (canvas) {
+                const anchorTag = document.createElement("a");
+                document.body.appendChild(anchorTag);
+                anchorTag.download = "{{ object.nama }}-{{ object.nip }}.jpg";
+                anchorTag.href = canvas.toDataURL();
+                anchorTag.target = '_blank';
+                anchorTag.click();
+            })
+        }
+    </script>
 {% endblock %}
