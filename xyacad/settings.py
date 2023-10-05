@@ -173,6 +173,8 @@ CACHES = {
 
 QR_CODE_CACHE_ALIAS = 'qr-code'
 
+INSTALLED_ADDONS = []
+
 try:
     from .local_settings import *
 except ImportError:
