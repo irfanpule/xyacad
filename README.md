@@ -19,3 +19,14 @@ manifest agar terbaca sebagai addons. Berikut ini contoh addons **tabungan** sek
 - sekolah
 - siswa
 - dashboard
+
+
+### Screenshots
+- Halaman App / Addons
+![image](https://drive.google.com/uc?export=view&id=1Yp9MF4gGT6VSreYHveXlmMq36JQRlIl9)
+- Halaman Ruangan
+![image](https://drive.google.com/uc?export=view&id=1FVOjHPBVtz49Z49mIQhaNbx3Gl8N7ETV)
+- Halaman Kartu Pelajar
+![image](https://drive.google.com/uc?export=view&id=1L7f24txUgaeFYUwIDeMhYSwJ3cgK7_-r)
+- Halaman Jadwal
+![image](https://drive.google.com/uc?export=view&id=1kHVGcj1Sz0AXw8JKgGCgJ6grO4dPx_7P)
