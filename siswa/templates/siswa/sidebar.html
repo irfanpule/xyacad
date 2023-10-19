@@ -14,8 +14,8 @@
             </div>
             <div class="sidebar-menu">
                 <ul class="menu">
-                    <li class="sidebar-title">Data Siswa</li>
-                    <li class="sidebar-item {% if request.resolver_match.url_name == 'siswal_list' %} active {% endif %}">
+                    <li class="sidebar-title">Data Siswa {{ request.resolver_match }}</li>
+                    <li class="sidebar-item {% if request.resolver_match.url_name == 'siswa_list' %} active {% endif %}">
                         <a href="{% url 'siswa:siswa_list' %}" class='sidebar-link'>
                             <i class="fa fa-id-card"></i>
                             <span>Siswa</span>

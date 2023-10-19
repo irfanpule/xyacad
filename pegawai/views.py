@@ -15,7 +15,7 @@ class StatusPegawaiListView(ListBreadcrumbView):
 class StatusPegawaiCreateView(CreateBreadcrumbView):
     form_class = StatusPegawaiForm
     model = StatusPegawai
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data status pegawai'
     btn_submit_name = 'Simpan'
 
@@ -27,7 +27,7 @@ class StatusPegawaiCreateView(CreateBreadcrumbView):
 class StatusPegawaiUpdateView(UpdateBreadcrumbView):
     model = StatusPegawai
     form_class = StatusPegawaiForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data status pegawai'
     btn_submit_name = 'Simpan'
 
@@ -60,7 +60,7 @@ class JenisPTKListView(ListBreadcrumbView):
 class JenisPTKCreateView(CreateBreadcrumbView):
     form_class = JenisPTKForm
     model = JenisPTK
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data jenis PTK'
     btn_submit_name = 'Simpan'
 
@@ -72,7 +72,7 @@ class JenisPTKCreateView(CreateBreadcrumbView):
 class JenisPTKUpdateView(UpdateBreadcrumbView):
     model = JenisPTK
     form_class = JenisPTKForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data Jenis PTK'
     btn_submit_name = 'Simpan'
 
@@ -105,7 +105,7 @@ class GolonganListView(ListBreadcrumbView):
 class GolonganCreateView(CreateBreadcrumbView):
     form_class = GolonganForm
     model = Golongan
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data Golongan'
     btn_submit_name = 'Simpan'
 
@@ -117,7 +117,7 @@ class GolonganCreateView(CreateBreadcrumbView):
 class GolonganUpdateView(UpdateBreadcrumbView):
     model = Golongan
     form_class = GolonganForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data golongan'
     btn_submit_name = 'Simpan'
 
@@ -150,7 +150,7 @@ class JabatanStrukturalListView(ListBreadcrumbView):
 class JabatanStrukturalCreateView(CreateBreadcrumbView):
     form_class = JabatanStrukturalForm
     model = JabatanStruktural
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data jabatan struktural'
     btn_submit_name = 'Simpan'
 
@@ -162,7 +162,7 @@ class JabatanStrukturalCreateView(CreateBreadcrumbView):
 class JabatanStrukturalUpdateView(UpdateBreadcrumbView):
     model = JabatanStruktural
     form_class = JabatanStrukturalForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data jabatan struktural'
     btn_submit_name = 'Simpan'
 
@@ -195,7 +195,7 @@ class JabatanFungsionalListView(ListBreadcrumbView):
 class JabatanFungsionalCreateView(CreateBreadcrumbView):
     form_class = JabatanFungsionalForm
     model = JabatanFungsional
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data jabatan fungsional'
     btn_submit_name = 'Simpan'
 
@@ -207,7 +207,7 @@ class JabatanFungsionalCreateView(CreateBreadcrumbView):
 class JabatanFungsionalUpdateView(UpdateBreadcrumbView):
     model = JabatanFungsional
     form_class = JabatanFungsionalForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data jabatan fungsional'
     btn_submit_name = 'Simpan'
 
@@ -240,7 +240,7 @@ class PegawaiListView(ListBreadcrumbView):
 class PegawaiCreateView(CreateBreadcrumbView):
     form_class = PegawaiForm
     model = Pegawai
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data pegawai'
     btn_submit_name = 'Simpan'
 
@@ -252,7 +252,7 @@ class PegawaiCreateView(CreateBreadcrumbView):
 class PegawaiUpdateView(UpdateBreadcrumbView):
     model = Pegawai
     form_class = PegawaiForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data pegawai'
     btn_submit_name = 'Simpan'
 

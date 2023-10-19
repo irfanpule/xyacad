@@ -17,7 +17,7 @@ class SiswaListView(ListBreadcrumbView):
 class SiswaCreateView(CreateBreadcrumbView):
     form_class = SiswaForm
     model = Siswa
-    template_name = 'forms/two-column-form.html'
+    template_name = 'siswa/form_generic.html'
     title_page = 'Tambah data siswa'
     btn_submit_name = 'Simpan'
 
@@ -29,7 +29,7 @@ class SiswaCreateView(CreateBreadcrumbView):
 class SiswaUpdateView(UpdateBreadcrumbView):
     model = Siswa
     form_class = SiswaForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'siswa/form_generic.html'
     title_page = 'Tambah data siswa'
     btn_submit_name = 'Simpan'
 
@@ -95,7 +95,7 @@ class SiswaKelasCreateView(FormFilterMixin, CreateBreadcrumbView):
 class SiswaKelasUpdateView(UpdateBreadcrumbView):
     model = SiswaKelas
     form_class = SiswaKelasForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'siswa/form_generic.html'
     title_page = 'Tambah data siswa kelas'
     btn_submit_name = 'Simpan'
 
@@ -106,7 +106,6 @@ class SiswaKelasUpdateView(UpdateBreadcrumbView):
 
 class SiswaKelasDetailView(DetailBreadcrumbView):
     model = SiswaKelas
-    template_name = "siswa/siswa_detail.html"
 
     def get_title_page(self):
         return "Detail Siswa Kelas"
@@ -126,3 +125,4 @@ class SiswaIDCardView(DetailBreadcrumbView):
 
     def get_title_page(self):
         return "Kartu Pelajar"
+
