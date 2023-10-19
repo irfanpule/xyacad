@@ -9,9 +9,14 @@ from siswa.models import Siswa, SiswaKelas
 from siswa.forms import SiswaForm, SiswaKelasForm, SiswaKelasCreateFilterForm
 
 
+ACTIVE_MENU_SISWA = 'siswa'
+ACTIVE_MENU_SISWAKELAS = 'siswakelas'
+
+
 class SiswaListView(ListBreadcrumbView):
     model = Siswa
     title_page = 'Data Siswa'
+    active_menu = ACTIVE_MENU_SISWA
 
 
 class SiswaCreateView(CreateBreadcrumbView):
@@ -20,6 +25,7 @@ class SiswaCreateView(CreateBreadcrumbView):
     template_name = 'siswa/form_generic.html'
     title_page = 'Tambah data siswa'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_SISWA
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data siswa", timer=5000)
@@ -32,6 +38,7 @@ class SiswaUpdateView(UpdateBreadcrumbView):
     template_name = 'siswa/form_generic.html'
     title_page = 'Tambah data siswa'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_SISWA
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data siswa", timer=5000)
@@ -41,6 +48,7 @@ class SiswaUpdateView(UpdateBreadcrumbView):
 class SiswaDetailView(DetailBreadcrumbView):
     model = Siswa
     template_name = "siswa/siswa_detail.html"
+    active_menu = ACTIVE_MENU_SISWA
 
     def get_title_page(self):
         return "Detail Siswa"
@@ -57,6 +65,7 @@ class SiswaDeleteView(BaseDeleteView):
 class SiswaKelasListView(ListBreadcrumbView):
     model = SiswaKelas
     title_page = 'Data Siswa Kelas'
+    active_menu = ACTIVE_MENU_SISWAKELAS
 
 
 class SiswaKelasCreateView(FormFilterMixin, CreateBreadcrumbView):
@@ -66,6 +75,7 @@ class SiswaKelasCreateView(FormFilterMixin, CreateBreadcrumbView):
     template_name = 'siswa/form_siswakelas.html'
     title_page = 'Tambah data siswa kelas'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_SISWAKELAS
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -98,6 +108,7 @@ class SiswaKelasUpdateView(UpdateBreadcrumbView):
     template_name = 'siswa/form_generic.html'
     title_page = 'Tambah data siswa kelas'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_SISWAKELAS
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data siswa", timer=5000)
@@ -106,6 +117,8 @@ class SiswaKelasUpdateView(UpdateBreadcrumbView):
 
 class SiswaKelasDetailView(DetailBreadcrumbView):
     model = SiswaKelas
+    active_menu = ACTIVE_MENU_SISWAKELAS
+    specific_sidebar_menu = 'siswa/sidebar.html'
 
     def get_title_page(self):
         return "Detail Siswa Kelas"
@@ -122,6 +135,7 @@ class SiswaKelasDeleteView(BaseDeleteView):
 class SiswaIDCardView(DetailBreadcrumbView):
     model = Siswa
     template_name = "siswa/id_card.html"
+    active_menu = ACTIVE_MENU_SISWA
 
     def get_title_page(self):
         return "Kartu Pelajar"

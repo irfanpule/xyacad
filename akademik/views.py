@@ -14,9 +14,13 @@ from akademik.forms import (
 )
 
 
+ACTIVE_MENU_MASTERAKDEMIK = 'masterakademik'
+
+
 class TahunAkademikListView(ListBreadcrumbView):
     model = TahunAkademik
     title_page = 'Data Tahun Ajaran'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
 
 class TahunAkademikCreateView(CreateBreadcrumbView):
@@ -25,6 +29,7 @@ class TahunAkademikCreateView(CreateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data tahun ajaran'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data tahun ajaran", timer=5000)
@@ -37,6 +42,7 @@ class TahunAkademikUpdateView(UpdateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Edit data tahun akademik'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data tahun ajaran", timer=5000)
@@ -46,6 +52,7 @@ class TahunAkademikUpdateView(UpdateBreadcrumbView):
 class TahunAkademikDetailView(DetailBreadcrumbView):
     model = TahunAkademik
     specific_sidebar_menu = 'akademik/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_title_page(self):
         return "Detail Tahun Akademik"
@@ -62,7 +69,7 @@ class TahunAkademikDeleteView(BaseDeleteView):
 class KurikulumListView(ListBreadcrumbView):
     model = Kurikulum
     title_page = 'Data Kurikulum'
-
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
 class KurikulumCreateView(CreateBreadcrumbView):
     form_class = KurikulumForm
@@ -70,6 +77,7 @@ class KurikulumCreateView(CreateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data kurikulum'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data kurikulum", timer=5000)
@@ -82,6 +90,7 @@ class KurikulumUpdateView(UpdateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Edit data kurikulum'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data kurikulum", timer=5000)
@@ -91,6 +100,7 @@ class KurikulumUpdateView(UpdateBreadcrumbView):
 class KurikulumDetailView(DetailBreadcrumbView):
     model = Kurikulum
     specific_sidebar_menu = 'akademik/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_title_page(self):
         return "Detail Kurikulum"
@@ -107,6 +117,7 @@ class KurikulumDeleteView(BaseDeleteView):
 class KelompokMapelListView(ListBreadcrumbView):
     model = KelompokMapel
     title_page = 'Data Kelompok Mate Pelajaran'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
 
 class KelompokMapelCreateView(CreateBreadcrumbView):
@@ -115,6 +126,7 @@ class KelompokMapelCreateView(CreateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data kelompok mata pelajaran'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data kelompok mata pelajaran", timer=5000)
@@ -127,6 +139,7 @@ class KelompokMapelUpdateView(UpdateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Edit data kurikulum'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data kelompok mata pelajaran", timer=5000)
@@ -136,6 +149,7 @@ class KelompokMapelUpdateView(UpdateBreadcrumbView):
 class KelompokMapelDetailView(DetailBreadcrumbView):
     model = KelompokMapel
     specific_sidebar_menu = 'akademik/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_title_page(self):
         return "Detail Kelompok Mata Pelajaran"
@@ -152,6 +166,7 @@ class KelompokMapelDeleteView(BaseDeleteView):
 class TingkatListView(ListBreadcrumbView):
     model = Tingkat
     title_page = 'Data Tingkat'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
 
 class TingkatCreateView(CreateBreadcrumbView):
@@ -160,6 +175,7 @@ class TingkatCreateView(CreateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data tingkat'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data tingkat", timer=5000)
@@ -172,6 +188,7 @@ class TingkatUpdateView(UpdateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Edit data tingkat'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data tingkat", timer=5000)
@@ -181,6 +198,7 @@ class TingkatUpdateView(UpdateBreadcrumbView):
 class TingkatDetailView(DetailBreadcrumbView):
     model = Tingkat
     specific_sidebar_menu = 'akademik/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERAKDEMIK
 
     def get_title_page(self):
         return "Detail Tingkat"
@@ -197,6 +215,7 @@ class TingkatDeleteView(BaseDeleteView):
 class MataPelajaranListView(ListBreadcrumbView):
     model = MataPelajaran
     title_page = 'Data Mata Pelajaran'
+    active_menu = 'akademik'
 
 
 class MataPelajaranCreateView(CreateBreadcrumbView):
@@ -205,6 +224,7 @@ class MataPelajaranCreateView(CreateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data mata pelajaran'
     btn_submit_name = 'Simpan'
+    active_menu = 'akademik'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data mata pelajaran", timer=5000)
@@ -217,6 +237,7 @@ class MataPelajaranUpdateView(UpdateBreadcrumbView):
     template_name = 'akademik/form_generic.html'
     title_page = 'Edit data mata pelajaran'
     btn_submit_name = 'Simpan'
+    active_menu = 'akademik'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data mata pelajaran", timer=5000)
@@ -226,6 +247,7 @@ class MataPelajaranUpdateView(UpdateBreadcrumbView):
 class MataPelajaranDetailView(DetailBreadcrumbView):
     model = MataPelajaran
     specific_sidebar_menu = 'akademik/sidebar.html'
+    active_menu = 'akademik'
 
     def get_title_page(self):
         return "Detail Mata Pelajaran"
@@ -242,6 +264,7 @@ class MataPelajaranDeleteView(BaseDeleteView):
 class JadwalListView(ListBreadcrumbView):
     model = Jadwal
     title_page = 'Data Jadwal'
+    active_menu = 'akademik'
 
 
 class JadwalCreateView(FormFilterMixin, CreateBreadcrumbView):
@@ -251,6 +274,7 @@ class JadwalCreateView(FormFilterMixin, CreateBreadcrumbView):
     template_name = 'akademik/form_jadwal.html'
     title_page = 'Tambah Jadwal'
     btn_submit_name = 'Simpan'
+    active_menu = 'akademik'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -285,6 +309,7 @@ class JadwalUpdateView(UpdateBreadcrumbView):
     title_page = 'Edit jadwal'
     btn_submit_name = 'Simpan'
     sekolah: Sekolah = None
+    active_menu = 'akademik'
 
     def dispatch(self, request, *args, **kwargs):
         jadwal = self.get_object()
@@ -308,6 +333,7 @@ class JadwalUpdateView(UpdateBreadcrumbView):
 class JadwalDetailView(DetailBreadcrumbView):
     model = Jadwal
     specific_sidebar_menu = 'akademik/sidebar.html'
+    active_menu = 'akademik'
 
     def get_title_page(self):
         return "Detail Jadwal"
@@ -325,6 +351,7 @@ class JadwalShowWeekly(BaseFormFilterView):
     template_name = 'akademik/jadwal_show_weekly.html'
     form_filter = JadwalShowWeeklyFilterForm
     title_page = 'Lihat Jadwal Mingguan'
+    active_menu = 'akademik'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
