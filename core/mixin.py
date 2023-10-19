@@ -5,6 +5,7 @@ class ContextMixin(ContextMixin):
     title_page = ''
     sub_title = ''
     btn_submit_name = ''
+    active_menu = ''
 
     def get_title_page(self):
         return self.title_page
@@ -15,11 +16,15 @@ class ContextMixin(ContextMixin):
     def get_btn_submit_name(self):
         return self.btn_submit_name
 
+    def get_active_menu(self):
+        return self.active_menu
+
     def get_context_data(self, **kwargs):
         kwargs['title'] = self.get_title_page()
         kwargs['title_page'] = self.get_title_page()
         kwargs['sub_title_page'] = self.get_sub_title_page()
         kwargs['btn_submit_name'] = self.get_btn_submit_name()
+        kwargs['active_menu'] = self.get_active_menu()
         return super().get_context_data(**kwargs)
 
 

@@ -15,12 +15,12 @@
             <div class="sidebar-menu">
                 <ul class="menu">
                     <li class="sidebar-title">Manajemen Akademik</li>
-                    <li class="sidebar-item has-sub">
+                    <li class="sidebar-item {% if active_menu == 'masterakademik' %} active {% endif %} has-sub">
                         <a href="#" class="sidebar-link">
                             <i class="bi bi-stack"></i>
                             <span>Master Akademik</span>
                         </a>
-                        <ul class="submenu" style="display: none;">
+                        <ul class="submenu {% if active_menu == 'masterakademik' %} active {% endif %}">
                             <li class="submenu-item">
                                 <a href="{% url 'akademik:tahunakademik_list' %}">Tahun Akademik</a>
                             </li>
@@ -35,12 +35,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="sidebar-item has-sub">
+                    <li class="sidebar-item {% if active_menu == 'akademik' %} active {% endif %} has-sub">
                         <a href="#" class="sidebar-link">
                             <i class="fa fa-school"></i>
                             <span>Akademik</span>
                         </a>
-                        <ul class="submenu" style="display: none;">
+                        <ul class="submenu {% if active_menu == 'akademik' %} active {% endif %}">
                             <li class="submenu-item">
                                 <a href="{% url 'akademik:matapelajaran_list' %}">Mata Pelajaran</a>
                             </li>

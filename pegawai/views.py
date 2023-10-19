@@ -7,9 +7,13 @@ from pegawai.forms import (
 )
 
 
+ACTIVE_MENU_MASTERPEGAWAI = 'masterpegawai'
+
+
 class StatusPegawaiListView(ListBreadcrumbView):
     model = StatusPegawai
     title_page = 'Data Status Pegawai'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
 
 class StatusPegawaiCreateView(CreateBreadcrumbView):
@@ -18,6 +22,7 @@ class StatusPegawaiCreateView(CreateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data status pegawai'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data status pegawai", timer=5000)
@@ -30,6 +35,7 @@ class StatusPegawaiUpdateView(UpdateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data status pegawai'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data status pegawai", timer=5000)
@@ -39,6 +45,7 @@ class StatusPegawaiUpdateView(UpdateBreadcrumbView):
 class StatusPegawaiDetailView(DetailBreadcrumbView):
     model = StatusPegawai
     specific_sidebar_menu = 'pegawai/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_title_page(self):
         return "Detail Status Pegawai"
@@ -55,6 +62,7 @@ class StatusPegawaiDeleteView(BaseDeleteView):
 class JenisPTKListView(ListBreadcrumbView):
     model = JenisPTK
     title_page = 'Data Jenis PTK'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
 
 class JenisPTKCreateView(CreateBreadcrumbView):
@@ -63,6 +71,7 @@ class JenisPTKCreateView(CreateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data jenis PTK'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data Jenis PTK", timer=5000)
@@ -75,6 +84,7 @@ class JenisPTKUpdateView(UpdateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data Jenis PTK'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data Jenis PTK", timer=5000)
@@ -84,6 +94,7 @@ class JenisPTKUpdateView(UpdateBreadcrumbView):
 class JenisPTKDetailView(DetailBreadcrumbView):
     model = JenisPTK
     specific_sidebar_menu = 'pegawai/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_title_page(self):
         return "Detail Jenis PTK"
@@ -100,6 +111,7 @@ class JenisPTKDeleteView(BaseDeleteView):
 class GolonganListView(ListBreadcrumbView):
     model = Golongan
     title_page = 'Data Golongan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
 
 class GolonganCreateView(CreateBreadcrumbView):
@@ -108,6 +120,7 @@ class GolonganCreateView(CreateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data Golongan'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data golongan", timer=5000)
@@ -120,6 +133,7 @@ class GolonganUpdateView(UpdateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data golongan'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data golongan", timer=5000)
@@ -129,6 +143,7 @@ class GolonganUpdateView(UpdateBreadcrumbView):
 class GolonganDetailView(DetailBreadcrumbView):
     model = Golongan
     specific_sidebar_menu = 'pegawai/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_title_page(self):
         return "Detail Golongan"
@@ -145,6 +160,7 @@ class GolonganDeleteView(BaseDeleteView):
 class JabatanStrukturalListView(ListBreadcrumbView):
     model = JabatanStruktural
     title_page = 'Data Jabatan Struktural'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
 
 class JabatanStrukturalCreateView(CreateBreadcrumbView):
@@ -153,6 +169,7 @@ class JabatanStrukturalCreateView(CreateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data jabatan struktural'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data jabatan struktural", timer=5000)
@@ -165,6 +182,7 @@ class JabatanStrukturalUpdateView(UpdateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data jabatan struktural'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data jabatan struktural", timer=5000)
@@ -174,6 +192,7 @@ class JabatanStrukturalUpdateView(UpdateBreadcrumbView):
 class JabatanStrukturalDetailView(DetailBreadcrumbView):
     model = JabatanStruktural
     specific_sidebar_menu = 'pegawai/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_title_page(self):
         return "Detail Jabatan Struktural"
@@ -190,6 +209,7 @@ class JabatanStrukturalDeleteView(BaseDeleteView):
 class JabatanFungsionalListView(ListBreadcrumbView):
     model = JabatanFungsional
     title_page = 'Data Jabatan Fungsional'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
 
 class JabatanFungsionalCreateView(CreateBreadcrumbView):
@@ -198,6 +218,7 @@ class JabatanFungsionalCreateView(CreateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data jabatan fungsional'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data jabatan fungsional", timer=5000)
@@ -210,6 +231,7 @@ class JabatanFungsionalUpdateView(UpdateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Edit data jabatan fungsional'
     btn_submit_name = 'Simpan'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil mengubah data jabatan fungsional", timer=5000)
@@ -219,6 +241,7 @@ class JabatanFungsionalUpdateView(UpdateBreadcrumbView):
 class JabatanFungsionalDetailView(DetailBreadcrumbView):
     model = JabatanFungsional
     specific_sidebar_menu = 'pegawai/sidebar.html'
+    active_menu = ACTIVE_MENU_MASTERPEGAWAI
 
     def get_title_page(self):
         return "Detail Jabatan Fungsional"
@@ -235,6 +258,7 @@ class JabatanFungsionalDeleteView(BaseDeleteView):
 class PegawaiListView(ListBreadcrumbView):
     model = Pegawai
     title_page = 'Data Pegawai'
+    active_menu = 'pegawai'
 
 
 class PegawaiCreateView(CreateBreadcrumbView):
@@ -243,6 +267,7 @@ class PegawaiCreateView(CreateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data pegawai'
     btn_submit_name = 'Simpan'
+    active_menu = 'pegawai'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data pegawai", timer=5000)
@@ -255,6 +280,7 @@ class PegawaiUpdateView(UpdateBreadcrumbView):
     template_name = 'pegawai/form_generic.html'
     title_page = 'Tambah data pegawai'
     btn_submit_name = 'Simpan'
+    active_menu = 'pegawai'
 
     def get_success_url(self):
         sweetify.toast(self.request, "Berhasil menambahkan data pegawai", timer=5000)
@@ -264,6 +290,7 @@ class PegawaiUpdateView(UpdateBreadcrumbView):
 class PegawaiDetailView(DetailBreadcrumbView):
     model = Pegawai
     template_name = "pegawai/pegawai_detail.html"
+    active_menu = 'pegawai'
 
     def get_title_page(self):
         return "Detail Pegawai"
@@ -272,6 +299,7 @@ class PegawaiDetailView(DetailBreadcrumbView):
 class PegawaiIDCardView(DetailBreadcrumbView):
     model = Pegawai
     template_name = "pegawai/id_card.html"
+    active_menu = 'pegawai'
 
     def get_title_page(self):
         return "Kartu Pagawai"
