@@ -22,7 +22,7 @@ class TahunAkademikListView(ListBreadcrumbView):
 class TahunAkademikCreateView(CreateBreadcrumbView):
     form_class = TahunAkademikForm
     model = TahunAkademik
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data tahun ajaran'
     btn_submit_name = 'Simpan'
 
@@ -34,7 +34,7 @@ class TahunAkademikCreateView(CreateBreadcrumbView):
 class TahunAkademikUpdateView(UpdateBreadcrumbView):
     model = TahunAkademik
     form_class = TahunAkademikForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Edit data tahun akademik'
     btn_submit_name = 'Simpan'
 
@@ -67,7 +67,7 @@ class KurikulumListView(ListBreadcrumbView):
 class KurikulumCreateView(CreateBreadcrumbView):
     form_class = KurikulumForm
     model = Kurikulum
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data kurikulum'
     btn_submit_name = 'Simpan'
 
@@ -79,7 +79,7 @@ class KurikulumCreateView(CreateBreadcrumbView):
 class KurikulumUpdateView(UpdateBreadcrumbView):
     model = Kurikulum
     form_class = KurikulumForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Edit data kurikulum'
     btn_submit_name = 'Simpan'
 
@@ -112,7 +112,7 @@ class KelompokMapelListView(ListBreadcrumbView):
 class KelompokMapelCreateView(CreateBreadcrumbView):
     form_class = KelompokMapelForm
     model = KelompokMapel
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data kelompok mata pelajaran'
     btn_submit_name = 'Simpan'
 
@@ -124,7 +124,7 @@ class KelompokMapelCreateView(CreateBreadcrumbView):
 class KelompokMapelUpdateView(UpdateBreadcrumbView):
     model = KelompokMapel
     form_class = KelompokMapelForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Edit data kurikulum'
     btn_submit_name = 'Simpan'
 
@@ -157,7 +157,7 @@ class TingkatListView(ListBreadcrumbView):
 class TingkatCreateView(CreateBreadcrumbView):
     form_class = TingkatForm
     model = Tingkat
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data tingkat'
     btn_submit_name = 'Simpan'
 
@@ -169,7 +169,7 @@ class TingkatCreateView(CreateBreadcrumbView):
 class TingkatUpdateView(UpdateBreadcrumbView):
     model = Tingkat
     form_class = TingkatForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Edit data tingkat'
     btn_submit_name = 'Simpan'
 
@@ -202,7 +202,7 @@ class MataPelajaranListView(ListBreadcrumbView):
 class MataPelajaranCreateView(CreateBreadcrumbView):
     form_class = MataPelajaranForm
     model = MataPelajaran
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Tambah data mata pelajaran'
     btn_submit_name = 'Simpan'
 
@@ -214,7 +214,7 @@ class MataPelajaranCreateView(CreateBreadcrumbView):
 class MataPelajaranUpdateView(UpdateBreadcrumbView):
     model = MataPelajaran
     form_class = MataPelajaranForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Edit data mata pelajaran'
     btn_submit_name = 'Simpan'
 
@@ -281,7 +281,7 @@ class JadwalCreateView(FormFilterMixin, CreateBreadcrumbView):
 class JadwalUpdateView(UpdateBreadcrumbView):
     model = Jadwal
     form_class = JadwalForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'akademik/form_generic.html'
     title_page = 'Edit jadwal'
     btn_submit_name = 'Simpan'
     sekolah: Sekolah = None

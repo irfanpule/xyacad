@@ -14,7 +14,7 @@ class SekolahListView(ListBreadcrumbView):
 class SekolahCreateView(CreateBreadcrumbView):
     form_class = SekolahForm
     model = Sekolah
-    template_name = 'forms/two-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Tambah Data Sekolah'
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'
     btn_submit_name = 'Simpan'
@@ -27,7 +27,7 @@ class SekolahCreateView(CreateBreadcrumbView):
 class SekolahUpdateView(UpdateBreadcrumbView):
     model = Sekolah
     form_class = SekolahForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Edit data sekolah'
     sub_title = 'Jika pada Yayasan/Instansi terdapat SD, SMP, SMA dapat tambahkan disini'
     btn_submit_name = 'Simpan'
@@ -64,7 +64,7 @@ class GedungDetailView(DetailBreadcrumbView):
 class GedungUpdateView(UpdateBreadcrumbView):
     model = Gedung
     form_class = GedungForm
-    template_name = 'forms/one-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Edit Data Gedung'
     btn_submit_name = 'Simpan'
 
@@ -76,7 +76,7 @@ class GedungUpdateView(UpdateBreadcrumbView):
 class GedungCreateView(CreateBreadcrumbView):
     form_class = GedungForm
     model = Gedung
-    template_name = 'forms/one-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Tambah Data Gedung'
     btn_submit_name = 'Simpan'
 
@@ -107,7 +107,7 @@ class RuanganDetailView(DetailBreadcrumbView):
 class RuanganCreateView(CreateBreadcrumbView):
     form_class = RuanganForm
     model = Ruangan
-    template_name = 'forms/two-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Tambah data ruangan'
     btn_submit_name = 'Simpan'
 
@@ -119,7 +119,7 @@ class RuanganCreateView(CreateBreadcrumbView):
 class RuanganUpdateView(UpdateBreadcrumbView):
     model = Ruangan
     form_class = RuanganForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Edit data ruangan'
     btn_submit_name = 'Simpan'
 
@@ -149,7 +149,7 @@ class JurusanDetailView(DetailBreadcrumbView):
 class JurusanCreateView(CreateBreadcrumbView):
     form_class = JurusanForm
     model = Jurusan
-    template_name = 'forms/two-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Tambah data jurusan'
     btn_submit_name = 'Simpan'
 
@@ -161,7 +161,7 @@ class JurusanCreateView(CreateBreadcrumbView):
 class JurusanUpdateView(UpdateBreadcrumbView):
     model = Jurusan
     form_class = JurusanForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Edit data jurusan'
     btn_submit_name = 'Simpan'
 
@@ -192,7 +192,7 @@ class KelasDetailView(DetailBreadcrumbView):
 class KelasCreateView(CreateBreadcrumbView):
     form_class = KelasForm
     model = Kelas
-    template_name = 'forms/two-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Tambah data kelas'
     btn_submit_name = 'Simpan'
 
@@ -204,7 +204,7 @@ class KelasCreateView(CreateBreadcrumbView):
 class KelasUpdateView(UpdateBreadcrumbView):
     model = Kelas
     form_class = KelasForm
-    template_name = 'forms/two-column-form.html'
+    template_name = 'sekolah/form_generic.html'
     title_page = 'Edit data kelas'
     btn_submit_name = 'Simpan'
 
