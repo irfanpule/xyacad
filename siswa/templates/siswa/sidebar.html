@@ -1,42 +1,18 @@
+{% extends 'includes/sidebar.html' %}
 {% load static %}
-{% block content %}
-    <div id="sidebar" class="active">
-        <div class="sidebar-wrapper active">
-            <div class="sidebar-header">
-                <div class="d-flex justify-content-between">
-                    <div class="logo">
-                        Xyacad
-                    </div>
-                    <div class="toggler">
-                        <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar-menu">
-                <ul class="menu">
-                    <li class="sidebar-title">Data Siswa</li>
-                    <li class="sidebar-item {% if active_menu == 'siswa' %} active {% endif %}">
-                        <a href="{% url 'siswa:siswa_list' %}" class='sidebar-link'>
-                            <i class="fa fa-id-card"></i>
-                            <span>Siswa</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {% if active_menu == 'siswakelas' %} active {% endif %}">
-                        <a href="{% url 'siswa:siswakelas_list' %}" class='sidebar-link'>
-                            <i class="fa fa-door-open"></i>
-                            <span>Siswa Kelas</span>
-                        </a>
-                    </li>
-                    <hr>
-                    <li class="sidebar-item  {% if request.resolver_match.url_name == 'addons_app_list' %} active {% endif %}">
-                        <a href="{% url 'dashboard:addons_app_list' %}" class='sidebar-link'>
-                            <i class="bi bi-grid-fill"></i>
-                            <span>Apps</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
-        </div>
-    </div>
-{% endblock content %}
+
+{% block inter_sidebar_menu %}
+    <li class="sidebar-title">Data Siswa</li>
+    <li class="sidebar-item {% if active_menu == 'siswa' %} active {% endif %}">
+        <a href="{% url 'siswa:siswa_list' %}" class='sidebar-link'>
+            <i class="fa fa-id-card"></i>
+            <span>Siswa</span>
+        </a>
+    </li>
+    <li class="sidebar-item {% if active_menu == 'siswakelas' %} active {% endif %}">
+        <a href="{% url 'siswa:siswakelas_list' %}" class='sidebar-link'>
+            <i class="fa fa-door-open"></i>
+            <span>Siswa Kelas</span>
+        </a>
+    </li>
+{% endblock %}

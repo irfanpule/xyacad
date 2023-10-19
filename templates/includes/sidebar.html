@@ -22,23 +22,25 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item  {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
-                        <a href="{% url 'dashboard:home' %}" class='sidebar-link'>
-                            <i class="fa fa-home"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item has-sub">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa fa-tools"></i>
-                            <span>Pengaturan</span>
-                        </a>
-                        <ul class="submenu" style="display: none;">
-                            <li class="submenu-item">
-                                <a href="#">...</a>
-                            </li>
-                        </ul>
-                    </li>
+                    {% block inter_sidebar_menu %}
+                        <li class="sidebar-item  {% if request.resolver_match.url_name == 'home' %} active {% endif %}">
+                            <a href="{% url 'dashboard:home' %}" class='sidebar-link'>
+                                <i class="fa fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item has-sub">
+                            <a href="#" class="sidebar-link">
+                                <i class="fa fa-tools"></i>
+                                <span>Pengaturan</span>
+                            </a>
+                            <ul class="submenu" style="display: none;">
+                                <li class="submenu-item">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endblock %}
                 </ul>
             </div>
             <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

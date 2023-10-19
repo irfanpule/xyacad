@@ -1,60 +1,36 @@
+{% extends 'includes/sidebar.html' %}
 {% load static %}
-{% block content %}
-    <div id="sidebar" class="active">
-        <div class="sidebar-wrapper active">
-            <div class="sidebar-header">
-                <div class="d-flex justify-content-between">
-                    <div class="logo">
-                        Xyacad
-                    </div>
-                    <div class="toggler">
-                        <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar-menu">
-                <ul class="menu">
-                    <li class="sidebar-title">Data Master Sekolah</li>
-                    <li class="sidebar-item {% if active_menu == 'sekolah' %} active {% endif %}">
-                        <a href="{% url 'sekolah:sekolah_list' %}" class='sidebar-link'>
-                            <i class="fa fa-school"></i>
-                            <span>Sekolah</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {% if active_menu == 'gedung' %} active {% endif %}">
-                        <a href="{% url 'sekolah:gedung_list' %}" class='sidebar-link'>
-                            <i class="fa fa-building"></i>
-                            <span>Gedung</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {% if active_menu == 'ruangan' %} active {% endif %}">
-                        <a href="{% url 'sekolah:ruangan_list' %}" class='sidebar-link'>
-                            <i class="fa fa-door-open"></i>
-                            <span>Ruangan</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {% if active_menu == 'jurusan' %} active {% endif %}">
-                        <a href="{% url 'sekolah:jurusan_list' %}" class='sidebar-link'>
-                            <i class="fa fa-star"></i>
-                            <span>Jurusan</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {% if active_menu == 'kelas' %} active {% endif %}">
-                        <a href="{% url 'sekolah:kelas_list' %}" class='sidebar-link'>
-                            <i class="fa fa-flag"></i>
-                            <span>Kelas</span>
-                        </a>
-                    </li>
-                    <hr>
-                    <li class="sidebar-item">
-                        <a href="{% url 'dashboard:addons_app_list' %}" class='sidebar-link'>
-                            <i class="bi bi-grid-fill"></i>
-                            <span>Apps</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
-        </div>
-    </div>
-{% endblock content %}
+
+{% block inter_sidebar_menu %}
+    <li class="sidebar-title">Data Master Sekolah</li>
+    <li class="sidebar-item {% if active_menu == 'sekolah' %} active {% endif %}">
+        <a href="{% url 'sekolah:sekolah_list' %}" class='sidebar-link'>
+            <i class="fa fa-school"></i>
+            <span>Sekolah</span>
+        </a>
+    </li>
+    <li class="sidebar-item {% if active_menu == 'gedung' %} active {% endif %}">
+        <a href="{% url 'sekolah:gedung_list' %}" class='sidebar-link'>
+            <i class="fa fa-building"></i>
+            <span>Gedung</span>
+        </a>
+    </li>
+    <li class="sidebar-item {% if active_menu == 'ruangan' %} active {% endif %}">
+        <a href="{% url 'sekolah:ruangan_list' %}" class='sidebar-link'>
+            <i class="fa fa-door-open"></i>
+            <span>Ruangan</span>
+        </a>
+    </li>
+    <li class="sidebar-item {% if active_menu == 'jurusan' %} active {% endif %}">
+        <a href="{% url 'sekolah:jurusan_list' %}" class='sidebar-link'>
+            <i class="fa fa-star"></i>
+            <span>Jurusan</span>
+        </a>
+    </li>
+    <li class="sidebar-item {% if active_menu == 'kelas' %} active {% endif %}">
+        <a href="{% url 'sekolah:kelas_list' %}" class='sidebar-link'>
+            <i class="fa fa-flag"></i>
+            <span>Kelas</span>
+        </a>
+    </li>
+{% endblock %}

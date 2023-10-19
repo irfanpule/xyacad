@@ -1,64 +1,39 @@
-{% load static %}
-{% block content %}
-    <div id="sidebar" class="active">
-        <div class="sidebar-wrapper active">
-            <div class="sidebar-header">
-                <div class="d-flex justify-content-between">
-                    <div class="logo">
-                        Xyacad
-                    </div>
-                    <div class="toggler">
-                        <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar-menu">
-                <ul class="menu">
-                    <li class="sidebar-title">Manajemen Akademik</li>
-                    <li class="sidebar-item {% if active_menu == 'masterakademik' %} active {% endif %} has-sub">
-                        <a href="#" class="sidebar-link">
-                            <i class="bi bi-stack"></i>
-                            <span>Master Akademik</span>
-                        </a>
-                        <ul class="submenu {% if active_menu == 'masterakademik' %} active {% endif %}">
-                            <li class="submenu-item">
-                                <a href="{% url 'akademik:tahunakademik_list' %}">Tahun Akademik</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'akademik:kurikulum_list' %}">Kurikulum</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'akademik:kelompokmapel_list' %}">Kelompok MaPel</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'akademik:tingkat_list' %}">Tingkat</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item {% if active_menu == 'akademik' %} active {% endif %} has-sub">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa fa-school"></i>
-                            <span>Akademik</span>
-                        </a>
-                        <ul class="submenu {% if active_menu == 'akademik' %} active {% endif %}">
-                            <li class="submenu-item">
-                                <a href="{% url 'akademik:matapelajaran_list' %}">Mata Pelajaran</a>
-                            </li>
-                            <li class="submenu-item">
-                                <a href="{% url 'akademik:jadwal_list' %}">Jadwal</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <hr>
-                    <li class="sidebar-item  {% if request.resolver_match.url_name == 'addons_app_list' %} active {% endif %}">
-                        <a href="{% url 'dashboard:addons_app_list' %}" class='sidebar-link'>
-                            <i class="bi bi-grid-fill"></i>
-                            <span>Apps</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
-        </div>
-    </div>
-{% endblock content %}
+{% extends 'includes/sidebar.html' %}
+
+{% block inter_sidebar_menu %}
+    <li class="sidebar-title">Manajemen Akademik</li>
+    <li class="sidebar-item {% if active_menu == 'masterakademik' %} active {% endif %} has-sub">
+        <a href="#" class="sidebar-link">
+            <i class="bi bi-stack"></i>
+            <span>Master Akademik</span>
+        </a>
+        <ul class="submenu {% if active_menu == 'masterakademik' %} active {% endif %}">
+            <li class="submenu-item">
+                <a href="{% url 'akademik:tahunakademik_list' %}">Tahun Akademik</a>
+            </li>
+            <li class="submenu-item">
+                <a href="{% url 'akademik:kurikulum_list' %}">Kurikulum</a>
+            </li>
+            <li class="submenu-item">
+                <a href="{% url 'akademik:kelompokmapel_list' %}">Kelompok MaPel</a>
+            </li>
+            <li class="submenu-item">
+                <a href="{% url 'akademik:tingkat_list' %}">Tingkat</a>
+            </li>
+        </ul>
+    </li>
+    <li class="sidebar-item {% if active_menu == 'akademik' %} active {% endif %} has-sub">
+        <a href="#" class="sidebar-link">
+            <i class="fa fa-school"></i>
+            <span>Akademik</span>
+        </a>
+        <ul class="submenu {% if active_menu == 'akademik' %} active {% endif %}">
+            <li class="submenu-item">
+                <a href="{% url 'akademik:matapelajaran_list' %}">Mata Pelajaran</a>
+            </li>
+            <li class="submenu-item">
+                <a href="{% url 'akademik:jadwal_list' %}">Jadwal</a>
+            </li>
+        </ul>
+    </li>
+{% endblock %}
