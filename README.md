@@ -11,6 +11,8 @@ mengembangkan modul sendiri. Ya pastinya ini belum teruji, jadi butuh masukan da
 Saya mencoba menggunakan konsep addons pada xyacad yang pada dasarnya oddons itu sendiri adalah app django yang ditambahkan
 manifest agar terbaca sebagai addons. Berikut ini contoh addons **tabungan** sekolah yang masih dalam pengembangan https://github.com/irfanpule/tabungan
 
+### Menambahkan Addons
+Pada directory project terdapat directory `addons`. Kamu cukup copas project addons kamu atau clone di directory `oddons`. Setelah itu kamu bisa menjalankan `manage.py` seperti biasa pada addons yang kamu tambahkan. Misal `python manage.py migrate {addons_name}`
 
 ### Apps Default
 - akademik
