@@ -1,9 +1,11 @@
 import sweetify
 from django.urls import reverse
-from core.views import ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, DetailBreadcrumbView
-from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai
+from core.views import ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, \
+    DetailBreadcrumbView
+from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai, Presensi
 from pegawai.forms import (
-    StatusPegawaiForm, JenisPTKForm, GolonganForm, JabatanStrukturalForm, JabatanFungsionalForm, PegawaiForm
+    StatusPegawaiForm, JenisPTKForm, GolonganForm, JabatanStrukturalForm, JabatanFungsionalForm, PegawaiForm,
+    PresensiHadirForm, PresensiSakitForm, PresensiIjinForm, PresensiCutiForm
 )
 
 
@@ -303,3 +305,111 @@ class PegawaiIDCardView(DetailBreadcrumbView):
 
     def get_title_page(self):
         return "Kartu Pagawai"
+
+
+class PresensiPegawaiListView(ListBreadcrumbView):
+    model = Presensi
+    title_page = 'Presensi Pegawai'
+    active_menu = 'pegawai'
+
+
+class PresensiDetailView(DetailBreadcrumbView):
+    model = Presensi
+    active_menu = 'pegawai'
+    title_page = 'Presensi Pegawai'
+    specific_sidebar_menu = 'pegawai/sidebar.html'
+
+
+class PresensiDeleteView(BaseDeleteView):
+    model = Presensi
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menghapus data presensi", timer=5000)
+        return reverse('pegawai:presensi_list')
+
+
+class PresensiHadirCreateView(CreateBreadcrumbView):
+    model = Presensi
+    title_page = 'Presensi Hadir'
+    active_menu = 'pegawai'
+    template_name = 'pegawai/form_generic.html'
+    form_class = PresensiHadirForm
+    btn_submit_name = "Simpan"
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data presensi hadir", timer=5000)
+        return reverse('pegawai:presensi_list')
+
+
+class PresensiSakitCreateView(CreateBreadcrumbView):
+    model = Presensi
+    title_page = 'Presensi Sakit'
+    active_menu = 'pegawai'
+    template_name = 'pegawai/form_generic.html'
+    form_class = PresensiSakitForm
+    btn_submit_name = "Simpan"
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data presensi sakit", timer=5000)
+        return reverse('pegawai:presensi_list')
+
+
+class PresensiIjinCreateView(CreateBreadcrumbView):
+    model = Presensi
+    title_page = 'Presensi Ijin'
+    active_menu = 'pegawai'
+    template_name = 'pegawai/form_generic.html'
+    form_class = PresensiIjinForm
+    btn_submit_name = "Simpan"
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data presensi ijin", timer=5000)
+        return reverse('pegawai:presensi_list')
+
+
+class PresensiCutiCreateView(CreateBreadcrumbView):
+    model = Presensi
+    title_page = 'Presensi Cuti'
+    active_menu = 'pegawai'
+    template_name = 'pegawai/form_generic.html'
+    form_class = PresensiCutiForm
+    btn_submit_name = "Simpan"
+
+    def get_success_url(self):
+        sweetify.toast(self.request, "Berhasil menambahkan data presensi cuti", timer=5000)
+        return reverse('pegawai:presensi_list')
+
+
+class PresensiUpdateView(UpdateBreadcrumbView):
+    model = Presensi
+    active_menu = 'pegawai'
+    template_name = 'pegawai/form_generic.html'
+    btn_submit_name = "Simpan"
+
+    def get_success_url(self):
+        sweetify.toast(self.request, 'Berhasil ubah data presensi', timer=5000)
+        return reverse('pegawai:presensi_list')
+
+    def get_form_class(self):
+        obj = self.get_object()
+        if obj.status == Presensi.STATUS.hadir:
+            form = PresensiHadirForm
+        elif obj.status == Presensi.STATUS.sakit:
+            form = PresensiSakitForm
+        elif obj.status == Presensi.STATUS.cuti:
+            form = PresensiCutiForm
+        else:
+            form = PresensiIjinForm
+        return form
+
+    def get_title_page(self):
+        obj = self.get_object()
+        if obj.status == Presensi.STATUS.hadir:
+            title = "Ubah Presensi Hadir"
+        elif obj.status == Presensi.STATUS.sakit:
+            title = "Ubah Presensi Sakit"
+        elif obj.status == Presensi.STATUS.cuti:
+            title = "Ubah Presensi Cuti"
+        else:
+            title = "Ubah Presensi Ijin"
+        return title

@@ -125,3 +125,26 @@ class Pegawai(BaseModel):
         if self.domisili:
             return self.domisili
         return "-"
+
+
+class Presensi(BaseModel):
+    class STATUS(models.TextChoices):
+        hadir = "hadir", "Hadir"
+        sakit = "sakit", "Sakit"
+        ijin = "ijin", "Ijin"
+        cuti = "cuti", "Cuti"
+        absen = "absen", "Absen"
+
+    pegawai = models.ForeignKey(Pegawai, on_delete=models.CASCADE)
+    clockin = models.DateTimeField('Waktu Masuk', blank=True, null=True)
+    clockout = models.DateTimeField('Waktu Keluar', blank=True, null=True)
+    status = models.CharField('Status', max_length=10, choices=STATUS.choices)
+    ket = models.TextField('Keterangan', help_text='Keterangan atau link ref dokumen',
+                           blank=True, null=True, default='')
+
+    def __str__(self):
+        return f"{self.pegawai} - {self.status}"
+
+    class Meta:
+        verbose_name = "Presensi"
+        verbose_name_plural = "Presensi"
