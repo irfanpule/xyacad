@@ -101,7 +101,7 @@ class DetailBreadcrumbView(LoginRequiredMixin, DetailBreadcrumbMixin, BaseDetail
 
     def get_title_page(self):
         obj = self.get_object()
-        return f"Detail data {obj.nama}"
+        return f"Detail data {obj}"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
