@@ -23,10 +23,17 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <a href="{% url 'pegawai:presensi_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Hadir</a>
-                        <a href="{% url 'pegawai:presensi_sakit_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Sakit</a>
-                        <a href="{% url 'pegawai:presensi_ijin_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Ijin</a>
-                        <a href="{% url 'pegawai:presensi_cuti_create' %}" class="btn btn-primary rounded-pill"><i class="fa fa-plus-circle"></i> Cuti</a>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-plus-circle"></i> Tambah
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                <a class="dropdown-item" href="{% url 'pegawai:presensi_create' %}"> Hadir</a>
+                                <a class="dropdown-item" href="{% url 'pegawai:presensi_sakit_create' %}"> Sakit</a>
+                                <a class="dropdown-item" href="{% url 'pegawai:presensi_ijin_create' %}"> Ijin</a>
+                                <a class="dropdown-item" href="{% url 'pegawai:presensi_cuti_create' %}"> Cuti</a>
+                            </div>
+                        </div>
                     </nav>
                 </div>
             </div>
