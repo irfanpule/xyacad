@@ -38,5 +38,15 @@ urlpatterns = [
     path('fungsional/edit/<uuid:id>/', views.JabatanFungsionalUpdateView.as_view(), name='jabatanfungsional_update'),
     path('fungsional/detail/<uuid:id>/', views.JabatanFungsionalDetailView.as_view(), name='jabatanfungsional_detail'),
     path('fungsional/delete/<uuid:id>/', views.JabatanFungsionalDeleteView.as_view(), name='jabatanfungsional_delete'),
+
+    path('presensi/list/', views.PresensiPegawaiListView.as_view(), name='presensi_list'),
+    path('presensi/detail/<uuid:id>/', views.PresensiDetailView.as_view(), name='presensi_detail'),
+    path('presensi/edit/<uuid:id>/', views.PresensiUpdateView.as_view(), name='presensi_update'),
+    path('presensi/delete/<uuid:id>/', views.PresensiDeleteView.as_view(), name='presensi_delete'),
+    path('presensi/create/hadir/', views.PresensiHadirCreateView.as_view(), name='presensi_create'),
+    path('presensi/create/sakit/', views.PresensiSakitCreateView.as_view(), name='presensi_sakit_create'),
+    path('presensi/create/ijin/', views.PresensiIjinCreateView.as_view(), name='presensi_ijin_create'),
+    path('presensi/create/cuti/', views.PresensiCutiCreateView.as_view(), name='presensi_cuti_create'),
+
 ]
 

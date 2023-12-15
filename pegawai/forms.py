@@ -1,6 +1,6 @@
 from django import forms
-from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai
-from django_flatpickr.widgets import DatePickerInput
+from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai, Presensi
+from django_flatpickr.widgets import DatePickerInput, DateTimePickerInput
 from django_flatpickr.schemas import FlatpickrOptions
 from django_select2.forms import Select2Widget
 
@@ -57,3 +57,73 @@ class PegawaiForm(forms.ModelForm):
             "sekolah": Select2Widget,
             "status": Select2Widget,
         }
+
+
+class PresensiHadirForm(forms.ModelForm):
+    class Meta:
+        model = Presensi
+        fields = ['pegawai', 'clockin', 'clockout', 'ket']
+        widgets = {
+            'clockin': DateTimePickerInput(options=FlatpickrOptions(maxDate="today")),
+            'clockout': DateTimePickerInput(options=FlatpickrOptions(maxDate="today"))
+        }
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        instance.status = Presensi.STATUS.hadir
+        instance.save()
+        return instance
+
+
+class PresensiSakitForm(forms.ModelForm):
+    class Meta:
+        model = Presensi
+        fields = ['pegawai', 'clockin', 'ket']
+        help_texts = {
+            'ket': 'Keterangan sakit. Lampirkan link Dokumen seperti Surat sakit.'
+        }
+        labels = {
+            'clockin': 'Tanggal'
+        }
+        widgets = {
+            'clockin': DatePickerInput(options=FlatpickrOptions(maxDate="today")),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['ket'].required = True
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        instance.status = Presensi.STATUS.sakit
+        instance.clockout = instance.clockin
+        instance.save()
+        return instance
+
+
+class PresensiIjinForm(PresensiSakitForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['ket'].help_text = "Keterangan ijin."
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        instance.status = Presensi.STATUS.ijin
+        instance.clockout = instance.clockin
+        instance.save()
+        return instance
+
+
+class PresensiCutiForm(PresensiSakitForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['ket'].help_text = "Keterangan cuti"
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super().save(commit=False)
+        instance.status = Presensi.STATUS.cuti
+        instance.clockout = instance.clockin
+        instance.save()
+        return instance
