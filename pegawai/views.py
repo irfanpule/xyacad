@@ -1,11 +1,14 @@
+import datetime
+
 import sweetify
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from core.views import ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, \
     DetailBreadcrumbView
 from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai, Presensi
 from pegawai.forms import (
     StatusPegawaiForm, JenisPTKForm, GolonganForm, JabatanStrukturalForm, JabatanFungsionalForm, PegawaiForm,
-    PresensiHadirForm, PresensiSakitForm, PresensiIjinForm, PresensiCutiForm
+    PresensiHadirForm, PresensiSakitForm, PresensiIjinForm, PresensiCutiForm, PresensiClockInForm, PresensiClockOutForm
 )
 
 
@@ -413,3 +416,43 @@ class PresensiUpdateView(UpdateBreadcrumbView):
         else:
             title = "Ubah Presensi Ijin"
         return title
+
+
+def presensi_clockin(request):
+    form = PresensiClockInForm(request.POST or None)
+    if form.is_valid():
+        presensi = form.save()
+        sweetify.success(
+            request,
+            f"{presensi.pegawai.nama}",
+            text=f"Berhasil Clock In {datetime.datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}",
+            timer=5000,
+        )
+        return redirect(reverse("pegawai:presensi_clockin"))
+
+    context = {
+        'form': form,
+        'title': "Presensi Clock In",
+        'btn_submit_name': "Clock In"
+    }
+    return render(request, "pegawai/clockin.html", context)
+
+
+def presensi_clockout(request):
+    form = PresensiClockOutForm(request.POST or None)
+    if form.is_valid():
+        presensi = form.save()
+        sweetify.success(
+            request,
+            f"{presensi.pegawai.nama}",
+            text=f"Berhasil Clock Out {datetime.datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}",
+            timer=5000,
+        )
+        return redirect(reverse("pegawai:presensi_clockout"))
+
+    context = {
+        'form': form,
+        'title': "Presensi Clock Out",
+        'btn_submit_name': "Clock Out"
+    }
+    return render(request, "pegawai/clockout.html", context)

@@ -48,5 +48,8 @@ urlpatterns = [
     path('presensi/create/ijin/', views.PresensiIjinCreateView.as_view(), name='presensi_ijin_create'),
     path('presensi/create/cuti/', views.PresensiCutiCreateView.as_view(), name='presensi_cuti_create'),
 
+    path('presensi/clockin/', views.presensi_clockin, name='presensi_clockin'),
+    path('presensi/clockout/', views.presensi_clockout, name='presensi_clockout'),
+
 ]
 
