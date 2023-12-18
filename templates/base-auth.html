@@ -1,11 +1,11 @@
-{% load static %}
+{% load static sweetify %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Admin Dashboard</title>
+    <title>{% block title %}Xyacad{% endblock title %}</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -20,9 +20,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/pages/auth.css' %}">
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.svg' %}" type="image/x-icon">
     <script src="https://cdn.themesinfo.com/detector.js"></script><script src="https://cdn.themesinfo.com/detector.js"></script>
-</head>
-
-<title>{% block title %}Mazer{% endblock title %}</title>
+    <script src="{% static 'assets/vendors/sweetalert2/sweetalert2.all.js' %}"></script>
+    {% block extra_css %} {% endblock %}
 </head>
 <body>
 
@@ -34,6 +33,9 @@
     <script src="{% static 'assets/vendors/apexcharts/apexcharts.js' %}"></script>
     <script src="{% static 'assets/js/pages/dashboard.js' %}"></script>
     <script src="{% static 'assets/js/mazer.js' %}"></script>
+
+    {% block extra_js %} {% endblock %}
+    {% sweetify %}
 </body>
 
 </html>

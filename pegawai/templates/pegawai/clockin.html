@@ -1,0 +1,31 @@
+{% extends "base-auth.html" %}
+{% load static %}
+
+{% block content %}
+<div id="auth">
+
+    <div class="row h-100">
+        <div class="col-lg-12 col-12">
+            <div id="auth-left">
+                <div class="auth-logo">
+                    <h2>Xyacad</h2>
+                </div>
+                <h1 class="auth-title">Presensi Pegawai</h1>
+                <p class="auth-subtitle mb-3">Untuk melakukan clock in, input NIP Anda.</p>
+
+                <ul class="nav nav-tabs mb-5" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" href="{% url 'pegawai:presensi_clockin' %}" role="tab" aria-controls="home" aria-selected="false" tabindex="-1">Clock In</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="{% url 'pegawai:presensi_clockout' %}" role="tab" aria-controls="profile" aria-selected="true">Clock Out</a>
+                    </li>
+                </ul>
+
+                {% include 'includes/one-form.html' %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
