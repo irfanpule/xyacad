@@ -46,7 +46,7 @@ class JabatanFungsionalForm(forms.ModelForm):
 class PegawaiForm(forms.ModelForm):
     class Meta:
         model = Pegawai
-        fields = '__all__'
+        exclude = ['user']
         widgets = {
             'alamat': forms.Textarea(attrs={'rows': 1}),
             'domisili': forms.Textarea(attrs={'rows': 1}),
