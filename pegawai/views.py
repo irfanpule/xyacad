@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from core.views import ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, \
     DetailBreadcrumbView
+from core.utils import Logger
 from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai, Presensi
 from pegawai.forms import (
     StatusPegawaiForm, JenisPTKForm, GolonganForm, JabatanStrukturalForm, JabatanFungsionalForm, PegawaiForm,
@@ -422,6 +423,8 @@ def presensi_clockin(request):
     form = PresensiClockInForm(request.POST or None)
     if form.is_valid():
         presensi = form.save()
+        log = Logger()
+        log.addition(request, presensi)
         sweetify.success(
             request,
             f"{presensi.pegawai.nama}",
@@ -442,6 +445,8 @@ def presensi_clockout(request):
     form = PresensiClockOutForm(request.POST or None)
     if form.is_valid():
         presensi = form.save()
+        log = Logger()
+        log.change(request, presensi)
         sweetify.success(
             request,
             f"{presensi.pegawai.nama}",
