@@ -1,5 +1,6 @@
 import random
 
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.templatetags.static import static
 from core.models import BaseModel
@@ -103,6 +104,7 @@ class Pegawai(BaseModel):
     telp_wa = models.CharField('Telp / WA', max_length=25, blank=True, null=True)
     foto = models.ImageField('Foto', blank=True, null=True)
     sekolah = models.ForeignKey("sekolah.Sekolah", on_delete=models.CASCADE)
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f"{self.nama}"
@@ -110,6 +112,11 @@ class Pegawai(BaseModel):
     class Meta:
         verbose_name = "Pegawai"
         verbose_name_plural = "Pegawai"
+
+    def save(self, *args, **kwargs):
+        if not self.user:
+            self.user = self.create_user()
+        super().save(*args, **kwargs)
 
     def get_foto(self):
         if self.foto:
@@ -125,6 +132,14 @@ class Pegawai(BaseModel):
         if self.domisili:
             return self.domisili
         return "-"
+
+    def create_user(self):
+        user = get_user_model()
+        obj = user.objects.create_user(
+            username=self.nip,
+            password=self.tgl_lahir.strftime("%Y%m%d")
+        )
+        return obj
 
 
 class Presensi(BaseModel):

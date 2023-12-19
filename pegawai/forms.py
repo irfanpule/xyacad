@@ -1,6 +1,7 @@
 import datetime
 
 from django import forms
+from django.contrib.auth import authenticate
 from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai, Presensi
 from django_flatpickr.widgets import DatePickerInput, DateTimePickerInput
 from django_flatpickr.schemas import FlatpickrOptions
@@ -46,7 +47,7 @@ class JabatanFungsionalForm(forms.ModelForm):
 class PegawaiForm(forms.ModelForm):
     class Meta:
         model = Pegawai
-        fields = '__all__'
+        exclude = ['user']
         widgets = {
             'alamat': forms.Textarea(attrs={'rows': 1}),
             'domisili': forms.Textarea(attrs={'rows': 1}),
@@ -133,20 +134,35 @@ class PresensiCutiForm(PresensiSakitForm):
 
 class PresensiClockInForm(forms.Form):
     nip = forms.CharField(help_text="Masukan NIP (Nomor Induk Pegawai)", label="NIP")
+    password = forms.CharField(widget=forms.PasswordInput, label="Kata Sandi",
+                               help_text="Masukan Kata Sandi untuk melanjutkan proses")
 
     def __init__(self, *args, **kwargs):
         self.pegawai = None
+        self.presensi = None
         super().__init__(*args, **kwargs)
 
-    def clean_nip(self):
+    def set_pegawai(self):
         try:
             self.pegawai = Pegawai.objects.get(nip=self.cleaned_data['nip'])
+        except Pegawai.DoesNotExist:
+            raise forms.ValidationError("Pegawai dengan NIP tersebut tidak ditemukan.", code='nip_404')
+
+    def clean(self, edited=False):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        username = cleaned_data.get("nip")
+        user = authenticate(username=username, password=password)
+        if not user:
+            raise forms.ValidationError("NIP atau Kata Sandi Anda tidak cocok.",
+                                        code='user_404')
+
+        if not edited:
+            self.set_pegawai()
             if Presensi.objects.filter(pegawai=self.pegawai, clockin__day=datetime.datetime.now().day).exists():
                 raise forms.ValidationError("Pegawai dengan NIP sudah melakukan clock in.",
                                             code='already_clockin')
-            return self.cleaned_data['nip']
-        except Pegawai.DoesNotExist:
-            raise forms.ValidationError("Pegawai dengan NIP tersebut tidak ditemukan.", code='nip_404')
+        return cleaned_data
 
     def save(self, commit=True, *args, **kwargs):
         presensi = Presensi.objects.create(
@@ -158,34 +174,21 @@ class PresensiClockInForm(forms.Form):
         return presensi
 
 
-class PresensiClockOutForm(forms.Form):
-    nip = forms.CharField(help_text="Masukan NIP (Nomor Induk Pegawai)", label="NIP")
+class PresensiClockOutForm(PresensiClockInForm):
 
-    def __init__(self, *args, **kwargs):
-        self.pegawai = None
-        self.presensi = None
-        super().__init__(*args, **kwargs)
+    def clean(self):
+        cleaned_data = super().clean(edited=True)
+        self.set_pegawai()
+        self.presensi = Presensi.objects.filter(
+            pegawai=self.pegawai,
+            clockin__day=datetime.datetime.now().day,
+            clockout__isnull=True
+        ).first()
 
-    def clean_nip(self):
-        try:
-            self.pegawai = Pegawai.objects.get(nip=self.cleaned_data['nip'])
-            if Presensi.objects.filter(pegawai=self.pegawai, clockout__day=datetime.datetime.now().day).exists():
-                raise forms.ValidationError("Pegawai dengan NIP ini sudah melakukan clock out.",
-                                            code='already_clockout')
-
-            self.presensi = Presensi.objects.filter(
-                pegawai=self.pegawai,
-                clockin__day=datetime.datetime.now().day,
-                clockout__isnull=True
-            ).first()
-
-            if not self.presensi:
-                raise forms.ValidationError("Pegawai dengan NIP ini belum melakukan clock in.",
-                                            code='not_yet_clockin')
-
-            return self.cleaned_data['nip']
-        except Pegawai.DoesNotExist:
-            raise forms.ValidationError("Pegawai dengan NIP tersebut tidak ditemukan.", code='nip_404')
+        if not self.presensi:
+            raise forms.ValidationError("Pegawai dengan NIP ini belum melakukan clock in.",
+                                        code='not_yet_clockin')
+        return cleaned_data
 
     def save(self, commit=True, *args, **kwargs):
         self.presensi.clockout = datetime.datetime.now()
