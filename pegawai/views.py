@@ -9,7 +9,8 @@ from core.utils import Logger
 from pegawai.models import StatusPegawai, JenisPTK, Golongan, JabatanStruktural, JabatanFungsional, Pegawai, Presensi
 from pegawai.forms import (
     StatusPegawaiForm, JenisPTKForm, GolonganForm, JabatanStrukturalForm, JabatanFungsionalForm, PegawaiForm,
-    PresensiHadirForm, PresensiSakitForm, PresensiIjinForm, PresensiCutiForm, PresensiClockInForm, PresensiClockOutForm
+    PresensiHadirForm, PresensiSakitForm, PresensiIjinForm, PresensiCutiForm, PresensiClockInForm, PresensiClockOutForm,
+    PresensiAktifForm
 )
 
 
@@ -420,6 +421,9 @@ class PresensiUpdateView(UpdateBreadcrumbView):
 
 
 def presensi_clockin(request):
+    if not request.session.get('presensi_aktif'):
+        return redirect("pegawai:presensi_aktifkan")
+
     form = PresensiClockInForm(request.POST or None)
     if form.is_valid():
         presensi = form.save()
@@ -442,6 +446,9 @@ def presensi_clockin(request):
 
 
 def presensi_clockout(request):
+    if not request.session.get('presensi_aktif'):
+        return redirect("pegawai:presensi_aktifkan")
+
     form = PresensiClockOutForm(request.POST or None)
     if form.is_valid():
         presensi = form.save()
@@ -461,3 +468,17 @@ def presensi_clockout(request):
         'btn_submit_name': "Clock Out"
     }
     return render(request, "pegawai/clockout.html", context)
+
+
+def presensi_aktifkan(request):
+    form = PresensiAktifForm(request.POST or None)
+    if form.is_valid():
+        request.session["presensi_aktif"] = True
+        return redirect("pegawai:presensi_clockin")
+
+    context = {
+        'form': form,
+        'title': "Aktifkan Presensi",
+        'btn_submit_name': "Aktifkan"
+    }
+    return render(request, "pegawai/aktifkan_presensi.html", context)

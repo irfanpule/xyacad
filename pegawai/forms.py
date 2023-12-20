@@ -195,3 +195,29 @@ class PresensiClockOutForm(PresensiClockInForm):
         self.presensi.ket = self.presensi.ket + " clock out mandiri"
         self.presensi.save()
         return self.presensi
+
+
+class PresensiAktifForm(forms.Form):
+    nip = forms.CharField(help_text="Masukan NIP (Nomor Induk Pegawai)", label="NIP")
+    password = forms.CharField(widget=forms.PasswordInput, label="Kata Sandi",
+                               help_text="Masukan Kata Sandi untuk melanjutkan proses")
+
+    def __init__(self, *args, **kwargs):
+        self.user = None
+        super().__init__(*args, **kwargs)
+
+    def clean(self, edited=False):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        username = cleaned_data.get("nip")
+        self.user = authenticate(username=username, password=password)
+        if not self.user:
+            raise forms.ValidationError("NIP atau Kata Sandi Anda tidak cocok.",
+                                        code='user_404')
+        if not self.has_auth():
+            raise forms.ValidationError("Hanya akun admin yang dapat mengaktifkan halaman presensi.",
+                                        code='user_not_admin')
+        return cleaned_data
+
+    def has_auth(self):
+        return self.user.is_authenticated and self.user.is_superuser

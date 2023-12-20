@@ -1,0 +1,22 @@
+{% extends "base-auth.html" %}
+{% load static %}
+
+{% block content %}
+<div id="auth">
+
+    <div class="row h-100">
+        <div class="col-lg-12 col-12">
+            <div id="auth-left">
+                <div class="auth-logo">
+                    <h2>Xyacad</h2>
+                </div>
+                <h1 class="auth-title">Aktifkan Presensi</h1>
+                <p class="auth-subtitle mb-3">Untuk bisa membuka halaman presensi, Admin harus mengaktifkan terlebih dahulu</p>
+
+                {% include 'includes/one-form.html' %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
