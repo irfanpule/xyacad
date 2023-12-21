@@ -51,7 +51,7 @@ urlpatterns = [
     path('presensi/clockin/', views.presensi_clockin, name='presensi_clockin'),
     path('presensi/clockout/', views.presensi_clockout, name='presensi_clockout'),
     path('presensi/aktifkan/', views.presensi_aktifkan, name='presensi_aktifkan'),
-    path('presensi/nonaktifkan/', views.presensi_nonaktifkan, name='presensi_nonaktif'),
+    path('presensi/toggle-aktif/<str:state>', views.presensi_toggle_activate, name='presensi_toggle_activate'),
 
 ]
 

@@ -492,11 +492,12 @@ def presensi_aktifkan(request):
 
 
 @staff_member_required
-def presensi_nonaktifkan(request):
-    if request.session.get("presensi_aktif"):
+def presensi_toggle_activate(request, state):
+    if state == "nonaktif":
         request.session["presensi_aktif"] = None
         sweetify.toast(request, "Berhasil Menonaktifkan halaman Presensi", timer=5000)
         return redirect("pegawai:presensi_list")
     else:
+        request.session["presensi_aktif"] = True
         sweetify.toast(request, "Halaman Presensi Belum diaktifkan", timer=5000)
         return redirect("pegawai:presensi_list")

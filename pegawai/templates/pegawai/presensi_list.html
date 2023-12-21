@@ -25,11 +25,11 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <div class="dropdown">
                             {% if presensi_aktif %}
-                                <a href="{% url 'pegawai:presensi_nonaktif' %}" class="btn btn-danger me-1">
+                                <a href="{% url 'pegawai:presensi_toggle_activate' 'nonaktif' %}" class="btn btn-danger me-1">
                                     <i class="fa fa-key"></i> Nonaktifkan Presensi
                                 </a>
                             {% else %}
-                                <a href="{% url 'pegawai:presensi_aktifkan' %}" class="btn btn-primary me-1">
+                                <a href="{% url 'pegawai:presensi_toggle_activate' 'aktif' %}" class="btn btn-primary me-1">
                                     <i class="fa fa-key"></i> Aktifkan Presensi
                                 </a>
                             {% endif %}
