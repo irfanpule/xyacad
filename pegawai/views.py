@@ -1,8 +1,9 @@
 import datetime
-
 import sweetify
+
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.admin.views.decorators import staff_member_required
 from core.views import ListBreadcrumbView, CreateBreadcrumbView, UpdateBreadcrumbView, BaseDeleteView, \
     DetailBreadcrumbView
 from core.utils import Logger
@@ -317,6 +318,11 @@ class PresensiPegawaiListView(ListBreadcrumbView):
     title_page = 'Presensi Pegawai'
     active_menu = 'pegawai'
 
+    def get_context_data(self, **kwargs):
+        context = super(PresensiPegawaiListView, self).get_context_data(**kwargs)
+        context['presensi_aktif'] = self.request.session.get('presensi_aktif')
+        return context
+
 
 class PresensiDetailView(DetailBreadcrumbView):
     model = Presensi
@@ -474,6 +480,7 @@ def presensi_aktifkan(request):
     form = PresensiAktifForm(request.POST or None)
     if form.is_valid():
         request.session["presensi_aktif"] = True
+        sweetify.toast(request, "Kamu Berhasil Mengaktifkan halaman Presensi", timer=5000)
         return redirect("pegawai:presensi_clockin")
 
     context = {
@@ -482,3 +489,14 @@ def presensi_aktifkan(request):
         'btn_submit_name': "Aktifkan"
     }
     return render(request, "pegawai/aktifkan_presensi.html", context)
+
+
+@staff_member_required
+def presensi_nonaktifkan(request):
+    if request.session.get("presensi_aktif"):
+        request.session["presensi_aktif"] = None
+        sweetify.toast(request, "Berhasil Menonaktifkan halaman Presensi", timer=5000)
+        return redirect("pegawai:presensi_list")
+    else:
+        sweetify.toast(request, "Halaman Presensi Belum diaktifkan", timer=5000)
+        return redirect("pegawai:presensi_list")

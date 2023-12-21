@@ -24,6 +24,15 @@
                 <div class="col-12 col-md-6 order-md-2 order-last">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <div class="dropdown">
+                            {% if presensi_aktif %}
+                                <a href="{% url 'pegawai:presensi_nonaktif' %}" class="btn btn-danger me-1">
+                                    <i class="fa fa-key"></i> Nonaktifkan Presensi
+                                </a>
+                            {% else %}
+                                <a href="{% url 'pegawai:presensi_aktifkan' %}" class="btn btn-primary me-1">
+                                    <i class="fa fa-key"></i> Aktifkan Presensi
+                                </a>
+                            {% endif %}
                             <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-plus-circle"></i> Tambah
                             </button>
