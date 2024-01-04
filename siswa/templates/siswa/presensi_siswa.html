@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static core_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'assets/css/pages/datatables.css' %}">
+{% endblock %}
+
+{% block sidebar_menu %}
+    {% include 'siswa/sidebar.html' %}
+{% endblock %}
+
+{% block title %}
+    {{ title_page }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-heading">
+        <div class="page-title">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 order-md-1 order-first">
+                    <h3>{{ title_page }}</h3>
+                    <p class="text-subtitle text-muted">{{ sub_title_page }}</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-last">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <a href="{% url 'akademik:jadwal_show_weekly' %}" class="btn btn-primary rounded-pill"><i class="fa fa-list"></i> Lihat Jadwal</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Tables start -->
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    {{ title_page }}
+                </div>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body shadow-sm mb-4 bg-light-primary rounded">
+                            <i class="fa fa-clock"></i> {{ jadwal.jam_mulai }} - {{ jadwal.jam_akhir }}<br>
+                            <i class="fa fa-home"></i> {{ jadwal.ruangan.nama }}<br>
+                            <i class="fa fa-book-open"></i> {{ jadwal.mata_pelajaran.nama }}<br>
+                            <i class="fa fa-user"></i> {{ jadwal.guru }}<br>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <div id="table1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                    <form class="form" method="post" enctype="multipart/form-data">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Siswa</th>
+                                                <th>Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% csrf_token %}
+                                                {% for form in forms %}
+                                                    <tr>
+                                                        {% for field in form %}
+                                                            <td>
+                                                            {% if field.is_hidden %}
+                                                                {{ field }}
+                                                            {% else %}
+                                                                {% if field.field.widget.input_type == 'checkbox' %}
+                                                                    <div class="checkbox">
+                                                                        {{ field|addclass:'form-check-input' }}
+                                                                        <small class="text-muted">{{ field.help_text }}</small>
+                                                                        <small class="text-danger p-0">{{ field.errors }}</small>
+                                                                    </div>
+                                                                {% else %}
+                                                                    <div class="col-md-12 col-12">
+                                                                        <div class="form-group">
+                                                                            {{ field|addclass:'form-control' }}
+                                                                            <small class="text-muted">{{ field.help_text }}</small>
+                                                                            <small class="text-danger">{{ field.errors }}</small>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                            </td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                        <div class="col-md-12 col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-column">
+                                                    Keterangan
+                                                </label>
+                                                <textarea name="ket" class="form-control" id="id_ket">{% if ket %}{{ ket }}{% endif %}</textarea>
+                                                <small class="text-muted">Keterangan atau catatan</small>
+                                                <small class="text-danger"></small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">
+                                                {% if btn_submit_name %} {{ btn_submit_name }} {% else %} Submit {% endif %}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Tables end -->
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'assets/js/extensions/datatables.js' %}"></script>
+    {% include 'includes/confirmation_delete_js.html' %}
+{% endblock %}

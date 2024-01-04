@@ -1,5 +1,6 @@
 import random
 
+from django.contrib.auth import get_user_model
 from django.db import models
 from core.models import BaseModel
 from django.templatetags.static import static
@@ -55,6 +56,10 @@ class SiswaKelas(BaseModel):
     def __str__(self):
         return f"{self.siswa} - {self.kelas}"
 
+    class Meta:
+        verbose_name = "Siswa Kelas"
+        verbose_name_plural = "Siswa Kelas"
+
 
 class ArsipSiswaKelas(BaseModel):
     """
@@ -65,5 +70,49 @@ class ArsipSiswaKelas(BaseModel):
     tahun_ajaran = models.ForeignKey("akademik.TahunAkademik", on_delete=models.CASCADE, blank=True, null=True)
     ket = models.TextField(blank=True, null=True)
 
+    class Meta:
+        verbose_name = "Arsip Siswa Kelas"
+        verbose_name_plural = "Arsip Siswa kelas"
+
+
     def __str__(self):
         return f"{self.siswa} - {self.kelas}"
+
+
+class PresensiSiswa(BaseModel):
+    """
+    Model ini digunakan untuk mencatat Presensi Siswa Kelas berdasarkan Jadwal
+    """
+    class STATUS(models.TextChoices):
+        HADIR = "hadir", "Hadir"
+        ABSEN = "absen", "Absen"
+        IJIN = "ijin", "Ijin"
+        SAKIT = "sakit", "Sakit"
+
+    jadwal = models.ForeignKey("akademik.Jadwal", on_delete=models.CASCADE)
+    siswa_kelas = models.ForeignKey(SiswaKelas, on_delete=models.CASCADE)
+    status = models.CharField(max_length=6, choices=STATUS.choices, default=STATUS.ABSEN.value)
+
+    class Meta:
+        verbose_name = "Presensi Siswa"
+        verbose_name_plural = "Presensi Siswa"
+
+    def __str__(self):
+        return f"{self.jadwal} - {self.siswa_kelas}"
+
+
+class PresensiSiswaHarian(BaseModel):
+    """
+    Model ini digunakan untuk mencatat presensi siswa dalam satu aksi
+    """
+    jadwal = models.ForeignKey("akademik.Jadwal", on_delete=models.CASCADE)
+    presensi_siswa = models.ManyToManyField(PresensiSiswa)
+    ket = models.TextField("Keterangan", null=True, blank=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        verbose_name = "Presensi Siswa Harian"
+        verbose_name_plural = "Presensi Siswa Harian"
+
+    def __str__(self):
+        return f"{self.jadwal} - {self.created}"

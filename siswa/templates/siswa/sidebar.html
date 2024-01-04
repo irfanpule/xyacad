@@ -15,4 +15,10 @@
             <span>Siswa Kelas</span>
         </a>
     </li>
+    <li class="sidebar-item {% if active_menu == 'presensisiswa' %} active {% endif %}">
+        <a href="{% url 'siswa:presensisiswaharian_list' %}" class='sidebar-link'>
+            <i class="fa fa-users"></i>
+            <span>Presensi Siswa</span>
+        </a>
+    </li>
 {% endblock %}

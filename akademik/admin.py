@@ -4,33 +4,31 @@ from akademik.models import (
 )
 
 
+@admin.register(TahunAkademik)
 class AdminTahunAkademik(admin.ModelAdmin):
     pass
 
 
+@admin.register(Tingkat)
 class AdminTingkat(admin.ModelAdmin):
     pass
 
 
+@admin.register(Kurikulum)
 class AdminKurikulum(admin.ModelAdmin):
     pass
 
 
+@admin.register(KelompokMapel)
 class AdminKelompokMapel(admin.ModelAdmin):
     pass
 
 
+@admin.register(MataPelajaran)
 class AdminMataPelajaran(admin.ModelAdmin):
     pass
 
 
+@admin.register(Jadwal)
 class AdminJadwal(admin.ModelAdmin):
     pass
-
-
-admin.site.register(TahunAkademik, AdminTahunAkademik)
-admin.site.register(Tingkat, AdminTingkat)
-admin.site.register(Kurikulum, AdminKurikulum)
-admin.site.register(KelompokMapel, AdminKelompokMapel)
-admin.site.register(MataPelajaran, AdminMataPelajaran)
-admin.site.register(Jadwal, AdminJadwal)
