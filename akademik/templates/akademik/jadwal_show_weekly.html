@@ -59,8 +59,9 @@
                                                         <i class="fa fa-home"></i> {{ j.ruangan.nama }}<br>
                                                         <i class="fa fa-book-open"></i> {{ j.mata_pelajaran.nama }}<br>
                                                         <i class="fa fa-user"></i> {{ j.guru }}<br>
+                                                        <a href="{% url 'siswa:siswa_presensi' j.id %}" class="btn btn-primary btn-sm mt-1">Presensi</a>
                                                     </div>
-                                                <div>
+                                                </div>
                                             {% endfor %}
                                         </td>
                                     {% endfor %}

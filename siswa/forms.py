@@ -2,7 +2,7 @@ from django import forms
 
 from akademik.models import TahunAkademik
 from sekolah.models import Sekolah, Kelas
-from siswa.models import Siswa, SiswaKelas
+from siswa.models import Siswa, SiswaKelas, PresensiSiswa
 from django_flatpickr.widgets import DatePickerInput
 from django_flatpickr.schemas import FlatpickrOptions
 from django_select2.forms import Select2Widget
@@ -37,3 +37,23 @@ class SiswaKelasForm(forms.ModelForm):
 class SiswaKelasCreateFilterForm(forms.Form):
     sekolah = forms.ModelChoiceField(queryset=Sekolah.objects.filter(aktif=True))
     tahun_ajaran = forms.ModelChoiceField(queryset=TahunAkademik.objects.all())
+
+
+class PresensiSiswaForm(forms.ModelForm):
+    class Meta:
+        model = PresensiSiswa
+        exclude = ['jadwal',]
+        widgets = {
+            'siswa_kelas': forms.Select(attrs={'readonly': True})
+        }
+
+
+class PresensiSiswaUpdateForm(forms.ModelForm):
+    id = forms.UUIDField(widget=forms.HiddenInput())
+
+    class Meta:
+        model = PresensiSiswa
+        exclude = ['jadwal',]
+        widgets = {
+            'siswa_kelas': forms.Select(attrs={'readonly': True})
+        }

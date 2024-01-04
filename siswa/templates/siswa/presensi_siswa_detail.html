@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static core_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'assets/css/pages/datatables.css' %}">
+{% endblock %}
+
+{% block sidebar_menu %}
+    {% include 'siswa/sidebar.html' %}
+{% endblock %}
+
+{% block title %}
+    {{ title_page }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-heading">
+        <div class="page-title">
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 order-md-1 order-first">
+                    <h3>{{ title_page }}</h3>
+                    <p class="text-subtitle text-muted">{{ sub_title_page }}</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-last">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <a href="{% url 'siswa:presensisiswaharian_update' object.id %}" class="btn btn-primary rounded-pill"><i class="fa fa-edit"></i> Ubah</a>
+                        <a href="{% url 'akademik:jadwal_show_weekly' %}" class="btn btn-primary rounded-pill"><i class="fa fa-list"></i> Lihat Jadwal</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Tables start -->
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    {{ title_page }}
+                </div>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body shadow-sm bg-light-primary rounded">
+                            <i class="fa fa-clock"></i> {{ jadwal.jam_mulai }} - {{ jadwal.jam_akhir }}<br>
+                            <i class="fa fa-home"></i> {{ jadwal.ruangan.nama }}<br>
+                            <i class="fa fa-book-open"></i> {{ jadwal.mata_pelajaran.nama }}<br>
+                            <i class="fa fa-user"></i> {{ jadwal.guru }}<br>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-light-success color-success">
+                        <i class="bi bi-check-circle"></i> Presensi ini dilakukan pada <b>{{ object.created }}</b> oleh <b>{{ user }}</b> <br>
+                        {% if object.created != object.updated %}
+                            dan telah ubah pada <b>{{ object.updated }}</b> oleh <b>{{ user }}</b>
+                        {% endif %}
+                    </div>
+
+                    <div class="table-responsive">
+                        <div id="table1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Siswa</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for presensi in object.presensi_siswa.all %}
+                                                <tr>
+                                                    <td>{{ presensi.siswa_kelas }}</td>
+                                                    <td>{{ presensi.get_status_display }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="alert alert-light-info color-success">
+                                    <h5><i class="fa fa-info"></i> Catatan</h5>
+                                    {{ object.ket }}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Basic Tables end -->
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'assets/js/extensions/datatables.js' %}"></script>
+    {% include 'includes/confirmation_delete_js.html' %}
+{% endblock %}

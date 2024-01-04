@@ -15,4 +15,10 @@ urlpatterns = [
     path('kelas/edit/<uuid:id>/', views.SiswaKelasUpdateView.as_view(), name='siswakelas_update'),
     path('kelas/detail/<uuid:id>/', views.SiswaKelasDetailView.as_view(), name='siswakelas_detail'),
     path('kelas/delete/<uuid:id>/', views.SiswaKelasDeleteView.as_view(), name='siswakelas_delete'),
+
+    path('presensi/jadwal/<uuid:id>/', views.PresensiSiswaCreateView.as_view(), name='siswa_presensi'),
+    path('presensi/harian/', views.PresensiSiswaHarianListView.as_view(), name='presensisiswaharian_list'),
+    path('presensi/harian/<uuid:id>', views.PresensiSiswaHarianDetailView.as_view(), name='presensisiswaharian_detail'),
+    path('presensi/edit/<uuid:id>', views.PresensiSiswaUpdateView.as_view(), name='presensisiswaharian_update'),
+
 ]
